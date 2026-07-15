@@ -1,0 +1,34 @@
+---
+repo: {{ repo.full_name }}
+status: unreviewed
+language: {{ repo.language or "" }}
+topics: [{{ repo.topics | join(", ") }}]
+relations: [{{ relations | join(", ") }}]
+ai_generated: {{ ai_generated | lower }}
+---
+
+# {{ repo.name }}
+
+{{ repo.description }}
+
+{% if ai_summary %}
+## ✦ AI 摘要
+
+{{ ai_summary }}
+{% endif %}
+
+{% if todo_items %}
+## TODO
+
+{% for item in todo_items %}
+- [ ] {{ item.text }}
+{% endfor %}
+{% endif %}
+
+{% if relation_notes %}
+## 关联仓库
+
+{% for note in relation_notes %}
+- **{{ note.name }}** — {{ note.type }}（置信度: {{ note.confidence }}）
+{% endfor %}
+{% endif %}

@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environment
+.venv/
+env/
+venv/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# StarLink specific
+.star-vault-state.json
+.ai-cache/
+star-vault.yaml          # 用户配置（含 API Token）
+*.tmp
+
+# Credentials & secrets
+.env
+.env.*
+
+# Logs
+*.log
+
+# Project planning & memory (private, not uploaded)
+plan/
+memory/
+
+# Scratch & experiments (may contain hardcoded credentials)
+notebooks/
+scratch/
+
+experiments/
+
+# Vault (user-generated)
+vault/
