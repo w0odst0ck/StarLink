@@ -12,7 +12,7 @@ Repository: {owner}/{name}
 Description: {description}
 Topics: {topics}
 Language: {language}
-README excerpt: {readme_snippet}
+README: {readme}
 
 Output JSON format:
 {{"summary": "your summary here", "todos": ["todo1", "todo2", "todo3"]}}

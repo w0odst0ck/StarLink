@@ -27,6 +27,7 @@ class RepoState(BaseModel):
     sha: str = ""
     ai_analyzed: bool = False
     ai_cache_key: str = ""
+    readme_fetched: bool = False
 
 
 class StateFile(BaseModel):

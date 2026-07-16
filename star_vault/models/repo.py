@@ -21,7 +21,7 @@ class RepoData(BaseModel):
     list_name: str = "_uncategorized"
 
     # 以下字段非 star list API 直接返回，需额外采集
-    readme_snippet: str = Field(default="", max_length=2000)
+    readme_snippet: str = Field(default="", max_length=50000)
     archived: bool = False
     fork: bool = False
     stargazers_count: int = 0

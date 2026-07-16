@@ -88,9 +88,15 @@ def sync(
 
         client = AIClient(
             api_key=config.ai.api_key or os.environ.get("OPENAI_API_KEY", ""),
+            gh_token=config.github.token,
             base_url=config.ai.base_url or os.environ.get("OPENAI_BASE_URL", ""),
             model=config.ai.model or os.environ.get("AI_MODEL", "gpt-4o-mini"),
         )
+        from star_vault.core.state import StateManager
+
+        sm = StateManager(vault_path, state_relpath=config.state.path)
+        state = sm.load()
+
         analysis = client.analyze_batch(all_repos)
         for repo in all_repos:
             if r := analysis.get(repo.full_name):
@@ -98,6 +104,12 @@ def sync(
                     "summary": r.summary,
                     "todos": [TodoItem(text=t, source_repo=repo.full_name) for t in r.todos],
                 }
+            # 标记 README 已采集
+            existing = sm.get_repo(repo.full_name)
+            if existing and not existing.readme_fetched:
+                existing.readme_fetched = True
+                sm.upsert_repo(repo.full_name, existing)
+        sm.save()
 
     # 4. 写入 vault
     typer.echo("写入 vault…")

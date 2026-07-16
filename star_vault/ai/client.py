@@ -1,17 +1,19 @@
 """OpenAI 兼容 AI 客户端，含并发控制与重试。
 
 支持 OpenAI、DeepSeek、Ollama 等所有兼容接口。
-不依赖 response_format=json_object（兼容所有后端）。
+README 按需采集（repo 无 readme_snippet 时自动拉取），截取前 3000 字符。
 """
 
 from __future__ import annotations
 
+import base64
 import json
 import logging
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+import httpx
 from openai import OpenAI
 
 from star_vault.models.repo import RepoData
@@ -20,6 +22,9 @@ logger = logging.getLogger(__name__)
 
 _TEMPLATE_DIR = Path(__file__).resolve().parent / "prompts"
 _PROMPT_TEMPLATE: str | None = None
+
+_README_CUTOFF = 3000  # README 截取字符数
+_MAX_TOKENS = 2048  # AI 响应最大 token 数
 
 
 @dataclass
@@ -33,34 +38,32 @@ class AnalysisResult:
 class AIClient:
     """AI 分析客户端。
 
-    用法：
-        client = AIClient(api_key="sk-xxx", base_url="https://api.deepseek.com/v1")
-        result = client.analyze(repo)
+    自动按需采集 README（需要 gh_token）。
     """
 
     def __init__(
         self,
         api_key: str,
+        gh_token: str = "",
         base_url: str = "",
         model: str = "gpt-4o-mini",
         max_workers: int = 3,
     ) -> None:
         self._client = OpenAI(api_key=api_key, base_url=base_url or None)
+        self._gh_token = gh_token
         self._model = model
 
     # ── 公共接口 ────────────────────────────────────────────
 
     def analyze(self, repo: RepoData) -> AnalysisResult:
-        """对单个 repo 执行 AI 分析。
-
-        如果分析失败（网络/解析/模型异常），返回空结果并记日志。
-        """
+        """对单个 repo 执行 AI 分析。"""
         try:
+            self._ensure_readme(repo)
             prompt = self._get_prompt(repo)
             resp = self._client.chat.completions.create(
                 model=self._model,
                 messages=[{"role": "user", "content": prompt}],
-                max_tokens=512,
+                max_tokens=_MAX_TOKENS,
                 temperature=0.3,
             )
             return self._parse_response(resp)
@@ -88,35 +91,67 @@ class AIClient:
                     results[name] = AnalysisResult(summary="", todos=[])
         return results
 
-    # ── 内部 ────────────────────────────────────────────────
+    # ── README 按需采集 ─────────────────────────────────────
+
+    def _ensure_readme(self, repo: RepoData) -> None:
+        """如果 repo 没有 README 内容，从 GitHub API 拉取。"""
+        if repo.readme_snippet or not self._gh_token:
+            return
+
+        try:
+            url = f"https://api.github.com/repos/{repo.full_name}/readme"
+            headers = {
+                "Authorization": f"Bearer {self._gh_token}",
+                "Accept": "application/vnd.github.v3.raw+json",
+                "User-Agent": "StarLink/0.1",
+            }
+            resp = httpx.get(url, headers=headers, timeout=15)
+            if resp.status_code == 200:
+                data = resp.json()
+                content_b64 = data.get("content", "")
+                if data.get("encoding") == "base64" and content_b64:
+                    decoded = base64.b64decode(content_b64).decode(
+                        "utf-8", errors="replace"
+                    )
+                    repo.readme_snippet = decoded[:_README_CUTOFF]
+                else:
+                    repo.readme_snippet = ""
+            else:
+                logger.debug("README 404 [%s]", repo.full_name)
+                repo.readme_snippet = ""
+        except Exception as e:
+            logger.debug("README 采集失败 [%s]: %s", repo.full_name, e)
+            repo.readme_snippet = ""
+
+    # ── Prompt 加载 ────────────────────────────────────────
 
     @classmethod
     def _get_prompt(cls, repo: RepoData) -> str:
-        """加载 Prompt 模板并填充 repo 数据。
-
-        模板文件类级缓存，避免重复读盘。
-        """
+        """加载 Prompt 模板并填充 repo 数据。"""
         global _PROMPT_TEMPLATE
         if _PROMPT_TEMPLATE is None:
             tmpl_path = _TEMPLATE_DIR / "repo_analysis_v1.txt"
             _PROMPT_TEMPLATE = tmpl_path.read_text(encoding="utf-8")
 
+        readme = repo.readme_snippet or "(无 README)"
         return _PROMPT_TEMPLATE.format(
             owner=repo.owner,
             name=repo.name,
             description=repo.description or "(无描述)",
             topics=", ".join(repo.topics) if repo.topics else "(无标签)",
             language=repo.language or "Unknown",
-            readme_snippet=repo.readme_snippet[:500] or "(无 README)",
+            readme=readme,
         )
+
+    # ── 响应解析 ────────────────────────────────────────────
 
     @staticmethod
     def _parse_response(resp: Any) -> AnalysisResult:
-        """解析 AI 响应，处理各种非标准格式。"""
+        """解析 AI 响应。"""
         content = resp.choices[0].message.content or ""
         content = content.strip()
 
-        # 1) 尝试提取最外层 {...} 区域
+        # 提取最外层 {...} 区域
         start = content.find("{")
         end = content.rfind("}")
         if start != -1 and end > start:
@@ -124,7 +159,7 @@ class AIClient:
         else:
             json_str = content
 
-        # 2) 去掉 markdown code block 包裹
+        # 去掉 markdown code block
         json_str = (
             json_str.removeprefix("```json")
             .removeprefix("```")
@@ -132,17 +167,14 @@ class AIClient:
             .strip()
         )
 
-        # 3) 尝试解析 JSON
-        # 如果 } 后有多余内容，json.loads 报 Extra data，提取第一个完整对象
+        # 解析 JSON，兼容 Extra data
         data: dict | None = None
         parse_err: str | None = None
         try:
             data = json.loads(json_str)
         except json.JSONDecodeError as e:
             parse_err = str(e)
-            # 如果错误是 Extra data（} 后有内容），尝试只取第一个 JSON 对象
             if "Extra data" in parse_err:
-                # 找到第一个完整 } 的位置
                 end_brace = json_str.find("}")
                 if end_brace != -1:
                     try:
