@@ -7,6 +7,7 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 import sys
 from collections import Counter
@@ -35,6 +36,9 @@ def sync(
     ),
     no_relations: bool = typer.Option(
         False, "--no-relations", help="跳过关系分析"
+    ),
+    no_ai: bool = typer.Option(
+        False, "--no-ai", help="跳过 AI 分析（需配置 OPENAI_API_KEY）"
     ),
 ):
     """同步 GitHub stars 到本地 vault。"""
@@ -75,15 +79,40 @@ def sync(
                 for r in rels
             ]
 
-    # 3. 写入 vault
+    # 3. AI 分析（可选）
+    ai_results: dict[str, dict] = {}
+    if not no_ai:
+        typer.echo("正在 AI 分析…")
+        from star_vault.ai.client import AIClient
+        from star_vault.models.note import TodoItem
+
+        client = AIClient(
+            api_key=config.ai.api_key or os.environ.get("OPENAI_API_KEY", ""),
+            base_url=config.ai.base_url or os.environ.get("OPENAI_BASE_URL", ""),
+            model=config.ai.model or os.environ.get("AI_MODEL", "gpt-4o-mini"),
+        )
+        analysis = client.analyze_batch(all_repos)
+        for repo in all_repos:
+            if r := analysis.get(repo.full_name):
+                ai_results[repo.full_name] = {
+                    "summary": r.summary,
+                    "todos": [TodoItem(text=t, source_repo=repo.full_name) for t in r.todos],
+                }
+
+    # 4. 写入 vault
     typer.echo("写入 vault…")
     notes = []
     for repo in all_repos:
-        note = build_note(repo, relations=relations_map.get(repo.full_name))
+        kwargs = {"relations": relations_map.get(repo.full_name)}
+        if ai_res := ai_results.get(repo.full_name):
+            kwargs["ai_summary"] = ai_res["summary"]
+            kwargs["ai_generated"] = bool(ai_res["summary"])
+            kwargs["todo_items"] = ai_res.get("todos", [])
+        note = build_note(repo, **kwargs)
         write_note(note, vault_path)
         notes.append(note)
 
-    # 4. 索引
+    # 5. 索引
     (vault_path / "INDEX.md").write_text(
         render_vault_index(notes), encoding="utf-8"
     )
