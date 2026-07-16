@@ -37,6 +37,7 @@ class SyncResult:
 
     new_repos: list[RepoData] = field(default_factory=list)
     updated_repos: list[RepoData] = field(default_factory=list)
+    ai_pending: list[RepoData] = field(default_factory=list)
     unchanged_count: int = 0
     total_fetched: int = 0
 
@@ -237,6 +238,8 @@ def sync(
             )
         else:
             result.unchanged_count += 1
+            if sm.needs_ai(repo.full_name):
+                result.ai_pending.append(repo)
 
     # 更新 sync 时间
     state.last_sync_at = datetime.now(timezone.utc)

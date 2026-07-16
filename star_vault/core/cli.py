@@ -53,7 +53,7 @@ def sync(
         f"未变 {result.unchanged_count}"
     )
 
-    all_repos = result.new_repos + result.updated_repos
+    all_repos = result.new_repos + result.updated_repos + result.ai_pending
     if not all_repos:
         typer.echo("⚠  没有需要处理的 repo")
         return
