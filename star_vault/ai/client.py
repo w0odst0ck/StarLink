@@ -133,10 +133,29 @@ class AIClient:
         )
 
         # 3) 尝试解析 JSON
+        # 如果 } 后有多余内容，json.loads 报 Extra data，提取第一个完整对象
+        data: dict | None = None
+        parse_err: str | None = None
         try:
             data = json.loads(json_str)
-        except json.JSONDecodeError:
-            logger.warning("AI 响应 JSON 解析失败: %s", json_str[:120])
+        except json.JSONDecodeError as e:
+            parse_err = str(e)
+            # 如果错误是 Extra data（} 后有内容），尝试只取第一个 JSON 对象
+            if "Extra data" in parse_err:
+                # 找到第一个完整 } 的位置
+                end_brace = json_str.find("}")
+                if end_brace != -1:
+                    try:
+                        data = json.loads(json_str[: end_brace + 1])
+                    except json.JSONDecodeError:
+                        pass
+
+        if data is None:
+            logger.warning(
+                "AI 响应 JSON 解析失败: %s | content: %.80s",
+                parse_err or "unknown",
+                json_str,
+            )
             return AnalysisResult(summary="", todos=[])
 
         return AnalysisResult(
