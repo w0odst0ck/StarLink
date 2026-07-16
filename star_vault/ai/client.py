@@ -112,18 +112,31 @@ class AIClient:
 
     @staticmethod
     def _parse_response(resp: Any) -> AnalysisResult:
-        """解析 OpenAI 兼容的响应，处理可能的 markdown 包裹。"""
-        content = resp.choices[0].message.content or "{}"
+        """解析 AI 响应，处理各种非标准格式。"""
+        content = resp.choices[0].message.content or ""
         content = content.strip()
 
-        # 去掉可能的 markdown code block 包裹
-        content = content.removeprefix("```json").removeprefix("```").strip()
-        content = content.removesuffix("```").strip()
+        # 1) 尝试提取最外层 {...} 区域
+        start = content.find("{")
+        end = content.rfind("}")
+        if start != -1 and end > start:
+            json_str = content[start : end + 1]
+        else:
+            json_str = content
 
+        # 2) 去掉 markdown code block 包裹
+        json_str = (
+            json_str.removeprefix("```json")
+            .removeprefix("```")
+            .removesuffix("```")
+            .strip()
+        )
+
+        # 3) 尝试解析 JSON
         try:
-            data = json.loads(content)
+            data = json.loads(json_str)
         except json.JSONDecodeError:
-            logger.warning("AI 响应 JSON 解析失败: %s", content[:100])
+            logger.warning("AI 响应 JSON 解析失败: %s", json_str[:120])
             return AnalysisResult(summary="", todos=[])
 
         return AnalysisResult(
