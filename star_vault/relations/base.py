@@ -89,13 +89,10 @@ class EngineHub:
 
     @classmethod
     def load_builtin(cls, config=None) -> None:
-        """加载内置引擎。config 给引擎构造用。
+        """加载内置引擎。config 给引擎构造用。"""
+        from star_vault.relations.engine_builtin import BuiltinEngine
 
-        注意：BuiltinEngine 在 0.8 才实现，在此之前此方法为空操作。
-        """
-        # 0.8 后在此处注册：
-        # from star_vault.relations.engine_builtin import BuiltinEngine
-        # cls.register("builtin", BuiltinEngine(config))
+        cls.register("builtin", BuiltinEngine(config))
 
     @classmethod
     def clear(cls) -> None:

@@ -1,0 +1,17 @@
+Analyze the following GitHub repository and produce:
+1. A concise summary (2-3 sentences explaining what this project does
+   and why it matters)
+2. 3-5 actionable TODO items for someone exploring this repo
+   (e.g., "Read the architecture doc", "Try the quickstart example")
+
+Repository: {owner}/{name}
+Description: {description}
+Topics: {topics}
+Language: {language}
+README excerpt: {readme_snippet}
+
+Output JSON:
+{
+  "summary": "...",
+  "todos": ["...", "..."]
+}
