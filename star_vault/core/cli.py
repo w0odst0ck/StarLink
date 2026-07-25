@@ -16,10 +16,11 @@ from pathlib import Path
 import typer
 
 from star_vault import __version__
-from star_vault.core.config import load_config
+from star_vault.core.config import ConfigError, load_config
 from star_vault.core.syncer import sync as sync_repos
 from star_vault.core.vault import build_note, write_note
 from star_vault.core.index_generator import render_vault_index, render_todo_index
+from star_vault.core.pages import generate_site_data
 
 app = typer.Typer(
     name="star-vault",
@@ -39,6 +40,9 @@ def sync(
     ),
     no_ai: bool = typer.Option(
         False, "--no-ai", help="跳过 AI 分析（需配置 OPENAI_API_KEY）"
+    ),
+    with_pages: bool = typer.Option(
+        False, "--with-pages", help="同步后生成 GitHub Pages 静态站点"
     ),
 ):
     """同步 GitHub stars 到本地 vault。"""
@@ -132,11 +136,19 @@ def sync(
         render_todo_index(notes), encoding="utf-8"
     )
 
+    # 6. Pages（可选）
+    page_count = 0
+    if with_pages:
+        typer.echo("\n正在生成 Pages 站点…")
+        page_count = generate_site_data(vault_path)
+
     # summary
     typer.echo(f"\n✓ Vault: {vault_path}")
     typer.echo(f"  ├─ {len(notes)} 篇笔记")
     typer.echo(f"  ├─ INDEX.md")
     typer.echo(f"  └─ TODO.md")
+    if page_count:
+        typer.echo(f"  └─ Pages: {page_count} repos → index.html + site-data.json")
 
 
 @app.command()
@@ -183,6 +195,41 @@ def config():
         raise typer.Exit(1) from e
 
     typer.echo(cfg.dump_safe())
+
+
+@app.command()
+def pages(
+    vault_dir: str = typer.Option(
+        "./vault", "--vault", "-d",
+        help="vault 目录路径（默认 ./vault；可通过 star-vault.yaml 的 vault.path 配置）",
+    ),
+):
+    """从已有 vault 数据重新生成 Pages 站点。
+
+    不依赖 GitHub Token，不需要网络连接。
+    """
+    # 有配置则优先用配置的 vault.path，无需 token 的配置项仍可加载
+    vault_path: Path
+    try:
+        cfg = load_config()
+        vault_path = Path(cfg.vault.path).expanduser().resolve()
+    except ConfigError:
+        vault_path = Path(vault_dir).expanduser().resolve()
+
+    if not (vault_path / "stars").is_dir():
+        typer.echo(f"✗ Vault 中未找到笔记数据: {vault_path}")
+        typer.echo("请先运行: star-vault sync")
+        raise typer.Exit(1)
+
+    typer.echo(f"扫描 Vault: {vault_path}")
+    count = generate_site_data(vault_path)
+    typer.echo(f"\n✓ Pages 站点已生成")
+    typer.echo(f"  ├─ {count} 篇笔记")
+    typer.echo(f"  ├─ site-data.json")
+    typer.echo(f"  ├─ index.html")
+    typer.echo(f"  ├─ app.js")
+    typer.echo(f"  └─ style.css")
+    typer.echo(f"\n下一步：将 {vault_path} 部署到 GitHub Pages，或运行 star-vault sync --with-pages")
 
 
 if __name__ == "__main__":

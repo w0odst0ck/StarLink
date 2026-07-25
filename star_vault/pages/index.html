@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>StarLink Vault</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/vue@3.5.13/dist/vue.global.prod.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked@15.0.6/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.0/highlight.min.js"></script>
+</head>
+<body>
+
+<div id="app" class="app">
+  <!-- Loading -->
+  <div v-if="loading" class="loading">
+    <div class="spinner"></div>
+    <span>加载 Vault 数据…</span>
+  </div>
+
+  <!-- Error -->
+  <div v-else-if="error" class="loading" style="flex-direction:column;gap:12px">
+    <span style="font-size:2rem">⚠️</span>
+    <span>{{ error }}</span>
+  </div>
+
+  <!-- Main app -->
+  <template v-else>
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="topbar-brand">
+        <span>✦</span> StarLink Vault
+        <span style="font-size:0.8rem;color:var(--text-muted);font-weight:400">
+          {{ stats.total }} repos
+        </span>
+      </div>
+      <nav class="topbar-nav">
+        <a href="#/" :class="{active: route==='/'}">🏠 首页</a>
+        <a href="#/todo" :class="{active: route==='/todo'}">✅ TODO</a>
+        <a href="#/relations" :class="{active: route==='/relations'}">🔗 关系</a>
+      </nav>
+    </header>
+
+    <!-- ════ HOME ════ -->
+    <div v-if="route === '/'">
+      <!-- Stats -->
+      <div class="stats-bar">
+        <span>📦 <strong>{{ stats.total }}</strong> 个仓库</span>
+        <span>🌐 <strong>{{ stats.languages }}</strong> 种语言</span>
+        <span>📂 <strong>{{ stats.lists }}</strong> 个分组</span>
+      </div>
+
+      <!-- Search -->
+      <div class="search-bar">
+        <input v-model="searchQuery" placeholder="搜索仓库名、语言、标签…" />
+        <select v-model="filterLang">
+          <option value="">全部语言</option>
+          <option v-for="l in languages" :key="l" :value="l">{{ l }}</option>
+        </select>
+      </div>
+
+      <!-- Groups -->
+      <div v-if="filteredNotes.length === 0" style="color:var(--text-muted);text-align:center;padding:40px">
+        无匹配结果
+      </div>
+      <div v-for="key in groupKeys" :key="key" class="group-section">
+        <div class="group-title">📁 {{ key }} · {{ groupedNotes[key].length }}</div>
+        <div class="repo-grid">
+          <div v-for="n in groupedNotes[key]" :key="n.slug" class="repo-card"
+               @click="nav('/repo/' + n.slug)">
+            <div class="repo-card-icon" :style="{background: langColor(n.language)+'22'}">
+              <span v-if="n.language" style="font-size:0.7rem">{{ n.language.slice(0,2) }}</span>
+              <span v-else style="font-size:0.7rem">*</span>
+            </div>
+            <div class="repo-card-body">
+              <div class="repo-card-name">{{ n.repo_full_name }}</div>
+              <div class="repo-card-desc">{{ n.topics?.join(', ') || n.repo_full_name }}</div>
+            </div>
+            <div class="repo-card-tags">
+              <span v-if="n.language" class="tag tag-lang">{{ n.language }}</span>
+              <span v-if="n.ai_generated" class="tag tag-ai">AI</span>
+              <span v-if="n.status==='pending'" class="tag tag-pending">待审</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ DETAIL ════ -->
+    <div v-if="route.startsWith('/repo/')">
+      <template v-if="currentNote">
+        <button class="detail-back" @click="nav('/')">← 返回索引</button>
+
+        <div class="detail-header">
+          <h1>{{ currentNote.repo_full_name }}</h1>
+          <div class="detail-meta">
+            <span v-if="currentNote.language" class="tag tag-lang">{{ currentNote.language }}</span>
+            <span v-if="currentNote.ai_generated" class="tag tag-ai">AI 摘要</span>
+            <span v-for="t in currentNote.topics" :key="t" class="tag" style="background:var(--accent-dim);color:var(--accent)">{{ t }}</span>
+          </div>
+        </div>
+
+        <!-- AI Summary -->
+        <div v-if="currentNote.ai_summary" class="detail-section markdown-body"
+             v-html="renderMd('## ✦ AI 摘要\n\n' + currentNote.ai_summary)">
+        </div>
+
+        <!-- Description / Markdown body -->
+        <div class="detail-section markdown-body">
+          <div v-html="renderMd('## 概述\n\n**分类**: ' + (currentNote.list_name || '_uncategorized') + '\n**状态**: ' + currentNote.status)"></div>
+        </div>
+
+        <!-- TODO -->
+        <div v-if="currentNote.todo_items?.length" class="detail-section">
+          <h2>✅ TODO 列表</h2>
+          <ul class="todo-list">
+            <li v-for="(t, i) in currentNote.todo_items" :key="i">
+              <input type="checkbox" class="todo-checkbox" v-model="t.done" />
+              <span :class="{todoDone: t.done}">{{ t.text }}</span>
+              <span class="todo-priority">P{{ t.priority || 3 }}</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Relations -->
+        <div v-if="currentNote.relations?.length" class="detail-section">
+          <h2>🔗 关联仓库</h2>
+          <ul class="relation-list">
+            <li v-for="(r, i) in currentNote.relations" :key="i">
+              <a :href="'#/repo/' + r.target_slug">{{ r.target_slug }}</a>
+              <span class="relation-type">{{ r.relation_type }}</span>
+              <span class="relation-conf">{{ r.confidence.toFixed(2) }}</span>
+            </li>
+          </ul>
+        </div>
+      </template>
+
+      <div v-else class="loading" style="flex-direction:column;gap:8px">
+        <span style="font-size:2rem">🔍</span>
+        <span>未找到该仓库</span>
+        <button class="detail-back" @click="nav('/')" style="margin-top:8px">← 返回索引</button>
+      </div>
+    </div>
+
+    <!-- ════ TODO ════ -->
+    <div v-if="route === '/todo'">
+      <h2 style="margin-bottom:16px">✅ 全部 TODO · {{ allTodos.length }} 项</h2>
+      <div v-if="allTodos.length === 0" style="color:var(--text-muted);padding:20px">
+        暂无 TODO 项。
+      </div>
+      <div class="todo-grid">
+        <div v-for="(t, i) in allTodos" :key="i" class="todo-item-card">
+          <input type="checkbox" class="todo-checkbox" v-model="t.done" />
+          <div style="flex:1">
+            <div :class="{todoDone: t.done}">{{ t.text }}</div>
+            <a :href="'#/repo/' + t.slug" class="todo-source">📎 {{ t.repo }}</a>
+          </div>
+          <span class="todo-priority">P{{ t.priority || 3 }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ RELATIONS ════ -->
+    <div v-if="route === '/relations'">
+      <h2 style="margin-bottom:16px">🔗 关系分组 · {{ allRelations.length }}</h2>
+      <div v-if="allRelations.length === 0" style="color:var(--text-muted);padding:20px">
+        暂无关系数据。
+      </div>
+      <div v-for="(c, i) in allRelations" :key="i" class="relation-cluster">
+        <h3>{{ c.type }}</h3>
+        <ul>
+          <li v-for="r in c.relations" :key="r.source+r.target_slug">
+            <a :href="'#/repo/' + toSlug(r.source)">{{ r.source }}</a>
+            <span style="color:var(--text-muted)">→</span>
+            <a :href="'#/repo/' + r.target_slug">{{ r.target_slug }}</a>
+            <span class="relation-type">{{ r.relation_type }}</span>
+            <span class="relation-conf">{{ r.confidence.toFixed(2) }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </template>
+</div>
+
+<!-- Sync button -->
+<a class="sync-btn" href="https://github.com/w0odst0ck/StarLink/actions/workflows/deploy-pages.yml"
+   target="_blank" rel="noopener">
+  🔄 同步数据
+</a>
+
+<script src="app.js"></script>
+</body>
+</html>
