@@ -15,6 +15,14 @@ from pydantic import BaseModel, Field
 from star_vault.core.config import json_dumps
 
 
+# AI 状态枚举
+AI_STATUS_PENDING = "pending"
+AI_STATUS_DONE = "done"
+AI_STATUS_FAILED = "failed"
+AI_STATUS_STALE = "stale"
+AI_STATUS_LOCKED = "locked"
+
+
 # ── 状态数据模型 ──────────────────────────────────────────
 # 注：此处定义是 0.1 内嵌设计，0.2 数据模型阶段可能重构至 models/
 
@@ -25,9 +33,10 @@ class RepoState(BaseModel):
     starred_at: datetime
     list_name: str = "_uncategorized"
     sha: str = ""
-    ai_analyzed: bool = False
+    ai_analyzed: bool = False  # 旧字段，继承兼容
     ai_cache_key: str = ""
     readme_fetched: bool = False
+    ai_status: str = AI_STATUS_PENDING
 
     # Repo 元数据（用于 --ai-only 重建）
     language: str = ""
@@ -126,6 +135,24 @@ class StateManager:
         if existing is None:
             return True
         return not existing.ai_analyzed
+
+    def needs_reanalysis(
+        self, repo_full_name: str, current_key: str = ""
+    ) -> bool:
+        """判断是否需要重新 AI 分析（三级状态兼容旧数据）。"""
+        existing = self._current.repos.get(repo_full_name)
+        if existing is None:
+            return True
+        status = existing.ai_status or (
+            AI_STATUS_DONE if existing.ai_analyzed else AI_STATUS_PENDING
+        )
+        if status == AI_STATUS_LOCKED:
+            return False
+        if status in (AI_STATUS_PENDING, AI_STATUS_FAILED, AI_STATUS_STALE):
+            return True
+        if status == AI_STATUS_DONE and current_key and existing.ai_cache_key != current_key:
+            return True
+        return False
 
     def get_new_repos_since(self, since: datetime) -> list[str]:
         """获取指定时间后 star 的 repo 列表。"""

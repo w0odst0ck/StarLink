@@ -13,7 +13,7 @@ from typing import Any
 import httpx
 
 from star_vault.core.config import Config
-from star_vault.core.state import RepoState, StateManager
+from star_vault.core.state import RepoState, StateManager, AI_STATUS_PENDING
 from star_vault.models.repo import RepoData
 
 logger = logging.getLogger(__name__)
@@ -234,6 +234,7 @@ def sync(
                     list_name=repo.list_name,
                     sha=current_sha,
                     ai_analyzed=False,
+                    ai_status=AI_STATUS_PENDING,
                     language=repo.language or "",
                     topics=repo.topics,
                     description=repo.description or "",
