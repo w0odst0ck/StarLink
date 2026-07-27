@@ -1,7 +1,7 @@
 """OpenAI 兼容 AI 客户端，含并发控制与重试。
 
 支持 OpenAI、DeepSeek、Ollama 等所有兼容接口。
-README 按需采集（repo 无 readme_snippet 时自动拉取），截取前 3000 字符。
+README 按需采集（repo 无 readme_snippet 时自动拉取），智能截取。
 """
 
 from __future__ import annotations
@@ -9,7 +9,7 @@ from __future__ import annotations
 import base64
 import json
 import logging
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
@@ -21,24 +21,47 @@ from star_vault.models.repo import RepoData
 logger = logging.getLogger(__name__)
 
 _TEMPLATE_DIR = Path(__file__).resolve().parent / "prompts"
-_PROMPT_TEMPLATE: str | None = None
+_PROMPT_V1: str | None = None
+_PROMPT_V2: str | None = None
 
-_README_CUTOFF = 3000  # README 截取字符数
-_MAX_TOKENS = 2048  # AI 响应最大 token 数
+_MAX_README_CHARS = 4000  # README 智能截取上限
+_MAX_TOKENS = 3072  # AI 响应最大 token 数（v2 输出更长）
+_MAX_RETRIES = 1  # 失败自动重试次数
+
+
+# ── 分级章节标题（遇到就截断）─────────────────────────
+
+
+_STOP_SECTIONS = (
+    "## installation", "## install", "## getting started",
+    "## quick start", "## quickstart", "## setup", "## usage",
+    "## api", "## configuration", "## contributing",
+)
+
+
+# ── 分析结果数据类 ──────────────────────────────────
 
 
 @dataclass
 class AnalysisResult:
-    """单次 AI 分析的结果。"""
+    """单次 AI 分析的结果（v2，含分类/评分/标签）。"""
 
-    summary: str
-    todos: list[str]
+    summary: str = ""
+    todos: list[str] = field(default_factory=list)
+    category: str = ""
+    rating: int = 0
+    maintenance: str = ""
+    tags: list[str] = field(default_factory=list)
+
+
+# ── AI 客户端 ──────────────────────────────────────
 
 
 class AIClient:
     """AI 分析客户端。
 
     自动按需采集 README（需要 gh_token）。
+    支持 v1/v2 两种 prompt 版本，默认为 v2。
     """
 
     def __init__(
@@ -52,35 +75,45 @@ class AIClient:
         self._client = OpenAI(api_key=api_key, base_url=base_url or None)
         self._gh_token = gh_token
         self._model = model
+        self._max_workers = max_workers
 
     # ── 公共接口 ────────────────────────────────────────────
 
-    def analyze(self, repo: RepoData) -> AnalysisResult:
-        """对单个 repo 执行 AI 分析。"""
-        try:
-            self._ensure_readme(repo)
-            prompt = self._get_prompt(repo)
-            resp = self._client.chat.completions.create(
-                model=self._model,
-                messages=[{"role": "user", "content": prompt}],
-                max_tokens=_MAX_TOKENS,
-                temperature=0.3,
-            )
-            return self._parse_response(resp)
-        except Exception as e:
-            logger.warning("AI 分析失败 [%s]: %s", repo.full_name, e)
-            return AnalysisResult(summary="", todos=[])
+    def analyze(self, repo: RepoData, prompt_version: str = "v2") -> AnalysisResult:
+        """对单个 repo 执行 AI 分析，失败自动重试。"""
+        last_error: Exception | None = None
+        for attempt in range(_MAX_RETRIES + 1):
+            try:
+                self._ensure_readme(repo)
+                system_msg, prompt = self._build_messages(repo, prompt_version)
+                resp = self._client.chat.completions.create(
+                    model=self._model,
+                    messages=[
+                        {"role": "system", "content": system_msg},
+                        {"role": "user", "content": prompt},
+                    ],
+                    max_tokens=_MAX_TOKENS,
+                    temperature=0.3,
+                )
+                return self._parse_response(resp, prompt_version)
+            except Exception as e:
+                last_error = e
+                if attempt < _MAX_RETRIES:
+                    logger.debug("AI 分析重试 [%s] attempt %d: %s", repo.full_name, attempt + 1, e)
+
+        logger.warning("AI 分析失败 [%s]: %s", repo.full_name, last_error)
+        return AnalysisResult()
 
     def analyze_batch(
-        self, repos: list[RepoData]
+        self, repos: list[RepoData], prompt_version: str = "v2"
     ) -> dict[str, AnalysisResult]:
         """批量分析，线程池控制并发。"""
         from concurrent.futures import ThreadPoolExecutor, as_completed
 
         results: dict[str, AnalysisResult] = {}
-        with ThreadPoolExecutor(max_workers=3) as pool:
+        with ThreadPoolExecutor(max_workers=self._max_workers) as pool:
             fut_map = {
-                pool.submit(self.analyze, r): r.full_name for r in repos
+                pool.submit(self.analyze, r, prompt_version): r.full_name for r in repos
             }
             for fut in as_completed(fut_map):
                 name = fut_map[fut]
@@ -88,7 +121,7 @@ class AIClient:
                     results[name] = fut.result()
                 except Exception as e:
                     logger.warning("AI 分析异常 [%s]: %s", name, e)
-                    results[name] = AnalysisResult(summary="", todos=[])
+                    results[name] = AnalysisResult()
         return results
 
     # ── README 按需采集 ─────────────────────────────────────
@@ -113,7 +146,7 @@ class AIClient:
                     decoded = base64.b64decode(content_b64).decode(
                         "utf-8", errors="replace"
                     )
-                    repo.readme_snippet = decoded[:_README_CUTOFF]
+                    repo.readme_snippet = self._smart_truncate(decoded)
                 else:
                     repo.readme_snippet = ""
             else:
@@ -123,18 +156,45 @@ class AIClient:
             logger.debug("README 采集失败 [%s]: %s", repo.full_name, e)
             repo.readme_snippet = ""
 
-    # ── Prompt 加载 ────────────────────────────────────────
+    @staticmethod
+    def _smart_truncate(text: str, max_chars: int = _MAX_README_CHARS) -> str:
+        """智能截取 README：在章节标题处截止，避免腰斩内容。"""
+        if len(text) <= max_chars:
+            return text
+
+        # 前 max_chars 字符内查找最近的停靠章节标题
+        head = text[:max_chars].lower()
+        best_pos = max_chars
+        for section in _STOP_SECTIONS:
+            pos = head.rfind(section)
+            if pos != -1 and pos < best_pos:
+                best_pos = pos
+
+        return text[:best_pos].rstrip() + "\n\n..."
+
+    # ── Prompt 构建 ────────────────────────────────────────
 
     @classmethod
-    def _get_prompt(cls, repo: RepoData) -> str:
-        """加载 Prompt 模板并填充 repo 数据。"""
-        global _PROMPT_TEMPLATE
-        if _PROMPT_TEMPLATE is None:
-            tmpl_path = _TEMPLATE_DIR / "repo_analysis_v1.txt"
-            _PROMPT_TEMPLATE = tmpl_path.read_text(encoding="utf-8")
+    def _build_messages(cls, repo: RepoData, prompt_version: str) -> tuple[str, str]:
+        """构建 system + user 消息。返回 (system_prompt, user_prompt)。"""
+        global _PROMPT_V1, _PROMPT_V2
+
+        if prompt_version == "v2":
+            if _PROMPT_V2 is None:
+                tmpl_path = _TEMPLATE_DIR / "repo_analysis_v2.txt"
+                _PROMPT_V2 = tmpl_path.read_text(encoding="utf-8")
+            # v2 的 system role 已内嵌在 prompt template 中
+            system = "You are StarLink AI Analyst, an expert at evaluating GitHub repositories."
+            user_prompt = _PROMPT_V2
+        else:
+            if _PROMPT_V1 is None:
+                tmpl_path = _TEMPLATE_DIR / "repo_analysis_v1.txt"
+                _PROMPT_V1 = tmpl_path.read_text(encoding="utf-8")
+            system = "You are a helpful assistant."
+            user_prompt = _PROMPT_V1
 
         readme = repo.readme_snippet or "(无 README)"
-        return _PROMPT_TEMPLATE.format(
+        user_prompt = user_prompt.format(
             owner=repo.owner,
             name=repo.name,
             description=repo.description or "(无描述)",
@@ -143,10 +203,12 @@ class AIClient:
             readme=readme,
         )
 
+        return system, user_prompt
+
     # ── 响应解析 ────────────────────────────────────────────
 
     @staticmethod
-    def _parse_response(resp: Any) -> AnalysisResult:
+    def _parse_response(resp: Any, prompt_version: str) -> AnalysisResult:
         """解析 AI 响应。"""
         content = resp.choices[0].message.content or ""
         content = content.strip()
@@ -188,8 +250,19 @@ class AIClient:
                 parse_err or "unknown",
                 json_str,
             )
-            return AnalysisResult(summary="", todos=[])
+            return AnalysisResult()
 
+        if prompt_version == "v2":
+            return AnalysisResult(
+                summary=data.get("summary", ""),
+                todos=data.get("todos", []),
+                category=str(data.get("category", "")),
+                rating=int(data.get("rating", 0)),
+                maintenance=str(data.get("maintenance", "")),
+                tags=data.get("tags", []),
+            )
+
+        # v1 兼容
         return AnalysisResult(
             summary=data.get("summary", ""),
             todos=data.get("todos", []),

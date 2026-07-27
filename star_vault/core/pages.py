@@ -59,6 +59,11 @@ def _parse_note_file(path: Path) -> dict | None:
         "ai_summary": body.get("ai_summary", ""),
         "todo_items": body.get("todo_items", []),
         "relations": _parse_relations(fm.get("relations", [])),
+        # AI 增强字段 (v2)
+        "category": fm.get("category", ""),
+        "rating": int(fm.get("rating", 0)),
+        "maintenance": fm.get("maintenance", ""),
+        "ai_tags": fm.get("ai_tags", []),
     }
 
 

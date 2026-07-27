@@ -22,7 +22,7 @@
 
   <!-- Error -->
   <div v-else-if="error" class="loading" style="flex-direction:column;gap:12px">
-    <span style="font-size:2rem">⚠️</span>
+    <span style="font-size:2rem">&#x26A0;&#xFE0F;</span>
     <span>{{ error }}</span>
   </div>
 
@@ -31,25 +31,25 @@
     <!-- Topbar -->
     <header class="topbar">
       <div class="topbar-brand">
-        <span>✦</span> StarLink Vault
+        <span>&#10026;</span> StarLink Vault
         <span style="font-size:0.8rem;color:var(--text-muted);font-weight:400">
           {{ stats.total }} repos
         </span>
       </div>
       <nav class="topbar-nav">
-        <a href="#/" :class="{active: route==='/'}">🏠 首页</a>
-        <a href="#/todo" :class="{active: route==='/todo'}">✅ TODO</a>
-        <a href="#/relations" :class="{active: route==='/relations'}">🔗 关系</a>
+        <a href="#/" :class="{active: route==='/'}">&#x1F3E0; 首页</a>
+        <a href="#/todo" :class="{active: route==='/todo'}">&#x2705; TODO</a>
+        <a href="#/relations" :class="{active: route==='/relations'}">&#x1F517; 关系</a>
       </nav>
     </header>
 
-    <!-- ════ HOME ════ -->
+    <!-- &#x2B50;&#x2B50; HOME &#x2B50;&#x2B50; -->
     <div v-if="route === '/'">
       <!-- Stats -->
       <div class="stats-bar">
-        <span>📦 <strong>{{ stats.total }}</strong> 个仓库</span>
-        <span>🌐 <strong>{{ stats.languages }}</strong> 种语言</span>
-        <span>📂 <strong>{{ stats.lists }}</strong> 个分组</span>
+        <span>&#x1F4E6; <strong>{{ stats.total }}</strong> 个仓库</span>
+        <span>&#x1F310; <strong>{{ stats.languages }}</strong> 种语言</span>
+        <span>&#x1F4C2; <strong>{{ stats.lists }}</strong> 个分组</span>
       </div>
 
       <!-- Search -->
@@ -66,7 +66,7 @@
         无匹配结果
       </div>
       <div v-for="key in groupKeys" :key="key" class="group-section">
-        <div class="group-title">📁 {{ key }} · {{ groupedNotes[key].length }}</div>
+        <div class="group-title">&#x1F4C1; {{ key }} &middot; {{ groupedNotes[key].length }}</div>
         <div class="repo-grid">
           <div v-for="n in groupedNotes[key]" :key="n.slug" class="repo-card"
                @click="nav('/repo/' + n.slug)">
@@ -75,36 +75,62 @@
               <span v-else style="font-size:0.7rem">*</span>
             </div>
             <div class="repo-card-body">
-              <div class="repo-card-name">{{ n.repo_full_name }}</div>
+              <div class="repo-card-name">
+                {{ n.repo_full_name }}
+                <span v-if="n.rating >= 4" style="color:var(--yellow);font-size:0.75rem;margin-left:4px">&#x2B50;</span>
+              </div>
               <div class="repo-card-desc">{{ n.topics?.join(', ') || n.repo_full_name }}</div>
             </div>
             <div class="repo-card-tags">
+              <span v-if="n.category" class="tag tag-cat">{{ catIcon(n.category) }} {{ n.category }}</span>
               <span v-if="n.language" class="tag tag-lang">{{ n.language }}</span>
+              <span v-if="n.maintenance" class="tag" :style="{background: maintStyle(n.maintenance).color+'22', color: maintStyle(n.maintenance).color}">{{ n.maintenance }}</span>
+              <span v-if="n.rating >= 4" class="tag tag-high-rating">{{ ratingStars(n.rating) }}</span>
               <span v-if="n.ai_generated" class="tag tag-ai">AI</span>
-              <span v-if="n.status==='pending'" class="tag tag-pending">待审</span>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ════ DETAIL ════ -->
+    <!-- &#x2B50;&#x2B50; DETAIL &#x2B50;&#x2B50; -->
     <div v-if="route.startsWith('/repo/')">
       <template v-if="currentNote">
-        <button class="detail-back" @click="nav('/')">← 返回索引</button>
+        <button class="detail-back" @click="nav('/')">&larr; 返回索引</button>
 
         <div class="detail-header">
           <h1>{{ currentNote.repo_full_name }}</h1>
           <div class="detail-meta">
+            <span v-if="currentNote.category" class="tag tag-cat">{{ catIcon(currentNote.category) }} {{ currentNote.category }}</span>
             <span v-if="currentNote.language" class="tag tag-lang">{{ currentNote.language }}</span>
+            <span v-if="currentNote.maintenance" class="tag" :style="{background: maintStyle(currentNote.maintenance).color+'22', color: maintStyle(currentNote.maintenance).color}">{{ currentNote.maintenance }}</span>
+            <span v-if="currentNote.rating >= 1" class="tag tag-rating-detail">{{ ratingStars(currentNote.rating) }}</span>
             <span v-if="currentNote.ai_generated" class="tag tag-ai">AI 摘要</span>
             <span v-for="t in currentNote.topics" :key="t" class="tag" style="background:var(--accent-dim);color:var(--accent)">{{ t }}</span>
           </div>
         </div>
 
+        <!-- AI Tags -->
+        <div v-if="currentNote.ai_tags?.length" class="detail-section">
+          <h2>&#x1F3F7; AI 标签</h2>
+          <div class="ai-tags-bar">
+            <span v-for="tag in currentNote.ai_tags" :key="tag" class="tag tag-ai-tag">{{ tag }}</span>
+          </div>
+        </div>
+
         <!-- AI Summary -->
         <div v-if="currentNote.ai_summary" class="detail-section markdown-body"
-             v-html="renderMd('## ✦ AI 摘要\n\n' + currentNote.ai_summary)">
+             v-html="renderMd('## &#x2726; AI 摘要\n\n' + currentNote.ai_summary)">
+        </div>
+
+        <!-- Evaluation -->
+        <div v-if="currentNote.rating || currentNote.category || currentNote.maintenance" class="detail-section">
+          <h2>&#x1F4CA; 评估</h2>
+          <div class="eval-grid">
+            <div v-if="currentNote.category"><span class="eval-label">分类</span><span> {{ catIcon(currentNote.category) }} {{ currentNote.category }}</span></div>
+            <div v-if="currentNote.rating >= 1"><span class="eval-label">评分</span><span> {{ ratingStars(currentNote.rating) }} ({{ currentNote.rating }}/5)</span></div>
+            <div v-if="currentNote.maintenance"><span class="eval-label">维护</span><span :style="maintStyle(currentNote.maintenance)"> {{ currentNote.maintenance }}</span></div>
+          </div>
         </div>
 
         <!-- Description / Markdown body -->
@@ -114,7 +140,7 @@
 
         <!-- TODO -->
         <div v-if="currentNote.todo_items?.length" class="detail-section">
-          <h2>✅ TODO 列表</h2>
+          <h2>&#x2705; TODO 列表</h2>
           <ul class="todo-list">
             <li v-for="(t, i) in currentNote.todo_items" :key="i">
               <input type="checkbox" class="todo-checkbox" v-model="t.done" />
@@ -126,7 +152,7 @@
 
         <!-- Relations -->
         <div v-if="currentNote.relations?.length" class="detail-section">
-          <h2>🔗 关联仓库</h2>
+          <h2>&#x1F517; 关联仓库</h2>
           <ul class="relation-list">
             <li v-for="(r, i) in currentNote.relations" :key="i">
               <a :href="'#/repo/' + r.target_slug">{{ r.target_slug }}</a>
@@ -138,15 +164,15 @@
       </template>
 
       <div v-else class="loading" style="flex-direction:column;gap:8px">
-        <span style="font-size:2rem">🔍</span>
+        <span style="font-size:2rem">&#x1F50D;</span>
         <span>未找到该仓库</span>
-        <button class="detail-back" @click="nav('/')" style="margin-top:8px">← 返回索引</button>
+        <button class="detail-back" @click="nav('/')" style="margin-top:8px">&larr; 返回索引</button>
       </div>
     </div>
 
-    <!-- ════ TODO ════ -->
+    <!-- &#x2B50;&#x2B50; TODO &#x2B50;&#x2B50; -->
     <div v-if="route === '/todo'">
-      <h2 style="margin-bottom:16px">✅ 全部 TODO · {{ allTodos.length }} 项</h2>
+      <h2 style="margin-bottom:16px">&#x2705; 全部 TODO &middot; {{ allTodos.length }} 项</h2>
       <div v-if="allTodos.length === 0" style="color:var(--text-muted);padding:20px">
         暂无 TODO 项。
       </div>
@@ -155,16 +181,16 @@
           <input type="checkbox" class="todo-checkbox" v-model="t.done" />
           <div style="flex:1">
             <div :class="{todoDone: t.done}">{{ t.text }}</div>
-            <a :href="'#/repo/' + t.slug" class="todo-source">📎 {{ t.repo }}</a>
+            <a :href="'#/repo/' + t.slug" class="todo-source">&#x1F4CE; {{ t.repo }}</a>
           </div>
           <span class="todo-priority">P{{ t.priority || 3 }}</span>
         </div>
       </div>
     </div>
 
-    <!-- ════ RELATIONS ════ -->
+    <!-- &#x2B50;&#x2B50; RELATIONS &#x2B50;&#x2B50; -->
     <div v-if="route === '/relations'">
-      <h2 style="margin-bottom:16px">🔗 关系分组 · {{ allRelations.length }}</h2>
+      <h2 style="margin-bottom:16px">&#x1F517; 关系分组 &middot; {{ allRelations.length }}</h2>
       <div v-if="allRelations.length === 0" style="color:var(--text-muted);padding:20px">
         暂无关系数据。
       </div>
@@ -173,7 +199,7 @@
         <ul>
           <li v-for="r in c.relations" :key="r.source+r.target_slug">
             <a :href="'#/repo/' + toSlug(r.source)">{{ r.source }}</a>
-            <span style="color:var(--text-muted)">→</span>
+            <span style="color:var(--text-muted)">&rarr;</span>
             <a :href="'#/repo/' + r.target_slug">{{ r.target_slug }}</a>
             <span class="relation-type">{{ r.relation_type }}</span>
             <span class="relation-conf">{{ r.confidence.toFixed(2) }}</span>
@@ -187,7 +213,7 @@
 <!-- Sync button -->
 <a class="sync-btn" href="https://github.com/w0odst0ck/StarLink/actions/workflows/deploy-pages.yml"
    target="_blank" rel="noopener">
-  🔄 同步数据
+  &#x1F504; 同步数据
 </a>
 
 <script src="app.js"></script>

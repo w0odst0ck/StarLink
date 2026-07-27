@@ -36,3 +36,9 @@ class NoteData(BaseModel):
     ai_summary: str = ""
     todo_items: list[TodoItem] = Field(default_factory=list)
     relations: list[RelationRef] = Field(default_factory=list)
+
+    # AI 增强字段 (v2)
+    category: str = ""
+    rating: int = Field(default=0, ge=0, le=5)
+    maintenance: str = ""
+    ai_tags: list[str] = Field(default_factory=list)

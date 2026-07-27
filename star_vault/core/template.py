@@ -66,6 +66,7 @@ def render_note(
 
     context = {
         "repo": _RepoProxy(note_data),
+        "note_data": note_data,
         "relations": [ref.target_slug for ref in note_data.relations],
         "ai_generated": note_data.ai_generated,
         "ai_summary": note_data.ai_summary,

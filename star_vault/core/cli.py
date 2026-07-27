@@ -44,23 +44,50 @@ def sync(
     with_pages: bool = typer.Option(
         False, "--with-pages", help="同步后生成 GitHub Pages 静态站点"
     ),
+    ai_only: bool = typer.Option(
+        False, "--ai-only", help="仅重新运行 AI 分析，不重新同步"
+    ),
 ):
     """同步 GitHub stars 到本地 vault。"""
     config = load_config()
     vault_path = Path(config.vault.path).expanduser().resolve()
 
     # 1. 同步
-    typer.echo("正在同步 GitHub stars…")
-    result = sync_repos(config, mode=mode, limit=limit)
-    typer.echo(
-        f"  新增 {len(result.new_repos)}, 更新 {len(result.updated_repos)}, "
-        f"未变 {result.unchanged_count}"
-    )
+    all_repos: list = []
+    if ai_only:
+        typer.echo("AI-only 模式：跳过同步步骤，从 vault 读取已有数据…")
+        vault_path = Path(config.vault.path).expanduser().resolve()
+        from star_vault.models.repo import RepoData
 
-    all_repos = result.new_repos + result.updated_repos + result.ai_pending
-    if not all_repos:
-        typer.echo("⚠  没有需要处理的 repo")
-        return
+        state_path = vault_path / config.state.path
+        if not state_path.is_file():
+            typer.echo("✗ 没有 vault 状态数据，请先运行: star-vault sync")
+            raise typer.Exit(1)
+
+        raw_state = json.loads(state_path.read_text(encoding="utf-8"))
+        for full_name, repo_state in raw_state.get("repos", {}).items():
+            owner, name = full_name.split("/", 1)
+            all_repos.append(RepoData(
+                owner=owner, name=name,
+                full_name=full_name,
+                description=repo_state.get("description", ""),
+                topics=repo_state.get("topics", []),
+                language=repo_state.get("language", ""),
+                list_name=repo_state.get("list_name", "uncategorized"),
+                readme_snippet=repo_state.get("readme_snippet", ""),
+            ))
+        typer.echo(f"  从状态文件加载 {len(all_repos)} 个 repo")
+    else:
+        typer.echo("正在同步 GitHub stars…")
+        result = sync_repos(config, mode=mode, limit=limit)
+        typer.echo(
+            f"  新增 {len(result.new_repos)}, 更新 {len(result.updated_repos)}, "
+            f"未变 {result.unchanged_count}"
+        )
+        all_repos = result.new_repos + result.updated_repos + result.ai_pending
+        if not all_repos:
+            typer.echo("⚠  没有需要处理的 repo")
+            return
 
     # 2. 关系分析（可选）
     relations_map: dict[str, list] = {}
@@ -107,6 +134,10 @@ def sync(
                 ai_results[repo.full_name] = {
                     "summary": r.summary,
                     "todos": [TodoItem(text=t, source_repo=repo.full_name) for t in r.todos],
+                    "category": r.category,
+                    "rating": r.rating,
+                    "maintenance": r.maintenance,
+                    "tags": r.tags,
                 }
             # 标记 README 已采集
             existing = sm.get_repo(repo.full_name)
@@ -124,6 +155,10 @@ def sync(
             kwargs["ai_summary"] = ai_res["summary"]
             kwargs["ai_generated"] = bool(ai_res["summary"])
             kwargs["todo_items"] = ai_res.get("todos", [])
+            kwargs["category"] = ai_res.get("category", "")
+            kwargs["rating"] = ai_res.get("rating", 0)
+            kwargs["maintenance"] = ai_res.get("maintenance", "")
+            kwargs["ai_tags"] = ai_res.get("tags", [])
         note = build_note(repo, **kwargs)
         write_note(note, vault_path)
         notes.append(note)

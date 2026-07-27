@@ -5,6 +5,10 @@ language: {{ repo.language or "" }}
 topics: [{{ repo.topics | join(", ") }}]
 relations: [{{ relations | join(", ") }}]
 ai_generated: {{ ai_generated | lower }}
+category: {{ note_data.category or "" }}
+rating: {{ note_data.rating }}
+maintenance: {{ note_data.maintenance or "" }}
+ai_tags: [{{ note_data.ai_tags | join(", ") }}]
 ---
 
 # {{ repo.name }}
@@ -21,8 +25,18 @@ ai_generated: {{ ai_generated | lower }}
 ## TODO
 
 {% for item in todo_items %}
-- [ ] {{ item.text }}
+- [ ] {{ item.text }} {% if item.priority != 3 %}(P{{ item.priority }}){% endif %}
 {% endfor %}
+{% endif %}
+
+{% if note_data.rating or note_data.category or note_data.maintenance %}
+## 评估
+
+{% if note_data.category %}**分类**: {{ note_data.category }}{% endif %}
+{% if note_data.rating %}**评分**: {{ note_data.rating }}/5{% endif %}
+{% if note_data.maintenance %}**维护状态**: {{ note_data.maintenance }}{% endif %}
+{% if note_data.ai_tags %}**标签**: {{ note_data.ai_tags | join(", ") }}{% endif %}
+
 {% endif %}
 
 {% if relation_notes %}

@@ -27,6 +27,10 @@ def build_note(
     ai_summary: str = "",
     ai_generated: bool = False,
     todo_items: list[TodoItem] | None = None,
+    category: str = "",
+    rating: int = 0,
+    maintenance: str = "",
+    ai_tags: list[str] | None = None,
 ) -> NoteData:
     """RepoData → NoteData（自动生成 slug）。"""
     return NoteData(
@@ -40,6 +44,10 @@ def build_note(
         ai_summary=ai_summary,
         ai_generated=ai_generated,
         todo_items=todo_items or [],
+        category=category,
+        rating=rating,
+        maintenance=maintenance,
+        ai_tags=ai_tags or [],
     )
 
 

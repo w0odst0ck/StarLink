@@ -140,6 +140,27 @@ const app = createApp({
     };
     function langColor(lang) { return langColors[lang] || '#8b949e'; }
 
+    // ── Category presentation ───────
+    const categoryIcons = {
+      'tool': '🔧', 'lib': '📦', 'tutorial': '📖',
+      'demo': '🎮', 'article': '📝', 'framework': '🏗️', 'other': '📁',
+    };
+    function catIcon(cat) { return categoryIcons[cat] || ''; }
+
+    // ── Rating stars ────────────────
+    function ratingStars(r) {
+      if (!r || r < 1) return '';
+      return '★'.repeat(r) + '☆'.repeat(5 - r);
+    }
+
+    // ── Maintenance indicators ──────
+    const maintColor = {
+      'active': 'var(--green)',
+      'stale': 'var(--yellow)',
+      'archived': 'var(--red)',
+    };
+    function maintStyle(m) { return { color: maintColor[m] || 'var(--text-muted)' }; }
+
     function toSlug(name) { return name.replace(/\//g, '.').toLowerCase(); }
 
     return {
@@ -147,6 +168,7 @@ const app = createApp({
       allNotes, stats, languages, filteredNotes, groupedNotes, groupKeys,
       currentNote, allTodos, allRelations,
       nav, renderMd, highlightBlocks, langColor, toSlug,
+      catIcon, ratingStars, maintStyle,
     };
   },
 

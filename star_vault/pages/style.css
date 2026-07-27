@@ -138,6 +138,21 @@ a:hover { text-decoration: underline; }
 .tag-lang { background: var(--accent-dim); color: var(--accent); }
 .tag-ai { background: #3fb95033; color: var(--green); }
 .tag-pending { background: #d2992233; color: var(--yellow); }
+.tag-cat { background: #7c3aed33; color: #a78bfa; }
+.tag-high-rating { background: #d2992233; color: var(--yellow); }
+.tag-rating-detail { background: #d2992233; color: var(--yellow); font-size: 0.85rem; }
+.tag-ai-tag {
+  background: #1f6feb22; color: var(--accent);
+  font-size: 0.8rem; padding: 3px 10px; border-radius: 6px;
+}
+.ai-tags-bar { display: flex; gap: 6px; flex-wrap: wrap; }
+.eval-grid {
+  display: flex; flex-direction: column; gap: 8px;
+}
+.eval-label {
+  display: inline-block; width: 52px;
+  color: var(--text-muted); font-weight: 500;
+}
 
 /* ── Detail ──────────────────────────── */
 
