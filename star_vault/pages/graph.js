@@ -8,24 +8,39 @@ function buildGraph(notes, relationsList) {
   const container = document.getElementById('graph-container');
   if (!container || typeof vis === 'undefined') return;
 
-  // ── Build node map ───────────────────
+  // ── Build node map (by full_name AND slug) ──
   const noteMap = {};
-  notes.forEach(n => { noteMap[n.repo_full_name] = n; });
+  const slugMap = {};
+  notes.forEach(n => {
+    noteMap[n.repo_full_name] = n;
+    slugMap[n.slug] = n;
+  });
+
+  // ── Resolve slug → full_name helper ──
+  function resolveName(slugOrName) {
+    if (noteMap[slugOrName]) return slugOrName;          // already full_name
+    if (slugMap[slugOrName]) return slugMap[slugOrName].repo_full_name;
+    return null;
+  }
 
   // ── Count connections per node ──────
   const connCount = {};
   relationsList.forEach(cluster => {
     cluster.relations.forEach(rel => {
-      connCount[rel.source] = (connCount[rel.source] || 0) + 1;
-      connCount[rel.target_slug] = (connCount[rel.target_slug] || 0) + 1;
+      const s = resolveName(rel.source);
+      const t = resolveName(rel.target_slug);
+      if (s) connCount[s] = (connCount[s] || 0) + 1;
+      if (t) connCount[t] = (connCount[t] || 0) + 1;
     });
   });
 
   // ── Build nodes ─────────────────────
   const relatedNames = new Set();
   relationsList.forEach(c => c.relations.forEach(r => {
-    relatedNames.add(r.source);
-    relatedNames.add(r.target_slug);
+    const s = resolveName(r.source);
+    const t = resolveName(r.target_slug);
+    if (s) relatedNames.add(s);
+    if (t) relatedNames.add(t);
   }));
 
   // Only show repos that have relations
@@ -72,9 +87,9 @@ function buildGraph(notes, relationsList) {
 
   relationsList.forEach(cluster => {
     cluster.relations.forEach(rel => {
-      const targetFull = rel.target_slug.replace(/\./g, '/');
-      const sourceFull = rel.source;
-      if (!nodeMap[sourceFull] || !nodeMap[targetFull]) return;
+      const sourceFull = resolveName(rel.source);
+      const targetFull = resolveName(rel.target_slug);
+      if (!sourceFull || !targetFull) return;
       edges.push({
         from: sourceFull,
         to: targetFull,
@@ -89,18 +104,8 @@ function buildGraph(notes, relationsList) {
     });
   });
 
-  // ── Cluster by category ─────────────
-  const categoryOrder = ['tool', 'framework', 'lib', 'tutorial', 'demo', 'article', 'other'];
-  const catPositions = {};
-  categoryOrder.forEach((cat, i) => {
-    const catNotes = notes.filter(n => (n.category || 'other') === cat && relatedNames.has(n.repo_full_name));
-    catNotes.forEach((n, j) => {
-      catPositions[n.repo_full_name] = {
-        x: (i - 3) * 250 + (j % 5 - 2) * 60,
-        y: Math.floor(j / 5) * 80 - (catNotes.length / 5 / 2) * 80,
-      };
-    });
-  });
+  // ── No fixed positions; let physics engine handle layout ──
+  // (vis-network's forceAtlas2Based does better clustering)
 
   // ── Options ────────────────────────
   const options = {
@@ -136,7 +141,7 @@ function buildGraph(notes, relationsList) {
   network.on('click', function (params) {
     if (params.nodes.length > 0) {
       const nodeId = params.nodes[0];
-      const note = notes.find(n => n.repo_full_name === nodeId);
+      const note = noteMap[nodeId] || slugMap[nodeId];
       if (note) {
         window.location.hash = '#/repo/' + note.slug;
       }
