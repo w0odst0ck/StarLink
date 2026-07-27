@@ -308,7 +308,7 @@ const app = createApp({
       currentNote,
       allTodos, filteredTodos, todoGroups, todoCount,
       allRelations, recommendedNotes,
-      nav, renderMd, highlightBlocks, langColor, toSlug,
+      nav, langColor, toSlug,
       catIcon, ratingStars, maintStyle,
       todoKey, isDone, toggleDone,
     };
