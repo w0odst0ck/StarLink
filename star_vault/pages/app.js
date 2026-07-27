@@ -332,6 +332,19 @@ const app = createApp({
 
   watch: {
     currentNote() { this.highlightBlocks(); },
+    route(val) {
+      if (val === '/graph') {
+        this.$nextTick(() => {
+          if (typeof buildGraph === 'function') {
+            try {
+              buildGraph(this.allNotes, this.allRelations);
+            } catch(e) {
+              console.error('Graph error:', e);
+            }
+          }
+        });
+      }
+    },
   },
 });
 

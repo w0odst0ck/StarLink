@@ -20,7 +20,7 @@ import hashlib
 
 from star_vault.core.config import ConfigError, load_config
 from star_vault.core.syncer import sync as sync_repos
-from star_vault.core.state import AI_STATUS_DONE, AI_STATUS_FAILED, AI_STATUS_LOCKED, AI_STATUS_PENDING
+from star_vault.core.state import AI_STATUS_DONE, AI_STATUS_FAILED, AI_STATUS_LOCKED, AI_STATUS_PENDING, StateManager
 from star_vault.core.vault import build_note, write_note
 from star_vault.core.index_generator import render_vault_index, render_todo_index
 from star_vault.core.pages import generate_site_data
@@ -162,7 +162,6 @@ def sync(
             base_url=config.ai.base_url or os.environ.get("OPENAI_BASE_URL", ""),
             model=config.ai.model or os.environ.get("AI_MODEL", "gpt-4o-mini"),
         )
-        from star_vault.core.state import StateManager
 
         sm = StateManager(vault_path, state_relpath=config.state.path)
         state = sm.load()
@@ -241,7 +240,6 @@ def status():
         typer.echo("✗ 还未同步过，请先运行: star-vault sync")
         raise typer.Exit()
 
-    from star_vault.core.state import StateManager
     sm = StateManager(vault_path, state_relpath=config.state.path)
     state = sm.load()
 
@@ -317,7 +315,6 @@ def analyze(
         raise typer.Exit(1)
 
     from star_vault.models.repo import RepoData
-    from star_vault.core.state import StateManager
 
     sm = StateManager(vault_path, state_relpath=config.state.path)
     state = sm.load()
