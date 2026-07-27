@@ -139,6 +139,7 @@ a:hover { text-decoration: underline; }
 .tag-ai { background: #3fb95033; color: var(--green); }
 .tag-pending { background: #d2992233; color: var(--yellow); }
 .tag-cat { background: #7c3aed33; color: #a78bfa; }
+.tag-cat { background: #7c3aed33; color: #a78bfa; }
 .tag-high-rating { background: #d2992233; color: var(--yellow); }
 .tag-rating-detail { background: #d2992233; color: var(--yellow); font-size: 0.85rem; }
 .tag-ai-tag {
@@ -250,6 +251,58 @@ a:hover { text-decoration: underline; }
   font-size: 0.82rem; color: var(--text-muted); flex-shrink: 0;
 }
 .todo-item-card .todo-priority { flex-shrink: 0; }
+.todo-cat-badge { font-size: 0.85rem; opacity: 0.7; }
+
+/* ── Group toggle ───────────────────── */
+
+.group-toggle { display: flex; gap: 2px; }
+.group-toggle button {
+  padding: 6px 12px; border-radius: 4px 0 0 4px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  color: var(--text-muted); font-size: 0.82rem; cursor: pointer;
+  transition: .12s;
+}
+.group-toggle button:not(:last-child) { border-right: none; }
+.group-toggle button:last-child { border-radius: 0 4px 4px 0; }
+.group-toggle button.active {
+  background: var(--accent-dim); color: var(--accent); border-color: var(--accent);
+}
+.group-toggle button:hover { color: var(--text); }
+
+/* ── TODO filters ──────────────────── */
+
+.todo-filters {
+  display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap;
+}
+.todo-filters select {
+  padding: 8px 12px; border-radius: var(--radius);
+  background: var(--bg-card); border: 1px solid var(--border);
+  color: var(--text); font-size: 0.88rem; outline: none; cursor: pointer;
+}
+
+/* ── Recommend view ─────────────────── */
+
+.recommend-grid { display: flex; flex-direction: column; gap: 6px; }
+.recommend-card {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 12px 14px; border-radius: var(--radius);
+  background: var(--bg-card); border: 1px solid transparent;
+  cursor: pointer; transition: .12s;
+}
+.recommend-card:hover { background: var(--bg-hover); border-color: var(--border); }
+.recommend-rank {
+  width: 28px; font-size: 0.85rem; font-weight: 700;
+  color: var(--yellow); flex-shrink: 0; padding-top: 2px;
+}
+.recommend-body { flex: 1; min-width: 0; }
+.recommend-name { font-weight: 600; font-size: 1rem; }
+.recommend-meta { display: flex; gap: 6px; margin: 4px 0; flex-wrap: wrap; }
+.recommend-stars { color: var(--yellow); font-size: 0.85rem; }
+.recommend-todo { font-size: 0.82rem; color: var(--green); margin: 2px 0; }
+.recommend-summary {
+  font-size: 0.85rem; color: var(--text-muted);
+  line-height: 1.5; margin-top: 4px;
+}
 
 /* ── Relations view ──────────────────── */
 

@@ -11,7 +11,12 @@ const app = createApp({
     const route = ref('/');
     const searchQuery = ref('');
     const filterLang = ref('');
-    const filterStatus = ref('');
+    const groupBy = ref('category'); // category|language|maintenance|list
+
+    // TODO filters
+    const todoCategoryFilter = ref('');
+    const todoPriorityFilter = ref('');
+    const todoStatusFilter = ref(''); // ''|pending|done
 
     // ── Data loading ──────────────
     onMounted(async () => {
@@ -45,12 +50,26 @@ const app = createApp({
     const allNotes = computed(() => data.value?.notes ?? []);
     const stats = computed(() => data.value?.stats ?? { total: 0 });
 
+    // Filter contexts
     const languages = computed(() => {
       const s = new Set();
       allNotes.value.forEach(n => { if (n.language) s.add(n.language); });
       return [...s].sort();
     });
 
+    const categories = computed(() => {
+      const s = new Set();
+      allNotes.value.forEach(n => { if (n.category) s.add(n.category); });
+      return [...s].sort();
+    });
+
+    const maintenances = computed(() => {
+      const s = new Set();
+      allNotes.value.forEach(n => { if (n.maintenance) s.add(n.maintenance); });
+      return [...s].sort();
+    });
+
+    // Filtered list
     const filteredNotes = computed(() => {
       let list = allNotes.value;
       const q = searchQuery.value.trim().toLowerCase();
@@ -59,25 +78,69 @@ const app = createApp({
           n.repo_full_name.toLowerCase().includes(q) ||
           (n.title && n.title.toLowerCase().includes(q)) ||
           (n.language && n.language.toLowerCase().includes(q)) ||
-          n.topics.some(t => t.toLowerCase().includes(q))
+          n.topics.some(t => t.toLowerCase().includes(q)) ||
+          (n.ai_tags && n.ai_tags.some(t => t.toLowerCase().includes(q)))
         );
       }
       if (filterLang.value) list = list.filter(n => n.language === filterLang.value);
-      if (filterStatus.value) list = list.filter(n => n.status === filterStatus.value);
       return list;
     });
 
+    // ── Multi-dimension grouping ───
     const groupedNotes = computed(() => {
+      const g = groupBy.value;
       const groups = {};
-      filteredNotes.value.forEach(n => {
+      const list = filteredNotes.value;
+
+      if (g === 'category') {
+        list.forEach(n => {
+          const key = n.category || 'other';
+          if (!groups[key]) groups[key] = [];
+          groups[key].push(n);
+        });
+        // Sort: known categories first
+        const order = ['tool', 'lib', 'framework', 'tutorial', 'demo', 'article', 'other'];
+        return Object.fromEntries(
+          order.filter(k => groups[k]).map(k => [k, groups[k]])
+            .concat(Object.entries(groups).filter(([k]) => !order.includes(k)))
+        );
+      }
+
+      if (g === 'language') {
+        list.forEach(n => {
+          const key = n.language || 'other';
+          if (!groups[key]) groups[key] = [];
+          groups[key].push(n);
+        });
+        return Object.fromEntries(
+          Object.entries(groups).sort((a, b) => b[1].length - a[1].length)
+        );
+      }
+
+      if (g === 'maintenance') {
+        list.forEach(n => {
+          const key = n.maintenance || 'unknown';
+          if (!groups[key]) groups[key] = [];
+          groups[key].push(n);
+        });
+        const order = ['active', 'stale', 'archived', 'unknown'];
+        return Object.fromEntries(
+          order.filter(k => groups[k]).map(k => [k, groups[k]])
+        );
+      }
+
+      // list (default, backward compat)
+      list.forEach(n => {
         const key = n.list_name || '_uncategorized';
         if (!groups[key]) groups[key] = [];
         groups[key].push(n);
       });
-      return groups;
+      return Object.fromEntries(
+        Object.entries(groups).sort((a, b) => a[0].localeCompare(b[0]))
+      );
     });
 
-    const groupKeys = computed(() => Object.keys(groupedNotes.value).sort());
+    const groupKeys = computed(() => Object.keys(groupedNotes.value));
 
     const currentNote = computed(() => {
       const m = route.value.match(/^\/repo\/(.+)/);
@@ -85,20 +148,97 @@ const app = createApp({
       return allNotes.value.find(n => n.slug === m[1]) || null;
     });
 
-    // Todo list: all notes with todos, aggregated
+    // ── TODO with localStorage persistence ──
+    const doneCache = ref({});
+
+    function loadDoneCache() {
+      try {
+        const raw = localStorage.getItem('starlink_todo_done');
+        if (raw) doneCache.value = JSON.parse(raw);
+      } catch {}
+    }
+    function saveDoneCache() {
+      try {
+        localStorage.setItem('starlink_todo_done', JSON.stringify(doneCache.value));
+      } catch {}
+    }
+
+    function todoKey(item) {
+      return item.slug + '::' + item.text;
+    }
+    function isDone(item) { return doneCache.value[todoKey(item)] === true; }
+    function toggleDone(item) {
+      const k = todoKey(item);
+      if (doneCache.value[k]) {
+        delete doneCache.value[k];
+      } else {
+        doneCache.value[k] = true;
+      }
+      saveDoneCache();
+    }
+
+    loadDoneCache();
+
+    // Tagged TODO items (with computed urgency from item order)
     const allTodos = computed(() => {
       const todos = [];
       allNotes.value.forEach(n => {
         if (!n.todo_items || !n.todo_items.length) return;
-        n.todo_items.forEach(t => {
-          todos.push({ ...t, repo: n.repo_full_name, slug: n.slug });
+        n.todo_items.forEach((t, idx) => {
+          todos.push({
+            text: t.text,
+            slug: n.slug,
+            repo: n.repo_full_name,
+            category: n.category || '',
+            language: n.language || '',
+            rating: n.rating || 0,
+            // urgency: use priority if set, else default 3
+            urgency: t.priority || 3,
+            done: isDone({ slug: n.slug, text: t.text }),
+          });
         });
       });
-      todos.sort((a, b) => (a.priority || 3) - (b.priority || 3));
       return todos;
     });
 
-    // Relations: collect all relations into clusters
+    // Filtered todos
+    const filteredTodos = computed(() => {
+      let list = allTodos.value;
+      if (todoCategoryFilter.value) {
+        list = list.filter(t => t.category === todoCategoryFilter.value);
+      }
+      if (todoPriorityFilter.value) {
+        const p = parseInt(todoPriorityFilter.value);
+        list = list.filter(t => t.urgency === p);
+      }
+      if (todoStatusFilter.value === 'pending') {
+        list = list.filter(t => !t.done);
+      } else if (todoStatusFilter.value === 'done') {
+        list = list.filter(t => t.done);
+      }
+      return list;
+    });
+
+    // Priority-grouped todos
+    const todoGroups = computed(() => {
+      const list = filteredTodos.value;
+      const high = list.filter(t => t.urgency <= 2);
+      const mid = list.filter(t => t.urgency === 3);
+      const low = list.filter(t => t.urgency >= 4);
+      const result = [];
+      if (high.length) result.push({ label: '高优先级', key: 'high', items: high });
+      if (mid.length) result.push({ label: '中优先级', key: 'mid', items: mid });
+      if (low.length) result.push({ label: '低优先级', key: 'low', items: low });
+      return result;
+    });
+
+    const todoCount = computed(() => ({
+      high: todoGroups.value.find(g => g.key === 'high')?.items.length || 0,
+      mid: todoGroups.value.find(g => g.key === 'mid')?.items.length || 0,
+      low: todoGroups.value.find(g => g.key === 'low')?.items.length || 0,
+    }));
+
+    // ── Relations ──────────────────
     const allRelations = computed(() => {
       const clusters = {};
       allNotes.value.forEach(n => {
@@ -114,22 +254,20 @@ const app = createApp({
       return Object.values(clusters).sort((a, b) => b.repos.length - a.repos.length);
     });
 
-    // ── Markdown rendering helpers ──
-    function renderMd(text) {
-      if (!text) return '';
-      const html = marked.parse(text, { breaks: true, gfm: true });
-      return DOMPurify.sanitize(html);
-    }
+    // ── Recommendation view ─────────
+    const recommendedNotes = computed(() => {
+      return [...allNotes.value]
+        .filter(n => n.rating >= 1)
+        .sort((a, b) => {
+          // Score: rating * 2, tie-break by todo count
+          const scoreA = (a.rating || 0) * 2 - (a.todo_items?.length || 0) * 0.1;
+          const scoreB = (b.rating || 0) * 2 - (b.todo_items?.length || 0) * 0.1;
+          return scoreB - scoreA;
+        })
+        .slice(0, 20);
+    });
 
-    function highlightBlocks() {
-      nextTick(() => {
-        document.querySelectorAll('.markdown-body pre code').forEach(block => {
-          hljs.highlightElement(block);
-        });
-      });
-    }
-
-    // ── Colors ─────────────────────
+    // ── Helpers ────────────────────
     const langColors = {
       'Python': '#3572A5', 'JavaScript': '#F7DF1E', 'TypeScript': '#3178C6',
       'HTML': '#E34F26', 'CSS': '#563D7C', 'Go': '#00ADD8', 'Rust': '#DEA584',
@@ -140,20 +278,17 @@ const app = createApp({
     };
     function langColor(lang) { return langColors[lang] || '#8b949e'; }
 
-    // ── Category presentation ───────
     const categoryIcons = {
       'tool': '🔧', 'lib': '📦', 'tutorial': '📖',
       'demo': '🎮', 'article': '📝', 'framework': '🏗️', 'other': '📁',
     };
     function catIcon(cat) { return categoryIcons[cat] || ''; }
 
-    // ── Rating stars ────────────────
     function ratingStars(r) {
       if (!r || r < 1) return '';
       return '★'.repeat(r) + '☆'.repeat(5 - r);
     }
 
-    // ── Maintenance indicators ──────
     const maintColor = {
       'active': 'var(--green)',
       'stale': 'var(--yellow)',
@@ -163,13 +298,36 @@ const app = createApp({
 
     function toSlug(name) { return name.replace(/\//g, '.').toLowerCase(); }
 
+    // ── Exports ────────────────────
     return {
-      data, loading, error, route, searchQuery, filterLang, filterStatus,
-      allNotes, stats, languages, filteredNotes, groupedNotes, groupKeys,
-      currentNote, allTodos, allRelations,
+      data, loading, error, route, searchQuery, filterLang,
+      groupBy,
+      todoCategoryFilter, todoPriorityFilter, todoStatusFilter,
+      allNotes, stats, languages, categories, maintenances,
+      filteredNotes, groupedNotes, groupKeys,
+      currentNote,
+      allTodos, filteredTodos, todoGroups, todoCount,
+      allRelations, recommendedNotes,
       nav, renderMd, highlightBlocks, langColor, toSlug,
       catIcon, ratingStars, maintStyle,
+      todoKey, isDone, toggleDone,
     };
+  },
+
+  // ── Markdown helpers (outside setup) ──
+  methods: {
+    renderMd(text) {
+      if (!text) return '';
+      const html = marked.parse(text, { breaks: true, gfm: true });
+      return DOMPurify.sanitize(html);
+    },
+    highlightBlocks() {
+      nextTick(() => {
+        document.querySelectorAll('.markdown-body pre code').forEach(block => {
+          hljs.highlightElement(block);
+        });
+      });
+    },
   },
 
   watch: {

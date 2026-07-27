@@ -17,7 +17,7 @@
   <!-- Loading -->
   <div v-if="loading" class="loading">
     <div class="spinner"></div>
-    <span>加载 Vault 数据…</span>
+    <span>加载 Vault 数据&#8230;</span>
   </div>
 
   <!-- Error -->
@@ -39,6 +39,7 @@
       <nav class="topbar-nav">
         <a href="#/" :class="{active: route==='/'}">&#x1F3E0; 首页</a>
         <a href="#/todo" :class="{active: route==='/todo'}">&#x2705; TODO</a>
+        <a href="#/recommend" :class="{active: route==='/recommend'}">&#x1F3AF; 推荐</a>
         <a href="#/relations" :class="{active: route==='/relations'}">&#x1F517; 关系</a>
       </nav>
     </header>
@@ -52,13 +53,19 @@
         <span>&#x1F4C2; <strong>{{ stats.lists }}</strong> 个分组</span>
       </div>
 
-      <!-- Search -->
+      <!-- Search + Group by -->
       <div class="search-bar">
-        <input v-model="searchQuery" placeholder="搜索仓库名、语言、标签…" />
+        <input v-model="searchQuery" placeholder="搜索仓库名、语言、标签&#8230;" />
         <select v-model="filterLang">
           <option value="">全部语言</option>
           <option v-for="l in languages" :key="l" :value="l">{{ l }}</option>
         </select>
+        <div class="group-toggle">
+          <button v-for="g in [{k:'category',l:'类别'},{k:'language',l:'语言'},{k:'maintenance',l:'维护'},{k:'list',l:'列表'}]"
+                  :key="g.k" :class="{active: groupBy===g.k}" @click="groupBy=g.k">
+            {{ g.l }}
+          </button>
+        </div>
       </div>
 
       <!-- Groups -->
@@ -79,7 +86,7 @@
                 {{ n.repo_full_name }}
                 <span v-if="n.rating >= 4" style="color:var(--yellow);font-size:0.75rem;margin-left:4px">&#x2B50;</span>
               </div>
-              <div class="repo-card-desc">{{ n.topics?.join(', ') || n.repo_full_name }}</div>
+              <div class="repo-card-desc">{{ (n.ai_summary || n.topics?.join(', ') || n.repo_full_name).slice(0,80) }}{{ (n.ai_summary || '').length > 80 ? '&#8230;' : '' }}</div>
             </div>
             <div class="repo-card-tags">
               <span v-if="n.category" class="tag tag-cat">{{ catIcon(n.category) }} {{ n.category }}</span>
@@ -105,7 +112,7 @@
             <span v-if="currentNote.language" class="tag tag-lang">{{ currentNote.language }}</span>
             <span v-if="currentNote.maintenance" class="tag" :style="{background: maintStyle(currentNote.maintenance).color+'22', color: maintStyle(currentNote.maintenance).color}">{{ currentNote.maintenance }}</span>
             <span v-if="currentNote.rating >= 1" class="tag tag-rating-detail">{{ ratingStars(currentNote.rating) }}</span>
-            <span v-if="currentNote.ai_generated" class="tag tag-ai">AI 摘要</span>
+            <span v-if="currentNote.ai_generated" class="tag tag-ai">AI</span>
             <span v-for="t in currentNote.topics" :key="t" class="tag" style="background:var(--accent-dim);color:var(--accent)">{{ t }}</span>
           </div>
         </div>
@@ -120,7 +127,7 @@
 
         <!-- AI Summary -->
         <div v-if="currentNote.ai_summary" class="detail-section markdown-body"
-             v-html="renderMd('## &#x2726; AI 摘要\n\n' + currentNote.ai_summary)">
+             v-html="renderMd('&#x2726; AI 摘要\n\n' + currentNote.ai_summary)">
         </div>
 
         <!-- Evaluation -->
@@ -133,9 +140,9 @@
           </div>
         </div>
 
-        <!-- Description / Markdown body -->
+        <!-- Description -->
         <div class="detail-section markdown-body">
-          <div v-html="renderMd('## 概述\n\n**分类**: ' + (currentNote.list_name || '_uncategorized') + '\n**状态**: ' + currentNote.status)"></div>
+          <div v-html="renderMd('**状态**: ' + currentNote.status)"></div>
         </div>
 
         <!-- TODO -->
@@ -143,8 +150,8 @@
           <h2>&#x2705; TODO 列表</h2>
           <ul class="todo-list">
             <li v-for="(t, i) in currentNote.todo_items" :key="i">
-              <input type="checkbox" class="todo-checkbox" v-model="t.done" />
-              <span :class="{todoDone: t.done}">{{ t.text }}</span>
+              <input type="checkbox" class="todo-checkbox" @change="toggleDone({slug: currentNote.slug, text: t.text})" :checked="isDone({slug: currentNote.slug, text: t.text})" />
+              <span :class="{todoDone: isDone({slug: currentNote.slug, text: t.text})}">{{ t.text }}</span>
               <span class="todo-priority">P{{ t.priority || 3 }}</span>
             </li>
           </ul>
@@ -172,18 +179,75 @@
 
     <!-- &#x2B50;&#x2B50; TODO &#x2B50;&#x2B50; -->
     <div v-if="route === '/todo'">
-      <h2 style="margin-bottom:16px">&#x2705; 全部 TODO &middot; {{ allTodos.length }} 项</h2>
-      <div v-if="allTodos.length === 0" style="color:var(--text-muted);padding:20px">
-        暂无 TODO 项。
+      <h2 style="margin-bottom:12px">&#x2705; TODO &middot; {{ allTodos.length }} 项</h2>
+      <h2 style="font-size:0.85rem;color:var(--text-muted);margin-bottom:16px">
+        高 {{ todoCount.high }} / 中 {{ todoCount.mid }} / 低 {{ todoCount.low }}
+      </h2>
+
+      <!-- Filters -->
+      <div class="todo-filters">
+        <select v-model="todoCategoryFilter">
+          <option value="">全部类别</option>
+          <option v-for="c in categories" :key="c" :value="c">{{ catIcon(c) }} {{ c }}</option>
+        </select>
+        <select v-model="todoPriorityFilter">
+          <option value="">全部优先级</option>
+          <option value="1">P1 最紧迫</option>
+          <option value="2">P2 紧迫</option>
+          <option value="3">P3 一般</option>
+          <option value="4">P4 宽松</option>
+          <option value="5">P5 参考</option>
+        </select>
+        <select v-model="todoStatusFilter">
+          <option value="">全部状态</option>
+          <option value="pending">待办</option>
+          <option value="done">已完成</option>
+        </select>
       </div>
-      <div class="todo-grid">
-        <div v-for="(t, i) in allTodos" :key="i" class="todo-item-card">
-          <input type="checkbox" class="todo-checkbox" v-model="t.done" />
-          <div style="flex:1">
-            <div :class="{todoDone: t.done}">{{ t.text }}</div>
-            <a :href="'#/repo/' + t.slug" class="todo-source">&#x1F4CE; {{ t.repo }}</a>
+
+      <div v-if="filteredTodos.length === 0" style="color:var(--text-muted);text-align:center;padding:40px">
+        暂无匹配的 TODO 项。
+      </div>
+
+      <div v-for="g in todoGroups" :key="g.key" class="group-section">
+        <div class="group-title">{{ g.label }} &middot; {{ g.items.length }}</div>
+        <div class="todo-grid">
+          <div v-for="t in g.items" :key="t.slug+t.text" class="todo-item-card">
+            <input type="checkbox" class="todo-checkbox" @change="toggleDone(t)" :checked="t.done" />
+            <div style="flex:1;min-width:0">
+              <div :class="{todoDone: t.done}">{{ t.text }}</div>
+              <a :href="'#/repo/' + t.slug" class="todo-source">&#x1F4CE; {{ t.repo }}</a>
+            </div>
+            <div style="display:flex;gap:4px;align-items:center;flex-shrink:0">
+              <span v-if="t.category" class="todo-cat-badge">{{ catIcon(t.category) }}</span>
+              <span class="todo-priority">P{{ t.urgency }}</span>
+            </div>
           </div>
-          <span class="todo-priority">P{{ t.priority || 3 }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- &#x2B50;&#x2B50; RECOMMEND &#x2B50;&#x2B50; -->
+    <div v-if="route === '/recommend'">
+      <h2 style="margin-bottom:16px">&#x1F3AF; 推荐 &middot; 评分最高的 {{ recommendedNotes.length }} 个仓库</h2>
+      <p style="color:var(--text-muted);margin-bottom:16px;font-size:0.85rem">
+        按 AI 评分排序（评分高 + TODO 少优先）
+      </p>
+      <div class="recommend-grid">
+        <div v-for="(n, i) in recommendedNotes" :key="n.slug" class="recommend-card" @click="nav('/repo/' + n.slug)">
+          <div class="recommend-rank">#{{ i + 1 }}</div>
+          <div class="recommend-body">
+            <div class="recommend-name">{{ n.repo_full_name }}</div>
+            <div class="recommend-meta">
+              <span v-if="n.rating >= 1" class="recommend-stars">{{ ratingStars(n.rating) }}</span>
+              <span v-if="n.category" class="tag tag-cat">{{ catIcon(n.category) }} {{ n.category }}</span>
+              <span v-if="n.maintenance" class="tag" :style="{background: maintStyle(n.maintenance).color+'22', color: maintStyle(n.maintenance).color}">{{ n.maintenance }}</span>
+            </div>
+            <div v-if="n.todo_items?.length" class="recommend-todo">
+              &#x2705; {{ n.todo_items.length }} 项待办
+            </div>
+            <div v-if="n.ai_summary" class="recommend-summary">{{ n.ai_summary.slice(0,100) }}{{ n.ai_summary.length > 100 ? '&#8230;' : '' }}</div>
+          </div>
         </div>
       </div>
     </div>

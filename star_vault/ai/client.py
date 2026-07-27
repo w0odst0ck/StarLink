@@ -253,17 +253,27 @@ class AIClient:
             return AnalysisResult()
 
         if prompt_version == "v2":
+            # v2.1 todos 可能是 [{"text":"...","urgency":1}] 或 ["..."]
+            todos_raw = data.get("todos", [])
+            todos: list[str] = []
+            for t in todos_raw:
+                if isinstance(t, dict):
+                    todos.append(str(t.get("text", t.get("urgency", ""))))
+                else:
+                    todos.append(str(t))
             return AnalysisResult(
                 summary=data.get("summary", ""),
-                todos=data.get("todos", []),
+                todos=todos,
                 category=str(data.get("category", "")),
                 rating=int(data.get("rating", 0)),
                 maintenance=str(data.get("maintenance", "")),
                 tags=data.get("tags", []),
             )
 
-        # v1 兼容
+        # v1 兼容：todos 可能是 ["..."] 或 [{"text":"..."}]
+        todos_raw = data.get("todos", [])
+        todos = [str(t.get("text", t)) if isinstance(t, dict) else str(t) for t in todos_raw]
         return AnalysisResult(
             summary=data.get("summary", ""),
-            todos=data.get("todos", []),
+            todos=todos,
         )

@@ -8,11 +8,12 @@ First, think step-by-step:
 4. Identify relevant technology tags
 5. Rate its value to a developer exploring it
 6. Write a concise summary
-7. Suggest actionable TODO items
+7. Suggest actionable TODO items with urgency levels
 
 Then output ONLY valid JSON with these exact keys:
 - "summary": 2-3 sentences about what this project does and why it matters
-- "todos": 3-5 actionable TODO items (e.g., "Try the quickstart", "Read architecture docs")
+- "todos": list of objects with "text" (actionable item) and "urgency" (1-5 integer)
+  1 = must-do (core functionality), 3 = nice-to-try, 5 = background reference
 - "category": one of "tool", "lib", "tutorial", "demo", "article", "framework", "other"
 - "rating": 1-5 integer (1=niche/low value, 5=must-try)
 - "maintenance": one of "active", "stale", "archived", "unknown"
@@ -25,4 +26,11 @@ Language: {language}
 README: {readme}
 
 Output JSON format:
-{{"summary": "...", "todos": ["..."], "category": "...", "rating": 5, "maintenance": "active", "tags": ["tag1", "tag2"]}}
+{
+  "summary": "...",
+  "todos": [{"text": "...", "urgency": 1}],
+  "category": "tool",
+  "rating": 5,
+  "maintenance": "active",
+  "tags": ["tag1", "tag2"]
+}
