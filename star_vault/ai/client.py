@@ -6,7 +6,6 @@ README 按需采集（repo 无 readme_snippet 时自动拉取），智能截取�
 
 from __future__ import annotations
 
-import base64
 import json
 import logging
 from dataclasses import dataclass, field
@@ -135,20 +134,13 @@ class AIClient:
             url = f"https://api.github.com/repos/{repo.full_name}/readme"
             headers = {
                 "Authorization": f"Bearer {self._gh_token}",
-                "Accept": "application/vnd.github.v3.raw+json",
+                "Accept": "application/vnd.github.v3.raw",
                 "User-Agent": "StarLink/0.1",
             }
             resp = httpx.get(url, headers=headers, timeout=15)
             if resp.status_code == 200:
-                data = resp.json()
-                content_b64 = data.get("content", "")
-                if data.get("encoding") == "base64" and content_b64:
-                    decoded = base64.b64decode(content_b64).decode(
-                        "utf-8", errors="replace"
-                    )
-                    repo.readme_snippet = self._smart_truncate(decoded)
-                else:
-                    repo.readme_snippet = ""
+                # application/vnd.github.raw returns the file content as text
+                repo.readme_snippet = self._smart_truncate(resp.text)
             else:
                 logger.debug("README 404 [%s]", repo.full_name)
                 repo.readme_snippet = ""
