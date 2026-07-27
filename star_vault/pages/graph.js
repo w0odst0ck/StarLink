@@ -8,39 +8,24 @@ function buildGraph(notes, relationsList) {
   const container = document.getElementById('graph-container');
   if (!container || typeof vis === 'undefined') return;
 
-  // ── Build node map (by full_name AND slug) ──
+  // ── Build node map ──
   const noteMap = {};
-  const slugMap = {};
-  notes.forEach(n => {
-    noteMap[n.repo_full_name] = n;
-    slugMap[n.slug] = n;
-  });
-
-  // ── Resolve slug → full_name helper ──
-  function resolveName(slugOrName) {
-    if (noteMap[slugOrName]) return slugOrName;          // already full_name
-    if (slugMap[slugOrName]) return slugMap[slugOrName].repo_full_name;
-    return null;
-  }
+  notes.forEach(n => { noteMap[n.repo_full_name] = n; });
 
   // ── Count connections per node ──────
   const connCount = {};
   relationsList.forEach(cluster => {
     cluster.relations.forEach(rel => {
-      const s = resolveName(rel.source);
-      const t = resolveName(rel.target_slug);
-      if (s) connCount[s] = (connCount[s] || 0) + 1;
-      if (t) connCount[t] = (connCount[t] || 0) + 1;
+      if (noteMap[rel.source]) connCount[rel.source] = (connCount[rel.source] || 0) + 1;
+      if (noteMap[rel.target_slug]) connCount[rel.target_slug] = (connCount[rel.target_slug] || 0) + 1;
     });
   });
 
   // ── Build nodes ─────────────────────
   const relatedNames = new Set();
   relationsList.forEach(c => c.relations.forEach(r => {
-    const s = resolveName(r.source);
-    const t = resolveName(r.target_slug);
-    if (s) relatedNames.add(s);
-    if (t) relatedNames.add(t);
+    if (noteMap[r.source]) relatedNames.add(r.source);
+    if (noteMap[r.target_slug]) relatedNames.add(r.target_slug);
   }));
 
   // Only show repos that have relations
@@ -87,9 +72,9 @@ function buildGraph(notes, relationsList) {
 
   relationsList.forEach(cluster => {
     cluster.relations.forEach(rel => {
-      const sourceFull = resolveName(rel.source);
-      const targetFull = resolveName(rel.target_slug);
-      if (!sourceFull || !targetFull) return;
+      const sourceFull = rel.source;
+      const targetFull = rel.target_slug;
+      if (!noteMap[sourceFull] || !noteMap[targetFull]) return;
       edges.push({
         from: sourceFull,
         to: targetFull,
@@ -141,7 +126,7 @@ function buildGraph(notes, relationsList) {
   network.on('click', function (params) {
     if (params.nodes.length > 0) {
       const nodeId = params.nodes[0];
-      const note = noteMap[nodeId] || slugMap[nodeId];
+      const note = noteMap[nodeId];
       if (note) {
         window.location.hash = '#/repo/' + note.slug;
       }
