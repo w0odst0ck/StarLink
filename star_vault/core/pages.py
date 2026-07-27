@@ -15,7 +15,7 @@ import re
 from datetime import datetime, timezone
 from pathlib import Path
 
-_PAGES_STATIC = ("index.html", "app.js", "style.css")
+_PAGES_STATIC = ("index.html", "app.js", "style.css", "graph.js")
 
 # ── 扫描 vault ──────────────────────────────────────
 
