@@ -25,12 +25,5 @@ Topics: {topics}
 Language: {language}
 README: {readme}
 
-Output JSON format:
-{
-  "summary": "...",
-  "todos": [{"text": "...", "urgency": 1}],
-  "category": "tool",
-  "rating": 5,
-  "maintenance": "active",
-  "tags": ["tag1", "tag2"]
-}
+Output JSON format (example structure):
+{{"summary": "your summary here", "todos": [{{"text": "TODO item", "urgency": 3}}], "category": "tool", "rating": 4, "maintenance": "active", "tags": ["tag1", "tag2"]}}

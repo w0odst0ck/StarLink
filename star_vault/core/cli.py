@@ -74,6 +74,8 @@ def sync(
                 topics=repo_state.get("topics", []),
                 language=repo_state.get("language", ""),
                 list_name=repo_state.get("list_name", "uncategorized"),
+                html_url=repo_state.get("html_url", f"https://github.com/{full_name}"),
+                starred_at=repo_state.get("starred_at", ""),
                 readme_snippet=repo_state.get("readme_snippet", ""),
             ))
         typer.echo(f"  从状态文件加载 {len(all_repos)} 个 repo")
