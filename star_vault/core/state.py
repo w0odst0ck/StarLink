@@ -29,6 +29,11 @@ class RepoState(BaseModel):
     ai_cache_key: str = ""
     readme_fetched: bool = False
 
+    # Repo 元数据（用于 --ai-only 重建）
+    language: str = ""
+    topics: list[str] = Field(default_factory=list)
+    description: str = ""
+
 
 class StateFile(BaseModel):
     """状态文件顶层结构。"""

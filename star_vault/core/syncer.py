@@ -234,6 +234,9 @@ def sync(
                     list_name=repo.list_name,
                     sha=current_sha,
                     ai_analyzed=False,
+                    language=repo.language or "",
+                    topics=repo.topics,
+                    description=repo.description or "",
                 ),
             )
         else:
