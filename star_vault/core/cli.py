@@ -142,7 +142,7 @@ def sync(
             rels = engine.analyze_repo(repo, all_repos)
             relations_map[repo.full_name] = [
                 RelationRef(
-                    target_slug=repo.full_name.replace("/", ".").lower(),
+                    target_slug=r.target.replace("/", ".").lower(),
                     relation_type=r.relation_type,
                     confidence=r.confidence,
                 )
