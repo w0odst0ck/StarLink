@@ -42,5 +42,5 @@ scratch/
 
 experiments/
 
-# Vault (user-generated)
-vault/
+# Vault - notes only (tracked: site-data.json, index.html)
+vault/stars/
