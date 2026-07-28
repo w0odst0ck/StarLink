@@ -189,13 +189,4 @@ def generate_site_data(vault_path: Path) -> int:
         encoding="utf-8",
     )
 
-    # 复制前端静态文件
-    pages_dir = Path(__file__).resolve().parent.parent / "pages"
-    for fname in _PAGES_STATIC:
-        src = pages_dir / fname
-        if src.is_file():
-            (vault_path / fname).write_text(
-                src.read_text(encoding="utf-8"), encoding="utf-8"
-            )
-
     return len(notes)
