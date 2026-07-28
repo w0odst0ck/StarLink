@@ -145,7 +145,8 @@ const app = createApp({
     const currentNote = computed(() => {
       const m = route.value.match(/^\/repo\/(.+)/);
       if (!m) return null;
-      return allNotes.value.find(n => n.slug === m[1]) || null;
+      const p = m[1];
+      return allNotes.value.find(n => n.slug === p || n.slug === toSlug(p)) || null;
     });
 
     // ── TODO with localStorage persistence ──
