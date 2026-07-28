@@ -27,6 +27,7 @@ class NoteData(BaseModel):
     list_name: str
 
     # Frontmatter
+    description: str = ""
     language: str | None = None
     topics: list[str] = Field(default_factory=list)
     status: Literal["unreviewed", "reviewed", "archived"] = "unreviewed"

@@ -6,10 +6,13 @@
 
 from __future__ import annotations
 
+import fcntl
+import json
 import os
 from datetime import datetime
 from pathlib import Path
 
+import pydantic
 from pydantic import BaseModel, Field
 
 from star_vault.core.config import json_dumps
@@ -88,8 +91,13 @@ class StateManager:
         if not self._state_path.is_file():
             self._current = StateFile()
             return self._current
-        raw = self._state_path.read_text(encoding="utf-8")
-        self._current = StateFile.model_validate_json(raw)
+        try:
+            raw = self._state_path.read_text(encoding="utf-8")
+            self._current = StateFile.model_validate_json(raw)
+        except (json.JSONDecodeError, pydantic.ValidationError, OSError) as exc:
+            raise RuntimeError(
+                f"状态文件损坏或无法读取: {self._state_path}: {exc}"
+            ) from exc
         return self._current
 
     def save(self) -> None:
@@ -130,9 +138,12 @@ class StateManager:
         规则：
           - 未分析过 → True
           - 已分析过 → False
+          - 状态为 failed/stale → True（兼容三级状态）
         """
         existing = self._current.repos.get(repo_full_name)
         if existing is None:
+            return True
+        if existing.ai_status in (AI_STATUS_FAILED, AI_STATUS_STALE):
             return True
         return not existing.ai_analyzed
 
@@ -143,9 +154,10 @@ class StateManager:
         existing = self._current.repos.get(repo_full_name)
         if existing is None:
             return True
-        status = existing.ai_status or (
-            AI_STATUS_DONE if existing.ai_analyzed else AI_STATUS_PENDING
-        )
+        # 空字符串 ai_status 不视为有效值，回退到旧字段
+        status = existing.ai_status
+        if not status:
+            status = AI_STATUS_DONE if existing.ai_analyzed else AI_STATUS_PENDING
         if status == AI_STATUS_LOCKED:
             return False
         if status in (AI_STATUS_PENDING, AI_STATUS_FAILED, AI_STATUS_STALE):
@@ -167,11 +179,15 @@ class StateManager:
 
 
 def _atomic_write(path: Path, content: str) -> None:
-    """同目录原子写入。
+    """同目录原子写入（带文件锁）。
 
     写 .tmp 临时文件 → os.replace() 替换原文件。
     同目录 replace 为 POSIX 原子操作。
+    文件锁防止多进程并发写入产生竞态。
     """
     tmp = path.with_suffix(".tmp")
     tmp.write_text(content, encoding="utf-8")
-    os.replace(tmp, path)
+    with open(path, "a") as lock_f:
+        fcntl.flock(lock_f.fileno(), fcntl.LOCK_EX)
+        os.replace(tmp, path)
+        fcntl.flock(lock_f.fileno(), fcntl.LOCK_UN)

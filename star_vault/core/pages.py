@@ -41,35 +41,42 @@ def _parse_note_file(path: Path) -> dict | None:
 
     # 解析 frontmatter（--- 块）
     fm = _parse_frontmatter(content)
-    if not fm:
-        return None
 
     # 提取 body 中的结构化内容
     body = _parse_body(content)
 
+    # 即使没有 frontmatter 也返回带默认值的笔记数据
     return {
         "slug": path.stem,
         "title": body.get("title", path.stem),
-        "repo_full_name": fm.get("repo", ""),
+        "repo_full_name": fm.get("repo", "") if fm else "",
         "list_name": path.parent.name,
-        "language": (fm.get("language") or "") or None,
-        "topics": fm.get("topics", []),
-        "status": fm.get("status", "unreviewed"),
-        "ai_generated": fm.get("ai_generated", False),
+        "language": (fm.get("language") or "") or None if fm else None,
+        "topics": fm.get("topics", []) if fm else [],
+        "status": fm.get("status", "unreviewed") if fm else "unreviewed",
+        "ai_generated": fm.get("ai_generated", False) if fm else False,
         "ai_summary": body.get("ai_summary", ""),
         "todo_items": body.get("todo_items", []),
-        "relations": _parse_relations(fm.get("relations", [])),
+        "relations": _parse_relations(fm.get("relations", [])) if fm else [],
         # AI 增强字段 (v2)
-        "category": fm.get("category", ""),
-        "rating": int(fm.get("rating", 0)),
-        "maintenance": fm.get("maintenance", ""),
-        "ai_tags": fm.get("ai_tags", []),
+        "category": fm.get("category", "") if fm else "",
+        "rating": _safe_int(fm.get("rating", 0)) if fm else 0,
+        "maintenance": fm.get("maintenance", "") if fm else "",
+        "ai_tags": fm.get("ai_tags", []) if fm else [],
     }
+
+
+def _safe_int(value: object, default: int = 0) -> int:
+    """安全转 int，非数值返回默认值。"""
+    try:
+        return int(value)  # type: ignore[arg-type]
+    except (ValueError, TypeError):
+        return default
 
 
 def _parse_frontmatter(content: str) -> dict:
     """解析 --- 分隔的 frontmatter。"""
-    m = re.match(r"^---\n(.+?)\n---", content, re.DOTALL)
+    m = re.match(r"^---\n(.+?)\n---(?:\n|$)", content, re.DOTALL)
     if not m:
         return {}
 
@@ -85,7 +92,7 @@ def _parse_frontmatter(content: str) -> dict:
 
         if value.startswith("[") and value.endswith("]"):
             inner = value[1:-1].strip()
-            result[key] = [x.strip() for x in inner.split(",")] if inner else []
+            result[key] = [x.strip().strip('"') for x in inner.split(",")] if inner else []
         elif value.lower() in ("true", "false"):
             result[key] = value.lower() == "true"
         else:
@@ -156,6 +163,8 @@ def generate_site_data(vault_path: Path) -> int:
     返回解析的笔记数。
     """
     vault_path = vault_path.resolve()
+    if not vault_path.is_dir():
+        raise NotADirectoryError(f"Vault 路径不存在或不是目录: {vault_path}")
     notes = scan_vault_notes(vault_path)
 
     languages: set[str] = set()

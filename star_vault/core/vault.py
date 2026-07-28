@@ -38,6 +38,7 @@ def build_note(
         title=repo.name,
         repo_full_name=repo.full_name,
         list_name=repo.list_name,
+        description=repo.description,
         language=repo.language,
         topics=repo.topics,
         relations=relations or [],
@@ -59,13 +60,29 @@ def write_note(note_data: NoteData, vault_path: Path) -> Path:
     3. 写入 <slug>.md
 
     返回写入的文件路径。
+
+    异常：
+        ValueError: 无法确定 slug
+        RuntimeError: 文件写入失败或为空
     """
     vault_path = vault_path.resolve()
+
+    # 自动反填 slug
+    slug = note_data.slug or slug_from_full_name(note_data.repo_full_name)
+    if not slug:
+        raise ValueError(
+            f"无法确定 slug: repo_full_name={note_data.repo_full_name!r}"
+        )
+
     list_dir = vault_path / "stars" / note_data.list_name
     list_dir.mkdir(parents=True, exist_ok=True)
 
-    note_path = list_dir / f"{note_data.slug}.md"
+    note_path = list_dir / f"{slug}.md"
     content = render_note(note_data)
     note_path.write_text(content, encoding="utf-8")
+
+    # 写入后校验
+    if not note_path.exists() or note_path.stat().st_size == 0:
+        raise RuntimeError(f"笔记写入失败或内容为空: {note_path}")
 
     return note_path

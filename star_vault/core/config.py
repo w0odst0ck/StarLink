@@ -6,6 +6,7 @@ token 自动脱敏，空 token 启动即报错。
 
 from __future__ import annotations
 
+import logging
 import os
 from pathlib import Path
 from typing import Any
@@ -13,6 +14,9 @@ from typing import Any
 from pydantic import BaseModel, Field
 
 # ── 自定义异常 ──────────────────────────────────────────────
+
+
+logger = logging.getLogger(__name__)
 
 
 class ConfigError(Exception):
@@ -125,6 +129,7 @@ _ENV_MAP: dict[str, str] = {
     "ai.api_key": "OPENAI_API_KEY",
     "ai.base_url": "OPENAI_BASE_URL",
     "ai.model": "AI_MODEL",
+    "ai.provider": "AI_PROVIDER",
     "vault.path": "VAULT_PATH",
 }
 
@@ -216,6 +221,21 @@ def load_config(config_path: str | None = None) -> Config:
         )
 
     return cfg
+
+
+def check_ai_config(config: Config) -> None:
+    """检查 AI 配置是否完整，不完整则给出明确提示。
+
+    不抛出异常（AI 功能可选），仅记录警告。
+    """
+    if config.ai.api_key:
+        return
+    if os.environ.get("OPENAI_API_KEY"):
+        return
+    logger.warning(
+        "AI API key 未设置。AI 分析功能不可用。"
+        " 请通过环境变量 OPENAI_API_KEY 或在 star-vault.yaml 中配置 ai.api_key"
+    )
 
 
 def _apply_yaml(cfg: Config, raw: dict) -> None:

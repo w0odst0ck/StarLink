@@ -60,7 +60,7 @@ def render_note(
         def __init__(self, note: NoteData) -> None:
             self.full_name = note.repo_full_name
             self.name = note.title
-            self.description = ""
+            self.description = note.description or ""
             self.language = note.language or ""
             self.topics = note.topics
 

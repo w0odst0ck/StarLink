@@ -5,6 +5,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import logging
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
@@ -70,10 +71,11 @@ def _parse_starred_item(item: dict[str, Any]) -> RepoData:
         repo = item
         starred_at_str = ""
 
+    owner_dict = repo.get("owner", {})
     owner_login = (
-        repo["owner"]["login"]
-        if isinstance(repo.get("owner"), dict)
-        else repo.get("owner", "")
+        owner_dict.get("login", "")
+        if isinstance(owner_dict, dict)
+        else str(owner_dict)
     )
     owner_name = repo["full_name"].split("/")[0]
 
@@ -87,7 +89,7 @@ def _parse_starred_item(item: dict[str, Any]) -> RepoData:
         html_url=repo.get("html_url", ""),
         starred_at=datetime.fromisoformat(starred_at_str.replace("Z", "+00:00"))
         if starred_at_str
-        else datetime.min,
+        else datetime.min.replace(tzinfo=timezone.utc),
         list_name="_uncategorized",
         archived=repo.get("archived", False),
         fork=repo.get("fork", False),
@@ -103,6 +105,18 @@ def _fetch_page(
 ) -> tuple[list[dict[str, Any]], str | None]:
     """拉取单页数据，返回 (items, next_url)。"""
     resp = client.get(url, headers=headers, params=params)
+
+    # 处理 GitHub API 错误
+    if resp.status_code == 401:
+        raise SyncError("GitHub token 无效或已过期，请检查 GH_TOKEN")
+    if resp.status_code == 403:
+        reset_ts = resp.headers.get("X-RateLimit-Reset", "")
+        msg = f"GitHub API 限流 (403)。"
+        if reset_ts:
+            from datetime import datetime as _dt
+            reset_time = _dt.fromtimestamp(int(reset_ts))
+            msg += f" 重置时间: {reset_time.isoformat()}"
+        raise SyncError(msg)
     resp.raise_for_status()
 
     items = resp.json()
@@ -141,8 +155,6 @@ def fetch_starred(
     repos: list[RepoData] = []
 
     next_url: str | None = None
-    page = 1
-
     per_page = min(100, limit or 100)
 
     with httpx.Client(timeout=30) as client:
@@ -176,7 +188,6 @@ def fetch_starred(
             if not next_url:
                 break
 
-            page += 1
 
     return repos
 
@@ -217,8 +228,9 @@ def sync(
     result = SyncResult(total_fetched=len(fetched))
 
     for repo in fetched:
-        # Phase 0 简化：full_name 作为变更标识
-        current_sha = repo.full_name
+        # 取可变字段哈希作为变更标识（description/topics/language/stargazers 变化时触发 resync）
+        _content_key = f"{repo.description}|{sorted(repo.topics)}|{repo.language}|{repo.stargazers_count}"
+        current_sha = hashlib.sha256(_content_key.encode()).hexdigest()[:16]
 
         if sm.needs_sync(repo.full_name, current_sha):
             if sm.get_repo(repo.full_name) is None:
@@ -226,15 +238,23 @@ def sync(
             else:
                 result.updated_repos.append(repo)
 
-            # 更新状态
+            # 更新状态（保留已有 AI 状态，仅内容变更时不重置 AI）
+            existing_state = sm.get_repo(repo.full_name)
+            if existing_state:
+                ai_analyzed = existing_state.ai_analyzed
+                ai_status = existing_state.ai_status
+            else:
+                ai_analyzed = False
+                ai_status = AI_STATUS_PENDING
+
             sm.upsert_repo(
                 repo.full_name,
                 RepoState(
                     starred_at=repo.starred_at,
                     list_name=repo.list_name,
                     sha=current_sha,
-                    ai_analyzed=False,
-                    ai_status=AI_STATUS_PENDING,
+                    ai_analyzed=ai_analyzed,
+                    ai_status=ai_status,
                     language=repo.language or "",
                     topics=repo.topics,
                     description=repo.description or "",
