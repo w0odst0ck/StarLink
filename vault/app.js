@@ -11,7 +11,15 @@ const app = createApp({
     const route = ref('/');
     const searchQuery = ref('');
     const filterLang = ref('');
-    const groupBy = ref('category'); // category|language|maintenance|list
+    // 分组偏好：默认按 list（与 vault 目录结构一致），持久化到 localStorage
+    // 版本 bump 时重置旧缓存，确保新默认值生效
+    const STORAGE_VER = 'v2';
+    if (localStorage.getItem('starlink_ver') !== STORAGE_VER) {
+      localStorage.removeItem('starlink_groupBy');
+      localStorage.setItem('starlink_ver', STORAGE_VER);
+    }
+    const groupBy = ref(localStorage.getItem('starlink_groupBy') || 'list');
+    watch(groupBy, v => localStorage.setItem('starlink_groupBy', v));
 
     // TODO filters
     const todoCategoryFilter = ref('');
