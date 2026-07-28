@@ -55,6 +55,96 @@ def _build_headers(token: str) -> dict[str, str]:
     }
 
 
+def _build_graphql_headers(token: str) -> dict[str, str]:
+    """构建 GitHub GraphQL API 请求头。"""
+    return {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json",
+        "User-Agent": "StarLink/0.1",
+    }
+
+
+def fetch_user_lists(token: str) -> dict[str, str]:
+    """
+    通过 GraphQL 查询用户的 Star Lists，返回 {full_name: list_name} 映射。
+
+    对应 GitHub Web UI 上的 starred repo 分类。
+    """
+    headers = _build_graphql_headers(token)
+    list_repos: dict[str, str] = {}
+
+    # 1. 获取所有 lists
+    query_lists = """
+    query {
+        viewer {
+            lists(first: 50) {
+                nodes { id name }
+            }
+        }
+    }
+    """
+    resp = httpx.post(
+        f"{_API_BASE}/graphql",
+        headers=headers,
+        json={"query": query_lists},
+        timeout=30,
+    )
+    resp.raise_for_status()
+    data = resp.json()
+    lists = data.get("data", {}).get("viewer", {}).get("lists", {}).get("nodes", [])
+
+    if not lists:
+        logger.info("未找到 GitHub Star Lists")
+        return list_repos
+
+    # 2. 逐 list 获取 repo 列表
+    for lst in lists:
+        lid = lst["id"]
+        lname = lst["name"]
+        cursor: str | None = None
+
+        while True:
+            cursor_arg = f'"{cursor}"' if cursor else "null"
+            query_items = f"""
+            query {{
+                node(id: \"{lid}\") {{
+                    ... on UserList {{
+                        items(first: 100, after: {cursor_arg}) {{
+                            pageInfo {{ hasNextPage endCursor }}
+                            nodes {{ ... on Repository {{ nameWithOwner }} }}
+                        }}
+                    }}
+                }}
+            }}
+            """
+            item_resp = httpx.post(
+                f"{_API_BASE}/graphql",
+                headers=headers,
+                json={"query": query_items},
+                timeout=30,
+            )
+            item_resp.raise_for_status()
+            item_data = item_resp.json()
+            items_node = item_data.get("data", {}).get("node", {}).get("items", {})
+            nodes = items_node.get("nodes", [])
+
+            for n in nodes:
+                if n and n.get("nameWithOwner"):
+                    list_repos[n["nameWithOwner"]] = lname
+
+            # 分页
+            page_info = items_node.get("pageInfo", {})
+            if page_info.get("hasNextPage") and page_info.get("endCursor"):
+                cursor = page_info["endCursor"]
+            else:
+                break
+
+        logger.info("  List %s: %d repo(s)", lname, sum(1 for v in list_repos.values() if v == lname))
+
+    logger.info("共 %d 个 List, %d 个 repo 有分类", len(lists), len(list_repos))
+    return list_repos
+
+
 def _parse_starred_item(item: dict[str, Any]) -> RepoData:
     """将 GitHub API 返回的 star 条目解析为 RepoData。
 
@@ -218,6 +308,9 @@ def sync(
         cutoff = state.last_sync_at
         logger.info("增量模式: cutoff = %s", cutoff)
 
+    # 拉取 GitHub Star Lists 分类
+    list_map = fetch_user_lists(config.github.token)
+
     # 拉取
     fetched = fetch_starred(
         config.github.token,
@@ -228,6 +321,8 @@ def sync(
     result = SyncResult(total_fetched=len(fetched))
 
     for repo in fetched:
+        # 根据 GitHub Star List 覆盖 list_name
+        repo.list_name = list_map.get(repo.full_name, repo.list_name)
         # 取可变字段哈希作为变更标识（description/topics/language/stargazers 变化时触发 resync）
         _content_key = f"{repo.description}|{sorted(repo.topics)}|{repo.language}|{repo.stargazers_count}"
         current_sha = hashlib.sha256(_content_key.encode()).hexdigest()[:16]
@@ -262,6 +357,10 @@ def sync(
             )
         else:
             result.unchanged_count += 1
+            # 即使内容未变，也更新 list_name（GitHub List 分类可能手动调整过）
+            existing = sm.get_repo(repo.full_name)
+            if existing and existing.list_name != repo.list_name:
+                existing.list_name = repo.list_name
             if sm.needs_ai(repo.full_name):
                 result.ai_pending.append(repo)
 
