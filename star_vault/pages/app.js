@@ -11,7 +11,9 @@ const app = createApp({
     const route = ref('/');
     const searchQuery = ref('');
     const filterLang = ref('');
-    const groupBy = ref('category'); // category|language|maintenance|list
+    // 分组偏好：默认按 list（与 vault 目录结构一致），持久化到 localStorage
+    const groupBy = ref(localStorage.getItem('starlink_groupBy') || 'list'); // category|language|maintenance|list
+    watch(groupBy, v => localStorage.setItem('starlink_groupBy', v));
 
     // TODO filters
     const todoCategoryFilter = ref('');
