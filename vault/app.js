@@ -2,6 +2,17 @@
 
 const { createApp, ref, computed, onMounted, watch, nextTick } = Vue;
 
+const langColors = {
+  'Python': '#3572A5', 'JavaScript': '#F7DF1E', 'TypeScript': '#3178C6',
+  'HTML': '#E34F26', 'CSS': '#563D7C', 'Go': '#00ADD8', 'Rust': '#DEA584',
+  'Java': '#B07219', 'C': '#555555', 'C++': '#F34B7F', 'C#': '#178600',
+  'Ruby': '#701516', 'PHP': '#4F5D95', 'Swift': '#F05138', 'Kotlin': '#A97BFF',
+  'Scala': '#C22D40', 'Shell': '#89E051', 'Jupyter Notebook': '#DA5B0B',
+  'Vue': '#4FC08D', 'Svelte': '#FF3E00', 'Dart': '#00B4AB',
+};
+// 导出到全局供 graph.js 使用
+window.langColors = langColors;
+
 const app = createApp({
   setup() {
     // ── State ──────────────────────
@@ -277,14 +288,6 @@ const app = createApp({
     });
 
     // ── Helpers ────────────────────
-    const langColors = {
-      'Python': '#3572A5', 'JavaScript': '#F7DF1E', 'TypeScript': '#3178C6',
-      'HTML': '#E34F26', 'CSS': '#563D7C', 'Go': '#00ADD8', 'Rust': '#DEA584',
-      'Java': '#B07219', 'C': '#555555', 'C++': '#F34B7F', 'C#': '#178600',
-      'Ruby': '#701516', 'PHP': '#4F5D95', 'Swift': '#F05138', 'Kotlin': '#A97BFF',
-      'Scala': '#C22D40', 'Shell': '#89E051', 'Jupyter Notebook': '#DA5B0B',
-      'Vue': '#4FC08D', 'Svelte': '#FF3E00', 'Dart': '#00B4AB',
-    };
     function langColor(lang) { return langColors[lang] || '#8b949e'; }
 
     const categoryIcons = {
