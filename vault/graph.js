@@ -6,11 +6,26 @@
  */
 function buildGraph(notes, relationsList) {
   const container = document.getElementById('graph-container');
-  if (!container || typeof vis === 'undefined') return;
+  if (!container) {
+    console.warn('[Graph] #graph-container not found');
+    return;
+  }
+  if (typeof vis === 'undefined') {
+    container.textContent = '关系图谱组件加载失败（vis-network CDN 不可达），请刷新重试';
+    console.warn('[Graph] vis-network not loaded');
+    return;
+  }
 
   // ── Build node map ──
   const noteMap = {};
-  notes.forEach(n => { noteMap[n.repo_full_name] = n; });
+  notes.forEach(n => { if (n) noteMap[n.repo_full_name] = n; });
+
+  // ── Guard for empty relation data ────
+  if (!relationsList || !relationsList.length || relationsList.every(c => !c.relations || !c.relations.length)) {
+    container.textContent = '暂无关系数据，请先运行 star-vault sync --with-pages 或等待 AI 分析完成';
+    console.log('[Graph] No relations to render');
+    return;
+  }
 
   // ── Count connections per node ──────
   const connCount = {};
