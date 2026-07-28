@@ -21,6 +21,7 @@ logger = logging.getLogger(__name__)
 
 _API_BASE = "https://api.github.com"
 _PAGE_SIZE = 100
+_USER_AGENT = "StarLink/0.1"
 
 # ── 异常 ──────────────────────────────────────────────
 
@@ -51,7 +52,7 @@ def _build_headers(token: str) -> dict[str, str]:
     return {
         "Authorization": f"Bearer {token}",
         "Accept": "application/vnd.github.v3.star+json",
-        "User-Agent": "StarLink/0.1",
+        "User-Agent": _USER_AGENT,
     }
 
 
@@ -60,8 +61,32 @@ def _build_graphql_headers(token: str) -> dict[str, str]:
     return {
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json",
-        "User-Agent": "StarLink/0.1",
+        "User-Agent": _USER_AGENT,
     }
+
+
+_QUERY_LISTS = """
+query {
+    viewer {
+        lists(first: 50) {
+            nodes { id name }
+        }
+    }
+}
+"""
+
+_QUERY_LIST_ITEMS = """
+query($id: ID!, $after: String) {
+    node(id: $id) {
+        ... on UserList {
+            items(first: 100, after: $after) {
+                pageInfo { hasNextPage endCursor }
+                nodes { ... on Repository { nameWithOwner } }
+            }
+        }
+    }
+}
+"""
 
 
 def fetch_user_lists(token: str) -> dict[str, str]:
@@ -73,73 +98,53 @@ def fetch_user_lists(token: str) -> dict[str, str]:
     headers = _build_graphql_headers(token)
     list_repos: dict[str, str] = {}
 
-    # 1. 获取所有 lists
-    query_lists = """
-    query {
-        viewer {
-            lists(first: 50) {
-                nodes { id name }
-            }
-        }
-    }
-    """
-    resp = httpx.post(
-        f"{_API_BASE}/graphql",
-        headers=headers,
-        json={"query": query_lists},
-        timeout=30,
-    )
-    resp.raise_for_status()
-    data = resp.json()
-    lists = data.get("data", {}).get("viewer", {}).get("lists", {}).get("nodes", [])
+    with httpx.Client(timeout=30) as client:
+        # 1. 获取所有 lists
+        resp = client.post(
+            f"{_API_BASE}/graphql",
+            headers=headers,
+            json={"query": _QUERY_LISTS},
+        )
+        resp.raise_for_status()
+        data = resp.json()
+        lists = data.get("data", {}).get("viewer", {}).get("lists", {}).get("nodes", [])
 
-    if not lists:
-        logger.info("未找到 GitHub Star Lists")
-        return list_repos
+        if not lists:
+            logger.info("未找到 GitHub Star Lists")
+            return list_repos
 
-    # 2. 逐 list 获取 repo 列表
-    for lst in lists:
-        lid = lst["id"]
-        lname = lst["name"]
-        cursor: str | None = None
+        # 2. 逐 list 获取 repo 列表
+        for lst in lists:
+            lid = lst["id"]
+            lname = lst["name"]
+            cursor: str | None = None
+            list_count = 0
 
-        while True:
-            cursor_arg = f'"{cursor}"' if cursor else "null"
-            query_items = f"""
-            query {{
-                node(id: \"{lid}\") {{
-                    ... on UserList {{
-                        items(first: 100, after: {cursor_arg}) {{
-                            pageInfo {{ hasNextPage endCursor }}
-                            nodes {{ ... on Repository {{ nameWithOwner }} }}
-                        }}
-                    }}
-                }}
-            }}
-            """
-            item_resp = httpx.post(
-                f"{_API_BASE}/graphql",
-                headers=headers,
-                json={"query": query_items},
-                timeout=30,
-            )
-            item_resp.raise_for_status()
-            item_data = item_resp.json()
-            items_node = item_data.get("data", {}).get("node", {}).get("items", {})
-            nodes = items_node.get("nodes", [])
+            while True:
+                variables: dict[str, object] = {"id": lid, "after": cursor}
+                item_resp = client.post(
+                    f"{_API_BASE}/graphql",
+                    headers=headers,
+                    json={"query": _QUERY_LIST_ITEMS, "variables": variables},
+                )
+                item_resp.raise_for_status()
+                item_data = item_resp.json()
+                items_node = item_data.get("data", {}).get("node", {}).get("items", {})
+                nodes = items_node.get("nodes", [])
 
-            for n in nodes:
-                if n and n.get("nameWithOwner"):
-                    list_repos[n["nameWithOwner"]] = lname
+                for n in nodes:
+                    if n and n.get("nameWithOwner"):
+                        list_repos[n["nameWithOwner"]] = lname
+                        list_count += 1
 
-            # 分页
-            page_info = items_node.get("pageInfo", {})
-            if page_info.get("hasNextPage") and page_info.get("endCursor"):
-                cursor = page_info["endCursor"]
-            else:
-                break
+                # 分页
+                page_info = items_node.get("pageInfo", {})
+                if page_info.get("hasNextPage") and page_info.get("endCursor"):
+                    cursor = page_info["endCursor"]
+                else:
+                    break
 
-        logger.info("  List %s: %d repo(s)", lname, sum(1 for v in list_repos.values() if v == lname))
+            logger.info("  List %s: %d repo(s)", lname, list_count)
 
     logger.info("共 %d 个 List, %d 个 repo 有分类", len(lists), len(list_repos))
     return list_repos
@@ -361,6 +366,7 @@ def sync(
             existing = sm.get_repo(repo.full_name)
             if existing and existing.list_name != repo.list_name:
                 existing.list_name = repo.list_name
+                sm.upsert_repo(repo.full_name, existing)
             if sm.needs_ai(repo.full_name):
                 result.ai_pending.append(repo)
 
