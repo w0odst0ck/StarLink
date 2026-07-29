@@ -23,7 +23,9 @@ from star_vault.core.syncer import sync as sync_repos
 from star_vault.core.state import AI_STATUS_DONE, AI_STATUS_FAILED, AI_STATUS_LOCKED, AI_STATUS_PENDING, StateManager
 from star_vault.core.vault import build_note, write_note
 from star_vault.core.index_generator import render_vault_index, render_todo_index
-from star_vault.core.pages import generate_site_data
+from star_vault.core.pages import generate_site_data, scan_vault_notes
+from star_vault.models.note import NoteData, TodoItem
+from star_vault.models.relation import RelationRef
 
 def _prompt_version() -> str:
     """返回当前 AI prompt 版本 hash（用于 stale 检测）。"""
@@ -206,15 +208,7 @@ def sync(
         write_note(note, vault_path)
         notes.append(note)
 
-    # 5. 索引
-    (vault_path / "INDEX.md").write_text(
-        render_vault_index(notes), encoding="utf-8"
-    )
-    (vault_path / "TODO.md").write_text(
-        render_todo_index(notes), encoding="utf-8"
-    )
-
-    # 6. Pages（可选）
+    # 5. Pages（可选）
     page_count = 0
     if with_pages:
         typer.echo("\n正在生成 Pages 站点…")
@@ -223,8 +217,8 @@ def sync(
     # summary
     typer.echo(f"\n✓ Vault: {vault_path}")
     typer.echo(f"  ├─ {len(notes)} 篇笔记")
-    typer.echo(f"  ├─ INDEX.md")
-    typer.echo(f"  └─ TODO.md")
+    typer.echo(f"")
+    typer.echo(f"💡 重新生成索引: star-vault index")
     if page_count:
         typer.echo(f"  └─ Pages: {page_count} repos → index.html + site-data.json")
 
@@ -409,6 +403,89 @@ def analyze(
     sm.save()
     typer.echo(f"\n✓ {len(repos)} 个 repo 处理完成")
     typer.echo(f"  重新生成 Pages: star-vault pages")
+
+
+@app.command()
+def index(
+    vault_dir: str = typer.Option(
+        "./vault", "--vault", "-d",
+        help="vault 目录路径（默认 ./vault）",
+    ),
+):
+    """从 vault/stars/ 重新生成 INDEX.md + TODO.md。
+
+    不依赖 GitHub Token，不需要网络连接。
+    运行于 sync/analyze 之后，确保索引与 vault 笔记一致。
+    """
+    vault_path: Path
+    try:
+        cfg = load_config()
+        vault_path = Path(cfg.vault.path).expanduser().resolve()
+    except ConfigError:
+        vault_path = Path(vault_dir).expanduser().resolve()
+
+    stars_dir = vault_path / "stars"
+    if not stars_dir.is_dir():
+        typer.echo(f"✗ Vault 中未找到笔记数据: {vault_path}")
+        typer.echo("请先运行: star-vault sync")
+        raise typer.Exit(1)
+
+    typer.echo(f"扫描 Vault: {vault_path}")
+    raw_notes = scan_vault_notes(vault_path)
+    if not raw_notes:
+        typer.echo("✗ vault/stars/ 下无笔记文件")
+        raise typer.Exit(1)
+
+    def _to_note(d: dict) -> NoteData:
+        todos = [
+            TodoItem(
+                text=t["text"],
+                source_repo=d["repo_full_name"],
+                priority=t.get("priority", 3),
+                done=t.get("done", False),
+            )
+            for t in d.get("todo_items", [])
+        ]
+        relations = [
+            RelationRef(
+                target_slug=r["target_slug"],
+                relation_type=r["relation_type"].lower(),
+                confidence=r.get("confidence", 0.5),
+            )
+            for r in d.get("relations", [])
+        ]
+        return NoteData(
+            slug=d.get("slug", d.get("title", "unknown")),
+            title=d.get("title", d.get("slug", "Untitled")),
+            repo_full_name=d.get("repo_full_name", ""),
+            list_name=d.get("list_name", ""),
+            description="",
+            language=d.get("language"),
+            topics=d.get("topics", []),
+            status=d.get("status", "unreviewed"),
+            ai_generated=d.get("ai_generated", False),
+            ai_summary=d.get("ai_summary", ""),
+            todo_items=todos,
+            relations=relations,
+            category=d.get("category", ""),
+            rating=d.get("rating", 0),
+            maintenance=d.get("maintenance", ""),
+            ai_tags=d.get("ai_tags", []),
+        )
+
+    notes = [_to_note(d) for d in raw_notes]
+
+    (vault_path / "INDEX.md").write_text(
+        render_vault_index(notes), encoding="utf-8"
+    )
+    (vault_path / "TODO.md").write_text(
+        render_todo_index(notes), encoding="utf-8"
+    )
+
+    typer.echo(f"\n✓ 索引已更新")
+    typer.echo(f"  ├─ INDEX.md: {len(notes)} 个仓库")
+    typer.echo(f"  ├─ TODO.md: {sum(len(n.todo_items) for n in notes)} 项")
+    typer.echo(f"  └─ 源: vault/stars/")
 
 
 @app.command()

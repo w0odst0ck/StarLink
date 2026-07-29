@@ -1,5 +1,5 @@
 # StarLink TODO
-共 422 项
+共 426 项
 
 ## 1jehuang/jcode
 - [ ] Review the installation and quick start guide to set up jcode locally (P3)
@@ -132,12 +132,10 @@
 - [ ] Review the documentation for AI agent integration and MCP server setup (P3)
 
 ## OtterMind/Chat2DB
-- [ ] Enhance AI model integration to support more custom models and fine-tuning (P3)
-- [ ] Improve cross-platform performance and stability, especially on Linux (P3)
-- [ ] Add more advanced BI dashboard features and chart types (P3)
-- [ ] Expand plugin system to cover additional niche databases (P3)
-- [ ] Provide more comprehensive documentation and tutorials for beginners (P3)
-- [ ] Implement collaborative features for team-based SQL editing and sharing (P3)
+- [ ] Review the AI assistant integration guide to configure your own AI model (P3)
+- [ ] Explore the plugin system to add support for additional databases (P3)
+- [ ] Check the open-source CLI with MCP support for advanced automation (P3)
+- [ ] Test the data import/export and dashboard features for reporting workflows (P3)
 
 ## PKUFlyingPig/cs-self-learning
 - [ ] 持续更新课程列表，确保推荐资源时效性 (P3)
@@ -217,10 +215,11 @@
 - [ ] Create a contribution guide and simplify onboarding for new developers. (P3)
 
 ## alibaba/open-code-review
-- [ ] Configure a supported model endpoint (OpenAI/Anthropic) to get started with the tool, as it requires a model to function. (P3)
-- [ ] Integrate 'ocr review' into your CI pipeline to automatically review each pull request, catching issues early. (P3)
-- [ ] Explore the built-in rule sets (NPE, thread-safety, etc.) and customize them for your project's specific needs to maximize defect detection. (P3)
-- [ ] Use 'ocr scan' to audit unfamiliar codebases or entire directories for hidden issues beyond diff changes. (P3)
+- [ ] Explore the official website and documentation to understand setup and configuration. (P3)
+- [ ] Try running the tool on a sample repository to evaluate its review quality. (P3)
+- [ ] Review the built-in rulesets for NPE, thread-safety, XSS, and SQL injection to see if they match your needs. (P3)
+- [ ] Check the benchmark results and compare with other code review tools. (P3)
+- [ ] Consider integrating into your CI/CD pipeline for automated code review. (P3)
 
 ## alibaba/page-agent
 - [ ] Create integrations with popular frameworks (React, Vue, Angular) to simplify adoption (P3)
@@ -239,10 +238,11 @@
 - [ ] Check the project roadmap and consider contributing to upcoming features or bug fixes. (P3)
 
 ## andrewyng/aisuite
-- [ ] Try using aisuite in your project to abstract across LLM providers and simplify API calls. (P3)
-- [ ] Set up agents with built-in toolkits (files, git, shell) or custom tools for your automation workflows. (P3)
-- [ ] Explore the MCP integration to connect external services and extend agent capabilities. (P3)
-- [ ] Review the OpenWorker repository to see a full desktop application built on aisuite. (P3)
+- [ ] Explore the unified Chat Completions API to switch between providers with a single string change. (P3)
+- [ ] Try the Agents API with toolkits (files, git, shell) or MCP servers for multi-turn agent loops. (P3)
+- [ ] Check out OpenWorker repository for a full desktop AI coworker implementation. (P3)
+- [ ] Review the documentation for supported providers and any rate limits or authentication requirements. (P3)
+- [ ] Consider contributing to the project or reporting issues if you encounter bugs. (P3)
 
 ## apache/ossie
 - [ ] Review the core specification (spec.md) and schema files to understand the semantic model structure. (P3)
@@ -314,6 +314,13 @@
 - [ ] 为每个Skill增加详细的输入输出示例和预期效果文档，降低使用门槛 (P3)
 - [ ] 建立跨Agent兼容性测试流程，确保在豆包、Claude Code、Codex等平台行为一致 (P3)
 - [ ] 创建社区贡献指南，鼓励用户基于原子库贡献新的业务Skill (P3)
+
+## earendil-works/pi
+- [ ] Implement a built-in permission system for filesystem, process, and network access to enhance security without requiring containerization. (P3)
+- [ ] Add more comprehensive documentation and examples for each package, especially for the agent runtime and TUI library. (P3)
+- [ ] Create a quick-start guide or template for new users to set up a basic agent with Pi in under 5 minutes. (P3)
+- [ ] Integrate with additional LLM providers beyond OpenAI, Anthropic, and Google to broaden compatibility. (P3)
+- [ ] Set up automated CI/CD pipelines for testing and publishing packages to npm. (P3)
 
 ## fastapi/fastapi
 - [ ] Run the official 'First Steps' tutorial to create a basic FastAPI app (P3)
@@ -464,11 +471,10 @@
 - [ ] 添加自动化测试与CI/CD流程，保障CLI命令稳定性 (P3)
 
 ## nodejs/node
-- [ ] Choose appropriate Node.js version for your project (Current vs LTS) (P3)
-- [ ] Set up local development environment to build Node.js from source (P3)
-- [ ] Review contributing guidelines and governance model (P3)
-- [ ] Review security policies and reporting process (P3)
-- [ ] Explore the Node.js API documentation for new features (P3)
+- [ ] Explore the Node.js website and documentation for API references and guides. (P3)
+- [ ] Review the governance model and contributing guidelines if planning to contribute. (P3)
+- [ ] Check the latest Current and LTS releases for version compatibility with your projects. (P3)
+- [ ] Set up a local build environment to test or contribute to Node.js core. (P3)
 
 ## obra/superpowers
 - [ ] Integrate with popular AI coding agents (e.g., GitHub Copilot, Claude) to demonstrate real-world usage (P3)

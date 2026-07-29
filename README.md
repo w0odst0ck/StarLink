@@ -6,7 +6,7 @@ StarLink 把你的 GitHub starred repositories 同步为一个有结构的 Markd
 
 ---
 
-🌐 **在线看板**：https://w0odst0ck.github.io/StarLink/
+🌐 **在线看板**：[https://w0odst0ck.github.io/StarLink/](https://w0odst0ck.github.io/StarLink/)
 
 ---
 

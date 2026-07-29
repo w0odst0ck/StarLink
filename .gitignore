@@ -44,3 +44,4 @@ experiments/
 
 # Vault - notes only (tracked: site-data.json, index.html)
 vault/stars/
+# VS Code workspace (Windows local)\n*.code-workspace

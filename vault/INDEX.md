@@ -1,6 +1,6 @@
 # StarLink Vault Index
 
-共 94 个仓库
+共 95 个仓库
 
 ## ArchStack
 - [alibaba/zvec](stars/ArchStack/alibaba.zvec.md) [C++]
@@ -70,6 +70,7 @@
 - [bojieli/ai-agent-book](stars/LearnHub/bojieli.ai-agent-book.md) [Python]
 - [ByteByteGoHq/system-design-101](stars/LearnHub/bytebytegohq.system-design-101.md)
 - [codecrafters-io/build-your-own-x](stars/LearnHub/codecrafters-io.build-your-own-x.md) [Markdown]
+- [earendil-works/pi](stars/LearnHub/earendil-works.pi.md) [TypeScript]
 - [harvard-edge/cs249r_book](stars/LearnHub/harvard-edge.cs249r_book.md) [Python]
 - [jackfrued/Python-100-Days](stars/LearnHub/jackfrued.python-100-days.md) [Jupyter Notebook]
 - [microsoft/ai-edu](stars/LearnHub/microsoft.ai-edu.md) [HTML]
