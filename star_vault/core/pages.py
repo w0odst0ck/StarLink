@@ -45,6 +45,11 @@ def _parse_note_file(path: Path) -> dict | None:
     # 提取 body 中的结构化内容
     body = _parse_body(content)
 
+    # 摘要优先级：frontmatter summary > 正文 ✦ 摘要段
+    summary = (fm.get("summary") or "").strip() if fm else ""
+    if not summary:
+        summary = body.get("ai_summary", "")
+
     # 即使没有 frontmatter 也返回带默认值的笔记数据
     return {
         "slug": path.stem,
@@ -55,7 +60,7 @@ def _parse_note_file(path: Path) -> dict | None:
         "topics": fm.get("topics", []) if fm else [],
         "status": fm.get("status", "unreviewed") if fm else "unreviewed",
         "ai_generated": fm.get("ai_generated", False) if fm else False,
-        "ai_summary": body.get("ai_summary", ""),
+        "ai_summary": summary,
         "todo_items": body.get("todo_items", []),
         "relations": _parse_relations(fm.get("relations", [])) if fm else [],
         # AI 增强字段 (v2)
@@ -75,11 +80,21 @@ def _safe_int(value: object, default: int = 0) -> int:
 
 
 def _parse_frontmatter(content: str) -> dict:
-    """解析 --- 分隔的 frontmatter。"""
+    """解析 --- 分隔的 frontmatter（支持 YAML 块标量）。"""
     m = re.match(r"^---\n(.+?)\n---(?:\n|$)", content, re.DOTALL)
     if not m:
         return {}
 
+    try:
+        import yaml
+
+        data = yaml.safe_load(m.group(1)) or {}
+        if isinstance(data, dict):
+            return data
+    except Exception:
+        pass
+
+    # 回退：逐行解析（兼容非标准格式）
     result: dict = {}
     for line in m.group(1).split("\n"):
         line = line.strip()
@@ -114,8 +129,8 @@ def _parse_body(content: str) -> dict:
     if title_m:
         result["title"] = title_m.group(1).strip()
 
-    # AI 摘要：## ✦ AI 摘要 后直到下一个 ## 或结尾
-    summary_m = re.search(r"## ✦ AI 摘要\n\n(.+?)(?=\n## |\Z)", body, re.DOTALL)
+    # 摘要：## ✦ AI 摘要 / ✦ 人工摘要 后直到下一个 ## 或结尾
+    summary_m = re.search(r"## ✦ (?:AI 摘要|人工摘要)\n\n(.+?)(?=\n## |\Z)", body, re.DOTALL)
     if summary_m:
         result["ai_summary"] = summary_m.group(1).strip()
 
@@ -141,16 +156,32 @@ def _parse_body(content: str) -> dict:
 
 
 def _parse_relations(rels: list) -> list[dict]:
-    """解析 frontmatter relations: target_slug: TYPE(confidence)"""
+    """解析 frontmatter relations: target_slug: TYPE(confidence)
+
+    兼容两种形式：
+      - YAML 解析后的 dict 列表：[{owner/name: TYPE(conf)}, ...]
+      - 字符串列表：["owner/name: TYPE(conf)", ...]
+    """
     result: list[dict] = []
     for rel in rels:
-        m = re.match(r"(.+?): (\w+)\(([\d.]+)\)", rel)
-        if m:
-            result.append({
-                "target_slug": m.group(1).strip(),
-                "relation_type": m.group(2),
-                "confidence": float(m.group(3)),
-            })
+        if isinstance(rel, dict):
+            # dict 形式：{target: "TYPE(conf)"}
+            for target, spec in rel.items():
+                m = re.match(r"(\w+)\(([\d.]+)\)", str(spec))
+                if m:
+                    result.append({
+                        "target_slug": str(target).strip(),
+                        "relation_type": m.group(1),
+                        "confidence": float(m.group(2)),
+                    })
+        elif isinstance(rel, str):
+            m = re.match(r"(.+?): (\w+)\(([\d.]+)\)", rel)
+            if m:
+                result.append({
+                    "target_slug": m.group(1).strip(),
+                    "relation_type": m.group(2),
+                    "confidence": float(m.group(3)),
+                })
     return result
 
 

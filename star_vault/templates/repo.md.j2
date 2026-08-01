@@ -9,6 +9,9 @@ category: {{ note_data.category or "" }}
 rating: {{ note_data.rating }}
 maintenance: {{ note_data.maintenance or "" }}
 ai_tags: [{{ note_data.ai_tags | join(", ") }}]
+{% if ai_summary %}summary: |-
+  {{ ai_summary | replace("\n", "\n  ") }}
+{% endif %}
 ---
 
 # {{ repo.name }}

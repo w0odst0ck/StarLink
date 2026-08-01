@@ -1,618 +1,394 @@
 # StarLink TODO
-共 426 项
+共 218 项
 
 ## 1jehuang/jcode
-- [ ] Review the installation and quick start guide to set up jcode locally (P3)
-- [ ] Test jcode with a small coding task to evaluate its performance and RAM usage (P3)
-- [ ] Join the Discord community to stay updated on new features and contribute feedback (P3)
-
-## AhmadIbrahiim/Website-downloader
-- [ ] Add support for handling websites with complex authentication or login forms. (P3)
-- [ ] Implement a progress indicator for the download and compression process. (P3)
-- [ ] Add an option to respect robots.txt and set custom user-agent. (P3)
-- [ ] Improve error handling for very large sites or network failures. (P3)
-- [ ] Provide a CLI version as an alternative to the web interface. (P3)
+- [ ] 有空装来跑一次，对比与 OpenClaw 的内存占用和交互体验 (P3)
+- [ ] 了解其 MCP 集成方式，作为 agent 工具设计参考 (P3)
 
 ## AstrBotDevs/AstrBot
-- [ ] Read the official documentation (astrbot.app) to understand the core concepts and setup process. (P3)
-- [ ] Explore the plugin marketplace to see available extensions and evaluate which ones fit your use case. (P3)
-- [ ] Try the Docker deployment for a quick start and local testing of the chatbot. (P3)
-- [ ] If using in production, configure and test integrations with your preferred IM platforms (e.g., Discord, Telegram, QQ). (P3)
-- [ ] Consider contributing to the project or opening an issue if you encounter bugs or missing features. (P3)
+- [ ] 看其国内 IM（QQ/飞书）接入实现，对比自己的飞书 webhook 链路方案 (P3)
+- [ ] 了解其插件市场机制，与 OpenClaw skills 体系对照 (P3)
 
 ## ByteByteGoHq/system-design-101
-- [ ] Read through the API and Web Development section for foundational concepts. (P3)
-- [ ] Use the guides to practice system design questions and reinforce your knowledge. (P3)
-- [ ] Explore the database and OS sections to deepen understanding of underlying systems. (P3)
+- [ ] 独立站架构设计时，按需查阅对应章节（API 设计/数据库选型/缓存/CDN） (P3)
+- [ ] 面试准备阶段，系统过一遍核心章节 (P3)
 
 ## Canner/WrenAI
-- [ ] Run the quickstart guide to see natural-language-to-dashboard generation in action. (P3)
-- [ ] Explore the context layer and MDL modeling to understand how governance is applied. (P3)
-- [ ] Contribute to the project by improving documentation or adding a missing data source connector. (P3)
-- [ ] Evaluate the deployment option with wren-core-wasm for serverless dashboard hosting. (P3)
-- [ ] Read the vision blog post on the 'missing context layer' to align with the project's philosophy. (P3)
+- [ ] 跑通 quickstart，体验自然语言→SQL→图表全流程，记录生成质量 (P3)
+- [ ] 与 Chat2DB 对比：text-to-SQL 准确率、语义层设计、部署成本，沉淀选型结论 (P3)
+- [ ] 独立站数据分析场景预研：把经营数据接进去，验证"非技术用户问数据"的可行性 (P3)
+
+## ChromeDevTools/chrome-devtools-mcp
+- [ ] 接进 OpenClaw：配置 chrome-devtools-mcp，实测控制真实 Chrome 完成一次自动化操作 (P2)
+- [ ] 评估爬虫调试场景：JS 渲染页面、反爬对抗时的断点/网络/性能检查能力 (P2)
+- [ ] 与 puppeteer 直连方式对比，明确什么场景用 MCP 更省事 (P3)
 
 ## CoplayDev/unity-mcp
-- [ ] Add more beginner-friendly tutorials and usage examples to the README. (P3)
-- [ ] Create a dedicated section for configuring various MCP clients (Claude, VS Code, etc.) (P3)
-- [ ] Document all 47 MCP tool entrypoints with parameters and expected outputs. (P3)
-- [ ] Provide a troubleshooting guide for common connection issues between AI assistants and Unity. (P3)
-- [ ] Consider adding video walkthroughs or interactive demos in the wiki. (P3)
-
-## CoreBunch/Instatic
-- [ ] Deploy a test site using the one-click Railway template to experience the full workflow. (P3)
-- [ ] Explore the plugin system documentation to understand how to extend functionality. (P3)
-- [ ] Review the custom CSS/HTML output options to tailor the generated static pages. (P3)
-- [ ] Check the open issues and roadmap for upcoming features and potential contributions. (P3)
+- [ ] 启动 3D 内容/仿真可视化方向时，评估 AI 控制 Unity 的自动化生产流程 (P3)
+- [ ] 了解其 47 个工具的能力边界（资源/场景/脚本），作为 MCP 设计参考 (P3)
 
 ## DeusData/codebase-memory-mcp
-- [ ] Install the binary and run 'install' to set up the MCP server with your agent (e.g., Claude Code, Cursor, Windsurf). (P3)
-- [ ] Explore the 15 MCP tools by querying an indexed codebase (e.g., 'get_functions', 'find_callers'). (P3)
-- [ ] Read the accompanying arXiv paper (2603.27277) to understand benchmarks and design choices. (P3)
-- [ ] Contribute to the project by reporting issues or submitting pull requests for additional languages or features. (P3)
-- [ ] Browse the built-in 3D graph UI at localhost:9749 for visual exploration of the knowledge graph. (P3)
+- [ ] 装进 OpenClaw，拿学习项目（如 pi）索引，实测结构查询效果 (P2)
+- [ ] 与 GitNexus 对比选型：性能/集成/使用体验，确定代码智能主力工具 (P2)
 
 ## Evil0ctal/Douyin_TikTok_Download_API
-- [ ] 完善API文档并添加更多语言版本 (P3)
-- [ ] 处理平台反爬机制更新（如签名算法变化） (P3)
-- [ ] 添加Docker一键部署支持 (P3)
-- [ ] 优化错误处理及日志记录 (P3)
+- [ ] 接进信息采集管线：抖音/B站数据采集，作为舆情/热点信源 (P2)
+- [ ] 了解其反爬机制（签名算法/无水印），沉淀逆向经验 (P3)
+- [ ] 与 MediaCrawler 对比选型：API 下载 vs 全量爬取，按场景分工 (P3)
 
 ## Graphify-Labs/graphify
-- [ ] Install graphify via pip and run the initial setup with a sample project to test the pipeline. (P3)
-- [ ] Explore the generated knowledge graph using the web UI or interactive CLI to understand how code relationships are extracted vs. inferred. (P3)
-- [ ] Read the documentation on integrating with your preferred AI assistant (e.g., Claude Code, Cursor) and configure the graphify skill. (P3)
-- [ ] Try querying the graph with a complex cross-file question to evaluate its accuracy and speed. (P3)
-- [ ] Check the contributing guide and open issues if you want to report bugs or add support for more file types. (P3)
+- [ ] 装进 OpenClaw 实测，与 GitNexus/codebase-memory-mcp 对比，确定代码图谱主力 (P2)
+- [ ] 三选一后删除冗余项，保持库精简 (P2)
 
 ## HKUDS/Vibe-Trading
-- [ ] Review the security warning and verify official channels to avoid impersonation. (P3)
-- [ ] Install via pip and run the quick start demo to test core functionality. (P3)
-- [ ] Read documentation to understand available trading skills, backtesting, and API/MCP integration. (P3)
-- [ ] Contribute by reporting bugs, fixing issues, or adding new trading strategies. (P3)
+- [ ] pip install vibe-trading-ai，跑 quick start demo (P3)
+- [ ] 读 Vibe-Trading Strategy / Backtest API 文档，确认接口签名 (P3)
+- [ ] 写最小 adapter：加载日线信号 JSON → 触发回测 (P3)
+- [ ] 用 Vibe-Trading 引擎回测 588000，对比 trade-pulse 自测结果 (P3)
+- [ ] 确认绩效指标一致（作为适配器 sanity check） (P3)
+- [ ] 配置 vn.py 连接器，确认能否绑定东方财富账户 (P3)
+- [ ] 开 Shadow Account 模拟盘，观察执行稳定性 (P3)
+- [ ] 稳定后切换真实资金 (P3)
 
 ## IceWhaleTech/CasaOS
-- [ ] Review the installation guide and deploy CasaOS on a test device (e.g., Raspberry Pi or VM) to evaluate ease of setup. (P3)
-- [ ] Explore the built-in App Store and try installing a few community apps to understand the ecosystem and extensibility. (P3)
-- [ ] Examine the API documentation to assess integration potential with other home automation or monitoring tools. (P3)
-- [ ] Contribute to the project by checking open issues labeled 'help wanted' or 'good first issue' to lower the barrier for new contributors. (P3)
-
-## IndicoDataSolutions/finetune
-- [ ] Evaluate compatibility with modern TensorFlow versions (2.x) as the library may rely on older TF 1.x APIs. (P3)
-- [ ] Consider porting key model implementations to PyTorch or provide a PyTorch backend to align with the current NLP ecosystem (Hugging Face Transformers). (P3)
-- [ ] Check for open issues and pull requests; merge or close stale ones to improve community trust. (P3)
-- [ ] Add examples and documentation for fine-tuning with recently released models like GPT-3, LLaMA, or other transformer variants. (P3)
-- [ ] Explore integration with modern training frameworks (e.g., Lightning, Ray) to simplify distributed training and hyperparameter tuning. (P3)
+- [ ] 有自托管/家用服务硬件时再评估，当前不投入 (P3)
 
 ## JuliusBrussee/caveman
-- [ ] Verify compatibility with latest Claude Code version (P3)
-- [ ] Add installation instructions for unsupported agents (e.g., Copilot CLI) (P3)
-- [ ] Explore additional 'caveman levels' beyond the current set (P3)
+- [ ] 跟进其更新（新强度分级/压缩技巧），评估是否调优自己的模式配置 (P3)
+- [ ] 对比 OmniRoute 的 RTK+Caveman 压缩实现，看有无可借鉴点 (P3)
 
 ## KnockOutEZ/wigolo
-- [ ] Add comprehensive documentation for self-hosting and configuration options (P3)
-- [ ] Improve error handling and retry logic for large-scale crawling (P3)
-- [ ] Create example integration with LangChain and LlamaIndex (P3)
-- [ ] Add a benchmark suite to compare with cloud-based search APIs (P3)
-- [ ] Provide a Docker image for easy deployment (P3)
+- [ ] 试接进 OpenClaw，对比与自带 web_search 的搜索/抓取效果差异 (P3)
+- [ ] 评估其 crawl/scrape 能力在爬虫管线中的补充价值 (P3)
 
 ## MadsLorentzen/ai-job-search
-- [ ] Fork the repository and fill in your personal profile (skills, experience, CV templates) (P3)
-- [ ] Configure job portal search skills for your local market (e.g., Danish portals or your region's boards) (P3)
-- [ ] Run the `/setup` workflow to initialize profile files and environment (P3)
-- [ ] Execute `/scrape` to search and rank job postings with fit scores (P3)
-- [ ] Use `/apply <url>` to auto-generate tailored CV and cover letter in LaTeX (P3)
-- [ ] Review the community forks and AGENTS.md to adapt for other AI agent tools (e.g., Codex, Gemini CLI) (P3)
-- [ ] Contribute improvements or bug fixes back via pull requests (P3)
-
-## MoonshotAI/kimi-cli
-- [ ] Migrate to the successor project Kimi Code CLI (P3)
-- [ ] Review the documentation and migration guide (P3)
-- [ ] Backup any existing configuration or sessions (P3)
+- [ ] 有求职/跳槽需求时启用：fork 填个人 profile，跑 /setup → /scrape → /apply 流程 (P3)
+- [ ] 作为 agent 工作流范式参考：学它如何编排「评估→定制→生成」多步流程 (P3)
 
 ## NanmiCoder/MediaCrawler
-- [ ] 完善英文文档和国际化支持，降低海外开发者使用门槛 (P3)
-- [ ] 增加更多平台的适配（如微信视频号、知乎专栏等），保持工具覆盖面 (P3)
-- [ ] 增强异常处理与断点续爬功能（现有 Pro 版已提供，但开源版可考虑基础实现） (P3)
-- [ ] 补充单元测试和集成测试，提高代码健壮性 (P3)
-- [ ] 明确指引用户如何合规使用（如 robots.txt、频率控制），避免法律风险 (P3)
+- [ ] 接进信息采集管线：小红书/微博/B站内容采集，作为舆情/热点信源 (P2)
+- [ ] 与 Douyin_TikTok_Download_API 分工：全平台采集 vs 视频下载，按场景选用 (P3)
+- [ ] 明确合规边界（数据使用范围），避免法律风险 (P2)
 
 ## NevaMind-AI/memU
-- [ ] Install and test the CLI tool via PyPI (pip install memu-cli) to experience session persistence. (P3)
-- [ ] Integrate memU with an MCP client to enable cross-agent memory sharing in production loops. (P3)
-- [ ] Inspect the 500-line core logic in the repository to understand the memory distillation algorithm and adapt it. (P3)
-- [ ] Explore the 'openclaw-skills' topic to see how skills are extracted and reused across agents. (P3)
-- [ ] Join the Discord community to discuss use cases and contribute to the evolving skill ecosystem. (P3)
+- [ ] 读其 500 行核心逻辑，理解「记忆 → 技能提炼」的实现机制 (P2)
+- [ ] 评估借鉴点：能否把自动技能提炼的思路引入自己的记忆沉淀流程（MEMORY.md 维护自动化） (P3)
+- [ ] 了解跨 Agent 记忆共享方案，对比 OpenClaw 子 session 的记忆隔离设计 (P3)
 
 ## OpenBB-finance/OpenBB
-- [ ] Install OpenBB and run a basic historical equity data query to verify core functionality (P3)
-- [ ] Browse the available data integrations and test a few providers relevant to your use case (P3)
-- [ ] Start the API server and test REST endpoints for custom application integration (P3)
-- [ ] Explore integration with OpenBB Workspace for a full analyst dashboard experience (P3)
-- [ ] Review the documentation for AI agent integration and MCP server setup (P3)
+- [ ] 评估接入 trade-pulse：对比 OpenBB 与现有数据源（akshare 类）的覆盖/稳定性，确定数据层方案 (P2)
+- [ ] MCP Server 接进 OpenClaw，实测 AI 查询金融数据（588000 行情/宏观指标） (P2)
+- [ ] 与 Vibe-Trading 适配器联动：OpenBB 提供数据 → Vibe-Trading 回测 (P3)
 
 ## OtterMind/Chat2DB
-- [ ] Review the AI assistant integration guide to configure your own AI model (P3)
-- [ ] Explore the plugin system to add support for additional databases (P3)
-- [ ] Check the open-source CLI with MCP support for advanced automation (P3)
-- [ ] Test the data import/export and dashboard features for reporting workflows (P3)
-
-## PKUFlyingPig/cs-self-learning
-- [ ] 持续更新课程列表，确保推荐资源时效性 (P3)
-- [ ] 完善英文版翻译，扩大国际影响力 (P3)
-- [ ] 优化网站导航和搜索功能，提升用户体验 (P3)
-- [ ] 建立学习交流群组，促进学习者互动 (P3)
+- [ ] trade-pulse 数据量级上来后，用它做日常查询/分析 (P3)
+- [ ] 与 WrenAI 一起对比选型：客户端 GUI vs 服务端 BI，按场景分工 (P3)
 
 ## Panniantong/Agent-Reach
-- [ ] Install Agent Reach via pip or follow the README installation instructions for your environment (P3)
-- [ ] Run `agent-reach doctor` to verify connectivity and diagnose any platform issues (P3)
-- [ ] Configure cookie-based platforms (e.g., Twitter, Xiaohongshu) using the provided CLI steps or manual cookie export (P3)
-- [ ] Test Agent Reach with popular AI agents (Claude Code, Cursor, etc.) to perform cross-platform searches and content extraction (P3)
-- [ ] Contribute to the project by reporting issues, suggesting new platform backends, or improving documentation (P3)
+- [ ] 维护 cookie 配置（平台风控变化时及时更新），保证采集链路可用 (P2)
+- [ ] 量化舆情管线接入：国内信源（B站/小红书）并入 trade-pulse 情绪因子 (P2)
+- [ ] 独立站热点捕获：用它对国内内容平台做趋势监测 (P2)
 
 ## PostHog/posthog
-- [ ] Deploy PostHog locally using Docker or Helm to explore its full feature set. (P3)
-- [ ] Integrate the PostHog JavaScript or Python SDK into a test application to experiment with autocapture and event tracking. (P3)
-- [ ] Try the self-driving mode feature to see how it can automatically surface insights and generate pull requests. (P3)
-- [ ] Set up feature flags and A/B experiments in a staging environment to evaluate their statistical analysis. (P3)
-- [ ] Review the AI observability capabilities by sending traces from an LLM-powered app. (P3)
+- [ ] 独立站上线前评估部署（Docker 自托管，注意 Postgres+ClickHouse 依赖），设计埋点方案 (P3)
+- [ ] 上线后接入：事件追踪 + 转化漏斗分析，配合 CRO 优化（与 marketingskills 联动） (P3)
+- [ ] 了解功能开关/A-B 实验能力，为独立站迭代实验做准备 (P3)
 
 ## Robbyant/lingbot-map
-- [ ] Release training code, configuration, and full pipeline for custom dataset training (P3)
-- [ ] Add Docker image or Conda environment for easy reproducibility (P3)
-- [ ] Create a pip-installable package with minimal dependencies (P3)
+- [ ] 自动驾驶仿真/3D 视觉方向启动时，研究其流式重建管线 (P3)
 
 ## Shubhamsaboo/awesome-llm-apps
-- [ ] Try the quick start with the AI travel agent to test local setup and run a Streamlit app. (P3)
-- [ ] Browse the agent skills section (e.g., Project Graveyard, Scope Creep Detector) and select one relevant to your workflow. (P3)
-- [ ] Set up environment variables for API keys (OpenAI, Gemini, etc.) to run RAG or multi-agent apps. (P3)
-- [ ] Explore advanced agent categories like voice AI agents or always-on agents for more complex scenarios. (P3)
-- [ ] Contribute an agent skill or improvement to the repository to benefit the community. (P3)
+- [ ] 做 RAG/Agent 项目前先检索对应模板（study-vault 检索、客服 Agent、分析 Agent） (P3)
+- [ ] 把用得上的模板沉淀进自己的项目参考/代码库 (P3)
 
 ## THU-MAIC/OpenMAIC
-- [ ] Explore the live demo at open.maic.chat to get a hands-on feel for the platform. (P3)
-- [ ] Check the @openmaic/* SDK family on npm for integrating OpenMAIC into your own projects. (P3)
-- [ ] Deploy your own instance using the Vercel one-click deploy button with your LLM API keys. (P3)
-- [ ] Review the published paper (JCST 2026) for academic context and technical details. (P3)
-- [ ] Contribute to the project by reporting issues or submitting pull requests on GitHub. (P3)
-
-## Tampermonkey/tampermonkey
-- [ ] Review the open-source codebase for understanding userscript execution and GM_* API implementation (P3)
-- [ ] Check for any security vulnerabilities in the old code that might affect modern browser extensions (P3)
-- [ ] Consider forking the old version for compatibility with legacy systems (use at own risk) (P3)
+- [ ] 浏览 live demo（open.maic.chat）感受多智能体课堂交互形态 (P3)
+- [ ] 拆解其 LangGraph 多智能体编排结构，看角色分工与状态流转 (P2)
+- [ ] 读 JCST 2026 论文，了解多智能体教学的设计动机与效果评估 (P3)
+- [ ] 若需要自建，用 Vercel 一键部署 + 自己的 LLM key 试跑 (P3)
 
 ## Zackriya-Solutions/meetily
-- [ ] Add Linux support to expand accessibility (P3)
-- [ ] Improve documentation for custom Ollama model integration (P3)
-- [ ] Contribute to speaker diarization accuracy improvements for the community edition (P3)
-- [ ] Test and report bugs for pre-release versions (P3)
+- [ ] 自用跟进即可 (P3)
 
 ## ZhuLinsen/daily_stock_analysis
-- [ ] 配置数据源API密钥（如Anspire、Tushare等）以确保个性化运行 (P3)
-- [ ] 设置GitHub Actions Secrets以启用自动定时推送 (P3)
-- [ ] 选择并配置推送渠道（企业微信/飞书/Telegram等） (P3)
-- [ ] 阅读完整配置与部署指南（docs/full-guide.md）以优化使用 (P3)
-- [ ] 尝试回测功能并验证策略有效性 (P3)
+- [ ] 参考 data_provider/ 抽象模式，改造 trade-pulse fetch_data.py 为 Provider 接口（先解耦 AkShare） (P3)
+- [ ] 考虑将规则信号改为 YAML 声明式（参考 strategies/ 目录的设计） (P3)
 
 ## abhigyanpatwari/GitNexus
-- [ ] Add support for more remote repository hosts (e.g., Bitbucket, Gitea) to broaden compatibility. (P3)
-- [ ] Improve user documentation with examples of Graph RAG queries and MCP integration patterns. (P3)
-- [ ] Consider adding a permissive open-source license option (e.g., MIT or Apache 2.0) to encourage community contributions. (P3)
-- [ ] Enhance the knowledge graph visualizations with filtering and export capabilities. (P3)
-- [ ] Create a contribution guide and issue templates to streamline community involvement. (P3)
+- [ ] 拿一个学习中的项目（如 pi）跑一次知识图谱，体验代码探索效率 (P2)
+- [ ] 评估 MCP 接进 OpenClaw：AI 读代码时获取架构上下文的效果 (P2)
 
 ## addyosmani/agent-skills
-- [ ] Add support for more AI coding platforms (e.g., Copilot, Codeium) (P3)
-- [ ] Include example workflows and tutorials for each slash command (P3)
-- [ ] Integrate with popular project management tools (Jira, Linear) (P3)
-- [ ] Write automated tests for skill triggers and command execution (P3)
-- [ ] Create a contribution guide for adding new skills and commands (P3)
+- [ ] 读 2-3 个代表性 skill（如 code review / spec 类），拆解其结构设计（触发条件、步骤、输出约定） (P2)
+- [ ] 借鉴其质量门禁思路，优化自己的「提交前 ocr review」流程设计 (P2)
+- [ ] 评估哪些 skill 可以直接移植到 OpenClaw 用（注意平台差异） (P3)
 
 ## affaan-m/ECC
-- [ ] Integrate automated testing for core agent harness modules to ensure reliability. (P3)
-- [ ] Add comprehensive API documentation and usage examples for new contributors. (P3)
-- [ ] Expand support to additional AI coding assistants beyond those currently listed. (P3)
-- [ ] Create a contribution guide and simplify onboarding for new developers. (P3)
+- [ ] 拆解其体系框架（skills/instincts/memory/security 如何组织），与 addyosmani/agent-skills 对比异同 (P3)
+- [ ] 提取可借鉴的设计思想（如记忆组织、安全边界）到自己的 OpenClaw skill 体系 (P3)
+- [ ] 持续观察 star 变化与社区反馈，判断是真价值还是营销泡沫 (P3)
 
 ## alibaba/open-code-review
-- [ ] Explore the official website and documentation to understand setup and configuration. (P3)
-- [ ] Try running the tool on a sample repository to evaluate its review quality. (P3)
-- [ ] Review the built-in rulesets for NPE, thread-safety, XSS, and SQL injection to see if they match your needs. (P3)
-- [ ] Check the benchmark results and compare with other code review tools. (P3)
-- [ ] Consider integrating into your CI/CD pipeline for automated code review. (P3)
+- [ ] 梳理内置规则集覆盖的检查项（NPE/线程安全/XSS/SQL 注入等），对照自己项目的常见 bug 类型 (P2)
+- [ ] 记录 ocr review 在真实项目上的漏报/误报案例，沉淀自己的审查补充清单 (P2)
+- [ ] 评估提示词/规则定制空间，看能否把 trade-pulse 等项目的专属检查项加进去 (P3)
 
 ## alibaba/page-agent
-- [ ] Create integrations with popular frameworks (React, Vue, Angular) to simplify adoption (P3)
-- [ ] Expand documentation with more real-world use case examples and troubleshooting guides (P3)
-- [ ] Add support for more LLM providers and local models to broaden compatibility (P3)
-- [ ] Improve the MCP Server from beta to stable with additional control features (P3)
-- [ ] Implement a plugin system for custom actions and event handlers (P3)
-- [ ] Write automated tests for cross-browser compatibility and performance benchmarks (P3)
-- [ ] Set up a community contribution guide and issue templates for better collaboration (P3)
+- [ ] 拿一个复杂交互页面（多步骤表单/动态加载）试玩，评估它相对传统爬虫的适用边界 (P3)
+- [ ] 看 MCP Server 集成方式，评估能否接进 OpenClaw 工具链 (P3)
+- [ ] 独立站产品页加 AI 助手时，把它作为候选方案之一 (P3)
 
 ## alibaba/zvec
-- [ ] Explore the group-by search and random rotation quantization features introduced in v0.6.0 for improved recall and efficiency. (P3)
-- [ ] Benchmark Zvec against other embedded vector databases like FAISS or Chroma for your specific use case. (P3)
-- [ ] Integrate Zvec as a local vector store for an LLM memory or RAG pipeline using its Python or Node.js bindings. (P3)
-- [ ] Review the documentation on hybrid search and full-text search to leverage combined filtering capabilities. (P3)
-- [ ] Check the project roadmap and consider contributing to upcoming features or bug fixes. (P3)
+- [ ] 与 milvus/pymilvus 做本地 benchmark：小规模（<100 万向量）下的建索引速度、查询延迟、内存占用 (P2)
+- [ ] 用 Python 绑定把 study-vault 类本地知识库接进 zvec 做语义检索 demo (P2)
+- [ ] 看 v0.6.0 的 group-by search 与随机旋转量化特性，评估对召回率的提升 (P3)
 
 ## andrewyng/aisuite
-- [ ] Explore the unified Chat Completions API to switch between providers with a single string change. (P3)
-- [ ] Try the Agents API with toolkits (files, git, shell) or MCP servers for multi-turn agent loops. (P3)
-- [ ] Check out OpenWorker repository for a full desktop AI coworker implementation. (P3)
-- [ ] Review the documentation for supported providers and any rate limits or authentication requirements. (P3)
-- [ ] Consider contributing to the project or reporting issues if you encounter bugs. (P3)
-
-## apache/ossie
-- [ ] Review the core specification (spec.md) and schema files to understand the semantic model structure. (P3)
-- [ ] Experiment with the reference converters to see how Ossie integrates with tools like dbt or GoodData. (P3)
-- [ ] Check the ROADMAP.md to understand future directions and current working groups. (P3)
-- [ ] Join the GitHub Discussions or Slack community to provide feedback and stay updated. (P3)
-- [ ] Contribute to the project by proposing changes or fixing issues in the converters/validation tooling. (P3)
+- [ ] 信息采集/舆情管线里试接入：DeepSeek 为主 + 备选模型切换，验证统一接口效率 (P2)
+- [ ] 看其 Agents API（工具/MCP），与 pi 的 agent 设计对照 (P3)
 
 ## artidoro/qlora
-- [ ] Try the live demo to see Guanaco's performance firsthand. (P3)
-- [ ] Run the Colab notebook for finetuning a small model (e.g., 7B) to understand the workflow. (P3)
-- [ ] Read the paper to grasp the technical innovations (NF4, Double Quantization, Paged Optimizers). (P3)
-- [ ] Explore the adapter weights and evaluate on a custom dataset. (P3)
-- [ ] Contribute by testing with different base models (e.g., LLaMA 2) and reporting issues. (P3)
+- [ ] 读 QLoRA 论文（arXiv 2305.14314），吃透 NF4 量化 / 双重量化 / 分页优化器三个核心点 (P2)
+- [ ] 对比 ms-swift 里 QLoRA 的实现与原始论文的差异（默认参数、量化位宽） (P3)
+- [ ] 实操：用 ms-swift 在 RTX 3060 上微调一个小模型（7B 级），验证 QLoRA 显存收益 (P3)
 
 ## bojieli/ai-agent-book
-- [ ] 阅读核心章节（如Agent原理、工具调用、多Agent协作）并运行配套实验 (P3)
-- [ ] 浏览多语言翻译和社区贡献，推荐英文版或母语版 (P3)
-- [ ] 尝试自行编译PDF或EPUB，体验构建流程 (P3)
-- [ ] 关注MCP（Model Context Protocol）相关的内容，跟踪前沿实践 (P3)
-- [ ] 如果发现错误或想改进，提交Issue或Pull Request (P3)
+- [ ] 纳入学习路线排期：按章读 + 跑配套实验（Agent 原理/工具调用/多 Agent 协作） (P2)
+- [ ] 重点章节：MCP、RAG、context engineering——与 OpenClaw 实际用法对照印证 (P2)
+- [ ] 读书心得/实验总结沉淀进 study-vault 知识库 (P2)
 
 ## browser-use/video-use
-- [ ] Provide comprehensive documentation and examples for custom ffmpeg chains (P3)
-- [ ] Add support for other coding agents beyond Claude Code (P3)
-- [ ] Create a web UI for non-developer users (P3)
-- [ ] Write tutorials for common use cases (talking heads, montages, etc.) (P3)
-- [ ] Add automated testing for rendering outputs (P3)
+- [ ] 启动 AI 短剧项目时，先评估它作为视频处理引擎的适用性（agent 驱动 ffmpeg 的工作流） (P3)
+- [ ] 了解其能力边界：字幕/剪辑/特效覆盖度，对照短剧生产的实际需求 (P3)
 
 ## calesthio/OpenMontage
-- [ ] Set up the system with your preferred AI coding assistant (e.g., Claude, Copilot) and follow the quick-start guide to verify the environment works. (P3)
-- [ ] Run one of the provided example prompts (e.g., 'Start from a video you already love') to generate a sample video and understand the pipeline flow. (P3)
-- [ ] Review the pipeline documentation in the 'Pipelines' section to learn the 12 production pipelines and choose one suited to your project. (P3)
-- [ ] Explore the agent skill files (under the 700+ files) to customize behaviors or add new tools and share improvements via contributions. (P3)
+- [ ] 持续跟进版本更新与新管线，评估哪些能改进现有短剧工作流 (P2)
+- [ ] 把基于 OpenMontage 的实践经验沉淀成自己的技能文件（对应它的 700+ skill 体系） (P2)
+- [ ] 评估 AGPL 协议对商业化的约束，提前规划合规路径 (P3)
+
+## chatwoot/chatwoot
+- [ ] 独立站启动客服时，Docker 部署 Chatwoot 试运行，评估全渠道收件箱是否满足需求 (P3)
+- [ ] 评估 Captain AI Agent 能力，与自己的 AI 客服方案（结合 τ-Bench 评测思路）对比 (P3)
+- [ ] 看 API/webhook，评估与独立站订单系统对接的可行性 (P3)
 
 ## codecrafters-io/build-your-own-x
-- [ ] Add a search/filter feature to quickly find tutorials by technology or language (P3)
-- [ ] Regularly verify and update external links to avoid broken references (P3)
-- [ ] Expand tutorial selection for emerging technologies like WebAssembly or Rust-based systems (P3)
-- [ ] Add contribution guidelines and a template for easier community submissions (P3)
-- [ ] Create a companion interactive website to preview tutorials inline (P3)
+- [ ] 学习路线排到数据库/网络/编译器等内容时，配套做对应 "build your own X" 实践 (P2)
+- [ ] 收藏几个最相关的教程（数据库、网络协议）备用 (P3)
 
 ## commaai/openpilot
-- [ ] Read the official documentation to understand hardware requirements, supported cars, and installation process. (P3)
-- [ ] Check the list of supported cars to see if your vehicle is compatible and review the harness requirements. (P3)
-- [ ] Join the community Discord to get help, discuss development, and stay updated on roadmap and contributions. (P3)
+- [ ] 研究其架构分层：Python 模型层 / C++ 控制层的边界与通信，提炼嵌入式 AI 改造范式 (P3)
+- [ ] 了解其数据采集→训练→部署闭环，作为自动驾驶仿真方向的方法论参考 (P3)
+- [ ] 启动嵌入式方向时，对照它的硬件选型与实时性设计 (P3)
 
 ## coreyhaines31/marketingskills
-- [ ] Review and update existing skills to reflect latest marketing best practices and AI capabilities (P3)
-- [ ] Add new skills for emerging marketing channels (e.g., AI-driven ad optimization, video SEO) (P3)
-- [ ] Improve cross-referencing and ensure all skills properly reference product-marketing context (P3)
-- [ ] Test compatibility with the latest versions of Claude Code and OpenAI Codex agents (P3)
-- [ ] Contribute a new skill or fix via a pull request to expand the collection (P3)
+- [ ] 独立站上线后，选 2-3 个核心 skill（SEO/文案/CRO）移植到 OpenClaw 用起来 (P2)
+- [ ] 学其 skill 结构设计（触发、步骤、输出），对照优化自己的 skill 写法 (P3)
+- [ ] 评估哪些营销场景可以 agent 化：竞品分析、关键词研究、落地页文案生成 (P3)
 
 ## deepseek-ai/awesome-deepseek-integration
-- [ ] Review the list and identify any missing major DeepSeek integrations to submit a pull request. (P3)
-- [ ] Add usage examples or setup guides for the most popular integrations to help newcomers get started. (P3)
-- [ ] Check if the list is actively maintained by verifying the last update date and open issues. (P3)
-- [ ] Explore the 'Others' section for hidden gems that might not be well-known. (P3)
+- [ ] 新项目需要 DeepSeek 集成时，查对应现成方案 (P3)
 
 ## diegosouzapw/OmniRoute
-- [ ] Set up OmniRoute as a local proxy to unify AI tool access (P3)
-- [ ] Configure provider credentials (API keys for each provider pool) (P3)
-- [ ] Explore the dashboard for real-time free tier budget and usage tracking (P3)
-- [ ] Test token compression rates on your specific models (P3)
-- [ ] Join community channels (Discord, Telegram) for updates and provider announcements (P3)
+- [ ] 个人开发场景：了解其 token 压缩与免费池机制，评估能否降低 OpenClaw 日常 API 成本 (P3)
+- [ ] 独立站 AI 功能做高可用时：对比 OmniRoute vs 自建 LiteLLM 网关的可靠性/合规/可控性 (P3)
+- [ ] 明确隐私边界：客户数据是否允许经过第三方网关，写入独立站技术决策记录 (P3)
+
+## different-ai/openwork
+- [ ] 了解其工作流共享机制（如何跨 agent 复用 skills/MCP），对比自己的 skill 移植需求 (P3)
+- [ ] 多工具协作或团队场景出现时，评估是否引入 (P3)
 
 ## dontbesilent2025/dbskill
-- [ ] 为每个Skill增加详细的输入输出示例和预期效果文档，降低使用门槛 (P3)
-- [ ] 建立跨Agent兼容性测试流程，确保在豆包、Claude Code、Codex等平台行为一致 (P3)
-- [ ] 创建社区贡献指南，鼓励用户基于原子库贡献新的业务Skill (P3)
+- [ ] 拆解其「知识原子 → skill」的组织结构，对照优化自己的 skill 体系 (P3)
+- [ ] 评估其商业诊断框架能否用于独立站业务分析（定位/产品/增长） (P3)
 
 ## earendil-works/pi
-- [ ] Implement a built-in permission system for filesystem, process, and network access to enhance security without requiring containerization. (P3)
-- [ ] Add more comprehensive documentation and examples for each package, especially for the agent runtime and TUI library. (P3)
-- [ ] Create a quick-start guide or template for new users to set up a basic agent with Pi in under 5 minutes. (P3)
-- [ ] Integrate with additional LLM providers beyond OpenAI, Anthropic, and Google to broaden compatibility. (P3)
-- [ ] Set up automated CI/CD pipelines for testing and publishing packages to npm. (P3)
+- [ ] 从 pi 源码学 agent 核心：agent loop（循环）、工具调用协议、上下文管理 (P1)
+- [ ] 用 pi 搭一个自己的最小 agent demo（接 DeepSeek API，带 1-2 个工具） (P1)
+- [ ] 对照 LangGraph 的 agent 设计，整理两种生态的异同（状态管理/工具协议） (P2)
+- [ ] 尝试用 pi 实现一个实际场景（如独立站客服 agent 原型） (P2)
 
 ## fastapi/fastapi
-- [ ] Run the official 'First Steps' tutorial to create a basic FastAPI app (P3)
-- [ ] Explore the auto-generated interactive API documentation (Swagger UI and ReDoc) (P3)
-- [ ] Review the performance benchmarks comparing FastAPI to other frameworks (P3)
+- [ ] 给爬虫管线搭一个 FastAPI 服务层：数据查询 API + 定时任务状态接口 (P2)
+- [ ] 量化信号推送：把 trade-pulse 的每日信号包成 FastAPI 接口，供飞书/前端消费 (P2)
+- [ ] 掌握关键模式：依赖注入、Pydantic 模型校验、async + 连接池（异步 DB/Redis） (P2)
+
+## geo-tp/ESP32-Bit-Pirate
+- [ ] 嵌入式方向启动时，入手 ESP32 + 刷 Bit Pirate 固件，熟悉协议调试 (P2)
+- [ ] 用它系统过一遍常见协议（I2C/SPI/UART/CAN），作为嵌入式学习实操环节 (P2)
 
 ## github/spec-kit
-- [ ] Install uv (prerequisite) and the specify-cli tool via `uv tool install specify-cli` (P3)
-- [ ] Run `specify init my-project --integration copilot` to bootstrap a new spec-driven project (P3)
-- [ ] Explore the full documentation at https://github.github.io/spec-kit/ to understand phases, extensions, and presets (P3)
-- [ ] Experiment with custom presets or contribute an extension to the community (P3)
+- [ ] 在下一个项目（trade-pulse 新功能 / 独立站模块）试用 SDD 流程：先写 spec → plan → tasks，再开发 (P2)
+- [ ] 评估适配方案：specify CLI 生成文档 + OpenClaw 读文档执行，记录适配成本 (P3)
+- [ ] 学其流程设计（constitution/specify/plan/tasks 拆分粒度），沉淀自己的 AI 开发流程规范 (P3)
 
 ## harvard-edge/cs249r_book
-- [ ] Review and contribute to the ongoing translation efforts (e.g., Chinese, Japanese, Korean). (P3)
-- [ ] Test and improve the TinyTorch implementation for educational clarity. (P3)
-- [ ] Expand lab exercises and add new examples for edge/embedded ML. (P3)
-- [ ] Update the book to include the latest research and tools in ML systems. (P3)
-- [ ] Document the build pipeline and how to contribute to the book source. (P3)
+- [ ] 纳入学习路线：ML 系统章节排期（训练/推理/部署工程实践） (P2)
+- [ ] 跑 TinyTorch 实验，从零实现一个最小训练框架 (P2)
+- [ ] 重点读嵌入式/边缘 ML 章节，对接嵌入式智能化改造方向 (P2)
 
 ## hasaneyldrm/exercises-dataset
-- [ ] Add a search/filter UI to easily browse exercises by category or equipment (P3)
-- [ ] Document the data schema more thoroughly with field descriptions and types (P3)
-- [ ] Provide example code snippets in Python or JavaScript for loading the JSON dataset (P3)
+- [ ] 需要时用它的 JSON 数据做训练计划/动作库查询小工具（本地或脚本级） (P3)
+- [ ] 了解数据 schema（肌肉群/器械/动作步骤字段），看能否覆盖自己的训练记录需求 (P3)
 
 ## hugohe3/ppt-master
-- [ ] Integrate the tool into a CI/CD pipeline for automated report generation. (P3)
-- [ ] Add more comprehensive documentation and examples for advanced features like custom templates. (P3)
-- [ ] Test compatibility with various PowerPoint versions and edge cases (e.g., missing images). (P3)
-- [ ] Explore adding support for additional output formats (e.g., Google Slides, PDF). (P3)
+- [ ] 用真实周报数据试跑一次：把周报要点 + 项目数据转成带图表的汇报 PPT (P2)
+- [ ] 摸清自定义模板能力，固化一套自己汇报风格的模板 (P2)
+- [ ] 了解图表/表格从数据自动生成的方式，沉淀数据→PPT 的工作流 (P3)
 
 ## iOfficeAI/OfficeCLI
-- [ ] Add comprehensive unit tests for core file reading, editing, and rendering operations (P3)
-- [ ] Expand format support to include PDF export and legacy Office formats (.doc, .xls, .ppt) (P3)
-- [ ] Improve HTML rendering fidelity for complex documents with images, tables, and embedded objects (P3)
-- [ ] Create video tutorials and quick-start guides for human users and popular AI agents (P3)
-- [ ] Support batch processing and scripting pipelines for advanced automation scenarios (P3)
+- [ ] 接进 OpenClaw 试跑：让 AI 读/改一份周报 Word 文档，验证「渲染-查看-修改」闭环 (P2)
+- [ ] 与 ppt-master 配合，走通「数据表格 → 周报文档 + 汇报 PPT」的自动化流程 (P2)
+- [ ] 摸清 Excel 数据处理能力（读表/改表/公式），用于数据整理场景 (P3)
 
 ## ibelick/ui-skills
-- [ ] Add test suite for CLI commands (P3)
-- [ ] Expand skill categories (e.g., accessibility, animation, layout) (P3)
-- [ ] Improve README with detailed examples and screenshots (P3)
-
-## jackfrued/Python-100-Days
-- [ ] Translate the entire tutorial into English to reach a global audience (P3)
-- [ ] Add more real-world projects and exercises to reinforce learning (P3)
-- [ ] Update code examples to use modern Python features (e.g., f-strings, type hints) (P3)
-- [ ] Include a section on testing and debugging practices (P3)
-- [ ] Provide a summary cheat sheet or quick reference for each day (P3)
+- [ ] 独立站 UI 改版/美化时，评估其技能包能否提升 AI 生成界面质量 (P3)
 
 ## jamiepine/voicebox
-- [ ] Add Linux builds for broader platform support (P3)
-- [ ] Improve error handling and user feedback during model downloads (P3)
-- [ ] Enhance accessibility features (keyboard navigation, screen reader support) (P3)
-- [ ] Create more comprehensive API documentation for developer integration (P3)
-
-## jiyun/1688
-- [ ] Provide automated SingleFile extension configuration to reduce manual steps in saving HTML pages (P3)
-- [ ] Add full support for Edge browser in online collection mode (currently only Chrome is fully functional) (P3)
-- [ ] Create cross-platform scripts (macOS/Linux) to expand user base beyond Windows (P3)
-- [ ] Improve error handling and logging for failed downloads or missing dependencies (e.g., aria2c not found) (P3)
-- [ ] Write a comprehensive FAQ or troubleshooting guide for common setup issues (P3)
-
-## justoneapi/data-api
-- [ ] Obtain API keys and explore the dashboard to understand available endpoints and limits (P3)
-- [ ] Review documentation for specific platform endpoints and versioning (P3)
-- [ ] Check pricing plans and usage quotas to determine if it fits your budget (P3)
-- [ ] Compare with alternative data aggregation APIs (e.g., RapidAPI, ScrapingBee) for value and coverage (P3)
+- [ ] AI 短剧项目启动时，评估其配音工作流（声音克隆 + TTS）能否满足生产需求 (P3)
+- [ ] 3060 上实测声音克隆质量与生成速度，对比 ElevenLabs 效果 (P3)
 
 ## kvcache-ai/ktransformers
-- [ ] Set up ktransformers environment and run basic inference on a supported model (P3)
-- [ ] Explore heterogeneous CPU-GPU expert scheduling to optimize performance (P3)
-- [ ] Test fine-tuning workflow using LLaMA-Factory integration (P3)
-- [ ] Review roadmap and consider contributing to new model support (P3)
+- [ ] 本地 3060 实测：部署 ktransformers 跑一个 MoE 模型（如 DeepSeek 系），对比 ollama 的吞吐与显存占用 (P2)
+- [ ] 看官方教程里的 CPU-GPU 专家调度原理，理解异构推理的取舍（首 token 延迟 vs 吞吐） (P2)
+- [ ] 联动 ms-swift：微调后的模型用 ktransformers 部署，走通"微调→部署"闭环 (P3)
 
 ## langchain-ai/langchain
-- [ ] Explore LangGraph for advanced agent orchestration and stateful workflows (P3)
-- [ ] Try Deep Agents for pre-built agent patterns like planning and subagents (P3)
-- [ ] Integrate with your preferred LLM provider (OpenAI, Anthropic, Gemini, etc.) (P3)
-- [ ] Review the extensive third-party integrations for tools and data sources (P3)
+- [ ] 用 LangGraph 把 trade-pulse 信号流程改造成 agent：拉数据→算因子→出信号→发提醒，状态机化 (P2)
+- [ ] 吃透核心概念：StateGraph 节点/边/条件路由、checkpoint 持久化、human-in-the-loop 打断恢复 (P2)
+- [ ] 对比 LangGraph 与 OpenClaw/autogen 的编排模型差异，沉淀选型心得 (P3)
 
 ## langgenius/dify
-- [ ] Explore the self-hosted deployment option to understand infrastructure requirements and flexibility. (P3)
-- [ ] Experiment with building a custom RAG pipeline using your own data to evaluate performance. (P3)
-- [ ] Contribute to the project by improving multilingual documentation or adding new tool integrations. (P3)
+- [ ] 自部署一次 Dify，用 study-vault 知识库搭一个 RAG 工作流 demo，体验交付效率 (P3)
+- [ ] 与 LangGraph 做选型对比：同一个小需求（如信号分析问答）分别实现，记录开发耗时与定制自由度 (P3)
+- [ ] 关注 MCP 插件生态，评估 Dify 接入外部工具链的能力边界 (P3)
 
 ## lyogavin/airllm
-- [ ] Try running a 70B model (e.g., Llama 3 70B) on a 4GB GPU using AirLLM to verify the core functionality. (P3)
-- [ ] Test compatibility with your specific model or use case (e.g., fine-tuned checkpoints, custom vocab) by following the Quickstart guide. (P3)
-- [ ] Explore the model compression feature (3x speed up) and compare performance vs. raw inference. (P3)
-- [ ] Contribute to the project by reporting issues or submitting PRs for additional model support or documentation improvements. (P3)
+- [ ] 在 3060 上跑一次 AirLLM（选一个小模型验证链路），实测吞吐，与 ktransformers 对比 (P3)
+- [ ] 明确适用场景：离线批量推理（如批量文档摘要）可接受慢，实时交互不可用 (P3)
+- [ ] 了解其分层推理原理（layer-by-layer 加载），与量化方案（GPTQ/AWQ）的取舍对比 (P3)
 
 ## mattpocock/skills
-- [ ] Read the full README and understand the philosophy behind the skills (P3)
-- [ ] Explore the .agents directory to review available skills and their implementations (P3)
-- [ ] Integrate the skills into your personal AI workflow or .agents directory (P3)
-- [ ] Customize one or more skills to better fit your engineering practices (P3)
-- [ ] Subscribe to the newsletter to stay updated on new skills and changes (P3)
+- [ ] 读 2-3 个代表性 skill，拆解其结构（输入/步骤/输出约定），借鉴到自己的 OpenClaw skills (P2)
+- [ ] 评估哪些可直接移植（模型无关特性） (P3)
 
-## microsoft/AI-For-Beginners
-- [ ] Clone the repository and set up the local environment (e.g., Jupyter, TensorFlow, PyTorch) to run the notebooks. (P3)
-- [ ] Start with the pre-lesson quiz and work through the first week's lessons on AI fundamentals. (P3)
-- [ ] Explore the multi-language translations to contribute or check if your language is supported. (P3)
-- [ ] Check the open issues and pull requests to see if you can contribute bug fixes or improvements. (P3)
-
-## microsoft/ai-edu
-- [ ] 更新教程内容以适配最新AI技术（如大模型、生成式AI） (P3)
-- [ ] 修复部分过时链接和代码依赖 (P3)
-- [ ] 增加更多跨语言（英文）版本文档以扩大受众 (P3)
-- [ ] 整合社区贡献，补充缺失章节（如A3神经网络高级模型） (P3)
+## microsoft/PowerToys
+- [ ] 自用跟进，无需额外研究 (P3)
 
 ## microsoft/generative-ai-for-beginners
-- [ ] Complete all 21 lessons to build foundational generative AI skills (P3)
-- [ ] Set up an Azure account and explore the associated cloud services for hands-on practice (P3)
-- [ ] Contribute translations or improvements via PRs to expand accessibility (P3)
-- [ ] Explore the official Azure OpenAI and prompt engineering documentation for deeper learning (P3)
+- [ ] 快速过一遍核心概念课：提示工程、RAG、LLM 原理，对照自己的实践查漏补缺 (P3)
+- [ ] 需要时把课程里的概念图/框架沉淀进 study-vault 知识库 (P3)
 
 ## milvus-io/milvus
-- [ ] Set up a standalone instance using Docker to quickly test Milvus. (P3)
-- [ ] Explore Milvus Lite for lightweight Python integration and prototyping. (P3)
-- [ ] Read the architecture overview to understand distributed mode and scalability. (P3)
-- [ ] Review the Python SDK documentation for connecting and performing CRUD operations. (P3)
-- [ ] Test search performance with your own embedding dataset to evaluate suitability. (P3)
+- [ ] 规划独立站向量检索选型路线图：起步 pgvector/zvec → 量级上来迁移 milvus，记录迁移路径 (P2)
+- [ ] Docker 起 milvus standalone + pymilvus 走通 CRUD 和搜索，熟悉基础用法 (P3)
+- [ ] 对比 milvus 与 zvec 在同一数据集上的查询延迟/吞吐/运维成本，作为未来选型依据 (P3)
 
 ## milvus-io/pymilvus
-- [ ] Check the compatibility table in the README to ensure your PyMilvus version matches your Milvus server version (P3)
-- [ ] Run the quickstart example from the documentation to verify connectivity and basic operations (P3)
-- [ ] Review the changelog and API differences when upgrading to a newer version (e.g., 2.6.x) (P3)
-- [ ] Explore advanced features like IVF or HNSW index parameters for performance tuning (P3)
-- [ ] Contribute to the project by reporting issues or submitting pull requests on GitHub (P3)
+- [ ] 用 milvus 时安装对应版本 SDK，先查版本兼容表再升级 (P3)
+- [ ] 跟着 milvus 实操走一遍 quickstart：连接、建 collection、插入、搜索 (P3)
 
 ## modelscope/ms-swift
-- [ ] Install ms-swift with dependencies using 'pip install ms-swift[all]' or follow platform-specific instructions. (P3)
-- [ ] Run a quick start example from the documentation to verify setup and understand basic usage. (P3)
-- [ ] Review the supported model list and select a target model for your use case (e.g., Qwen3, DeepSeek). (P3)
-- [ ] Explore advanced training configurations (Megatron parallelism, GRPO algorithms) for large-scale experiments. (P3)
-- [ ] Join community channels (Discord, WeChat) for support and to stay updated with developments. (P3)
+- [ ] 3060 上走通完整微调流程：pip install ms-swift → 选 7B 级模型（Qwen3 系）→ LoRA/QLoRA 微调 → 推理验证 (P1)
+- [ ] 实测 LoRA vs QLoRA 在 3060 上的显存占用与效果差异，记录数据 (P2)
+- [ ] 微调产物导出，用 ktransformers/ollama 部署，走通「微调→部署」闭环 (P2)
+- [ ] 进阶：了解 GRPO/DPO 对齐训练入口，为后续对齐实验铺路 (P3)
 
 ## msitarzewski/agency-agents
-- [ ] Install the agents via the recommended desktop app for macOS, Linux, or Windows (P3)
-- [ ] Browse the agent categories (e.g., Engineering, Marketing) to find specialists relevant to your work (P3)
-- [ ] Contribute new agent definitions by following the established format and submitting a PR (P3)
-- [ ] Test the installation scripts with your preferred tool (Claude Code, Cursor, etc.) to ensure compatibility (P3)
+- [ ] 拆解其 agent 定义结构（角色/流程/交付物），与 ECC 体系对比异同 (P3)
+- [ ] 提取可借鉴的角色化设计思想到自己的 OpenClaw skills (P3)
 
-## next-1688/1688-shopkeeper
-- [ ] 增加对更多下游店铺平台的支持（如京东、快手） (P3)
-- [ ] 提供图形化Web界面以降低非技术用户使用门槛 (P3)
-- [ ] 完善错误日志与用户反馈机制，提升排障效率 (P3)
-- [ ] 添加自动化测试与CI/CD流程，保障CLI命令稳定性 (P3)
-
-## nodejs/node
-- [ ] Explore the Node.js website and documentation for API references and guides. (P3)
-- [ ] Review the governance model and contributing guidelines if planning to contribute. (P3)
-- [ ] Check the latest Current and LTS releases for version compatibility with your projects. (P3)
-- [ ] Set up a local build environment to test or contribute to Node.js core. (P3)
+## mvanhorn/last30days-skill
+- [ ] 装进 OpenClaw，用真实主题（如某标的舆情）跑一次完整调研，评估输出质量 (P1)
+- [ ] 配置 Reddit/X/YouTube 等平台 API key，打通多信源 (P1)
+- [ ] 量化方向：把舆情简报接入 trade-pulse 信号管线，作为情绪因子（结合 Kronos 验证） (P2)
+- [ ] 独立站方向：用它做竞品/趋势热点捕获，沉淀选题流程 (P2)
 
 ## obra/superpowers
-- [ ] Integrate with popular AI coding agents (e.g., GitHub Copilot, Claude) to demonstrate real-world usage (P3)
-- [ ] Create detailed examples and walkthroughs for each skill component (P3)
-- [ ] Expand README with a quick-start guide and installation steps (P3)
+- [ ] 关注其方法论更新，看是否有值得补充进自己 skill 的新设计 (P3)
 
 ## ollama/ollama
-- [ ] Pull and run a model like Gemma 4 using 'ollama run gemma4' to verify local LLM functionality (P3)
-- [ ] Explore the REST API documentation to integrate Ollama into custom applications (P3)
-- [ ] Check community integrations (Open WebUI, Claude Code, etc.) for extended use cases (P3)
+- [ ] 3060 上装好 ollama + 拉一个 7B 级模型（Qwen3 系），确认 GPU 加速生效（nvidia-smi 观察显存占用） (P1)
+- [ ] 用 REST API（/api/generate、/api/chat）从 FastAPI 脚本调本地模型，走通「本地模型服务化」 (P2)
+- [ ] 同一模型对比 ollama 与 ktransformers 的吞吐/显存，记录数据 (P3)
 
 ## openclaw/openclaw
-- [ ] Set up a local instance using Docker or Nix to test functionality. (P3)
-- [ ] Integrate with your preferred messaging channels (e.g., Discord, Telegram) to evaluate real-time responsiveness. (P3)
-- [ ] Review the documentation and VISION.md to understand long-term roadmap and customization options. (P3)
-- [ ] Assess data privacy and self-hosting requirements for your use case. (P3)
-- [ ] Contribute to the project by reporting issues or adding support for additional channels. (P3)
+- [ ] 跟进新版本能力（工具/skills 生态/渠道），评估升级价值 (P2)
+- [ ] 持续维护自身配置与 skills 体系（memory 归档、技能沉淀） (P2)
+- [ ] 关注 VISION.md 路线图，提前了解未来方向 (P3)
 
 ## opendatalab/MinerU
-- [ ] Evaluate processing speed and accuracy for large PDF files (P3)
-- [ ] Try web demo or HuggingFace demo to test output quality (P3)
-- [ ] Integrate with a RAG pipeline (e.g., LangChain, LlamaIndex) as a document loader (P3)
-- [ ] Review CLI and PyPI installation for local usage (P3)
-- [ ] Check support for complex table structures and multilingual OCR (P3)
+- [ ] 接入 study-vault 入库流程：PDF 资料转 markdown 再入库，验证效果 (P2)
+- [ ] 实测复杂 PDF（扫描件/公式/表格）的 OCR 与版面还原质量 (P2)
+- [ ] 信息采集管线里处理 PDF 报告类信源时优先用它 (P3)
 
-## ossu/computer-science
-- [ ] Begin with the Intro CS courses to assess readiness and build foundational knowledge. (P3)
-- [ ] Join the OSSU community (Discord, GitHub) for support and accountability. (P3)
-- [ ] Use the provided spreadsheet to plan a weekly study schedule and track progress. (P3)
-- [ ] Complete the Final Project to validate and consolidate your learning. (P3)
+## paperswithbacktest/awesome-systematic-trading
+- [ ] 按需检索：回测库/数据源/策略实现，选型时先查它的清单 (P2)
+- [ ] 把发现的优质资源（书/库/博客）沉淀进 study-vault 量化域 (P3)
 
 ## pbakaus/impeccable
-- [ ] Run `/impeccable init` in your project to set up design context (PRODUCT.md and DESIGN.md) (P3)
-- [ ] Explore the 23 commands like `critique`, `audit`, `polish` to refine AI-generated designs (P3)
-- [ ] Test the CLI and browser extension with the 60 deterministic detector rules (no LLM needed) (P3)
-- [ ] Read the full documentation at impeccable.style for advanced usage and pinning commands (P3)
-- [ ] Contribute additional detector rules or commands to expand the project (P3)
+- [ ] 独立站 UI 改版时，配 ui-skills 一起用：AI 生成 → impeccable 质检迭代 (P3)
+- [ ] 学其确定性规则设计（60 条检测器），借鉴到自己的审查类 skill (P3)
 
 ## punkpeye/awesome-mcp-servers
-- [ ] Review the list to identify MCP servers relevant to your project and test them. (P3)
-- [ ] Contribute a new MCP server or update existing entries if you maintain one. (P3)
-- [ ] Check the synced web directory at glama.ai for a more interactive browsing experience. (P3)
-- [ ] Join the community Discord or Reddit to discuss MCP servers and best practices. (P3)
+- [ ] 给 OpenClaw 找扩展能力/新工具时，先检索此清单 (P3)
+- [ ] agent 开发（pi）需要现成 server 时查阅 (P3)
 
 ## refactoringhq/tolaria
-- [ ] Add a license file to the repository to clarify usage terms. (P3)
-- [ ] Provide more detailed documentation or a quickstart guide in the README for new users. (P3)
-- [ ] Consider adding a contributing guide and issue templates to encourage community contributions. (P3)
+- [ ] 需要本地可视化浏览/编辑 Markdown 知识库时，评估 tolaria 是否优于现有链路 (P3)
 
 ## ripienaar/free-for-dev
-- [ ] Regularly verify all listed free tiers are still active and meet the outlined criteria (P3)
-- [ ] Review and merge pending pull requests for new services or updates to existing entries (P3)
-- [ ] Add a section for free tiers of generative AI and ML platforms to reflect current trends (P3)
+- [ ] 独立站上线前，用它的清单选免费基建方案（DB/CDN/邮件/监控） (P3)
+- [ ] 新项目需要免费服务/额度时按需检索 (P3)
 
 ## roboflow/supervision
-- [ ] Install the supervision package and run the quickstart examples to understand the API. (P3)
-- [ ] Integrate a model (e.g., Ultralytics YOLO) with supervision's Detections API for object detection. (P3)
-- [ ] Explore the documentation and tutorials to learn about advanced features like zone counting and annotation tools. (P3)
-- [ ] Contribute to the repository by reporting issues or submitting pull requests to improve the library. (P3)
-- [ ] Bookmark the project as a reference for future computer vision projects. (P3)
+- [ ] 视觉方向启动时，配 cs249r_book CV 章节做检测/跟踪实践 (P2)
+- [ ] 嵌入式摄像头方案结合 supervision 做目标检测原型 (P3)
 
 ## ruvnet/RuView
-- [ ] Set up an ESP32 node with RuView firmware and test basic presence detection (P3)
-- [ ] Integrate RuView with Home Assistant via MQTT and verify entity creation (P3)
-- [ ] Validate vital sign monitoring (breathing rate) against a reference device (P3)
-- [ ] Explore the RuVector and Cognitum Seed dependencies for understanding the AI pipeline (P3)
-- [ ] Review the documentation in docs/ for integration with Apple Home and Matter (P3)
-- [ ] Contribute to the project by reporting issues or writing a tutorial (P3)
+- [ ] 嵌入式方向启动时，研究其 ESP32 固件 + CSI 采集/处理管线 (P3)
+- [ ] 了解其边缘 AI 栈（RuVector/Cognitum），评估感知层方案选型 (P3)
 
 ## shiyu-coder/Kronos
-- [ ] Review the arXiv paper to understand the model architecture and two-stage framework. (P3)
-- [ ] Try the live demo to visualize forecasting results for BTC/USDT. (P3)
-- [ ] Explore the fine-tuning scripts to adapt Kronos to custom financial tasks. (P3)
-- [ ] Check the model zoo on Hugging Face for available pre-trained variants (mini, base, etc.). (P3)
+- [x] pip install + 下载 Kronos-mini 模型（4.1M 参数） (P3)
+- [x] 喂 588000 历史日线，跑一次预测看效果 (P3)
+- [x] 对比 Kronos 预测方向 vs 规则信号的方向一致性 (P3)
+- [ ] 将 Kronos direction score 接入 daily_pipeline 作为辅助信号 (P3)
+- [ ] 实盘稳定后，考虑用 588000 数据 fine-tune (P3)
 
 ## sierra-research/tau2-bench
-- [ ] Upgrade installation to use uv (pip install uv && uv sync) (P3)
-- [ ] Ensure Python version >=3.12 and <3.14 (P3)
-- [ ] Re-score old evaluation results with `tau2 evaluate-trajs --fresh-tasks` if upgrading to v1.0.1+ (P3)
-- [ ] Explore the new voice full-duplex and knowledge domains for multimodal evaluation (P3)
-- [ ] Read CHANGELOG.md and release notes for full version history and backward compatibility details (P3)
+- [ ] 了解其评测维度：工具调用正确率、任务成功率、成本权衡，理解 Agent 评测方法论 (P3)
+- [ ] 做独立站 AI 客服时，参考 τ-Bench 场景设计自己的客服评测集（模拟对话 + 工具调用） (P3)
+- [ ] 用 LangGraph 搭的 agent 跑一遍 τ-Bench 小样本，熟悉评测流程 (P3)
 
 ## simplex-chat/simplex-chat
-- [ ] Install and test the app to experience identifier-free messaging (P3)
-- [ ] Review the security audit report from Trail of Bits (P3)
-- [ ] Explore the double-ratchet and E2EE protocol implementation (P3)
-- [ ] Contribute to localization or documentation in your language (P3)
-- [ ] Set up a private relay server to reduce dependence on default relays (P3)
+- [ ] 自用跟进即可，无需额外研究 (P3)
 
 ## tirth8205/code-review-graph
-- [ ] Install and try on a small project to verify token reduction benefits (P3)
-- [ ] Integrate into your AI coding workflow (e.g., Claude Code or other MCP-compatible assistants) (P3)
-- [ ] Explore documentation and commands to understand all features (P3)
-- [ ] Contribute to the roadmap or open issues for missing language support (P3)
-- [ ] Run provided benchmarks on your own repos to measure expected savings (P3)
+- [ ] 接进 ocr review 工作流：审查前先建图谱，实测 token 节省与审查质量 (P2)
+- [ ] 与 graphify/codebase-memory-mcp 对比，确定审查场景的主力方案 (P3)
 
 ## virgiliojr94/book-to-skill
-- [ ] Add support for more document formats (e.g., .txt, .mobi directly) and test edge cases like images-only PDFs. (P3)
-- [ ] Improve error handling for malformed or encrypted PDFs, providing clear user feedback. (P3)
-- [ ] Integrate automated testing suite (unit tests for chunking, skill generation, and output validation). (P3)
-- [ ] Create a quick-start video or animated GIF demonstrating the end-to-end workflow. (P3)
-- [ ] Add a command-line progress indicator (e.g., progress bar) for large books or folders. (P3)
-- [ ] Publish as a PyPI package for easier installation via pip. (P3)
-- [ ] Write a comparison table showing token savings for popular technical books. (P3)
+- [ ] 拿学习路线中的一本技术书试转换，评估生成的 skill 质量（框架/决策规则提取） (P2)
+- [ ] 评估适配 OpenClaw：生成的 skill 直接可用 or 需要转换 (P2)
+- [ ] 与 study-vault 知识入库流程结合，形成「书→知识→技能」完整链路 (P3)
 
 ## vxcontrol/pentagi
-- [ ] Add support for additional LLM providers like Mistral or Cohere to expand model choice (P3)
-- [ ] Improve error handling and fallback mechanisms for LLM API failures (P3)
-- [ ] Create comprehensive user documentation and step-by-step tutorials for common pentesting scenarios (P3)
-- [ ] Integrate automated CI/CD pipeline with security scanning and unit tests (P3)
-- [ ] Add ability to save and replay past penetration testing sessions for reproducibility (P3)
-- [ ] Provide a web-based dashboard for real-time monitoring of agent activities (P3)
-- [ ] Include pre-built Docker images for faster setup and deployment (P3)
+- [ ] 独立站上线前做安全评估时，评估用它做自动化渗透测试 (P3)
+- [ ] 研究其多 Agent 编排 + 沙箱隔离架构，作技术参考 (P3)
 
 ## wistbean/learn_python3_spider
-- [ ] 将文章中的代码整理成独立的可运行脚本，方便读者实践 (P3)
-- [ ] 更新教程中引用的库版本（如Appium、Scrapy等）以匹配最新稳定版 (P3)
-- [ ] 补充爬虫实战项目案例，整合到仓库中 (P3)
+- [ ] 按需查：遇到反爬/逆向场景时检索对应章节（CSS 加密、JS 逆向、验证码） (P3)
+- [ ] 复习抓包链路：fiddler/mitmproxy 手机 APP 抓包流程，跟上 MediaCrawler 等实战项目配合用 (P3)
+- [ ] 把常用脚本整理成自己的小工具箱（代理池、验证码、去重存储） (P3)
 
 ## xbtlin/ai-berkshire
-- [ ] 阅读快速开始部分并配置 Claude Code 或 Codex 环境 (P3)
-- [ ] 运行一次完整的 /checklist 模式分析一家目标公司 (P3)
-- [ ] 研究四位大师方法论在框架中的具体实现细节 (P3)
-- [ ] 探索多智能体并行研究功能（/investment-team） (P3)
-- [ ] 查看实战研究报告目录，理解框架的实际输出格式 (P3)
-- [ ] 了解金融数据精确性校验工具（tools/financial_rigor.py）的用法 (P3)
-- [ ] 关注公众号「复利炼丹炉」获取精选研究和补充判断 (P3)
+- [ ] 在 trade-pulse 决策门中实现对抗验证：规则信号 vs Kronos 预测方向一致才执行 (P3)
+- [ ] 信号冲突时设计暂缓/降仓规则（参考 ai-berkshire 的裁判 Agent 模式） (P3)
 
 ## xorbitsai/inference
-- [ ] Review migration notes for Xinference 3.0.0 if upgrading from an earlier version (P3)
-- [ ] Explore agent-native serving with Xagent for dynamic planning and tool use (P3)
-- [ ] Enable auto-batch to improve throughput for concurrent requests (P3)
-- [ ] Set up production deployment on cloud or on-premises using Docker or pip (P3)
+- [ ] 明确切换场景：多模态/语音推理、生产级 API 部署时才用 Xinference，日常用 ollama (P3)
+- [ ] 对比 ollama 与 Xinference 的 API 兼容性、模型支持面、部署复杂度，记一份选型备忘 (P3)
+- [ ] 若独立站需要统一模型 API 层，评估 Xinference 做模型网关的可行性 (P3)
 
 ## zilliztech/attu
-- [ ] Add support for more embedding providers beyond the current ones (P3)
-- [ ] Improve AI agent reliability and expand skill set for complex queries (P3)
-- [ ] Enhance incremental backup performance and compression options (P3)
-- [ ] Integrate with Milvus 2.4+ new features like floating point quantization (P3)
-- [ ] Add dark/light theme persistence and system preference detection (P3)
-- [ ] Provide more detailed documentation for REST API playground endpoints (P3)
+- [ ] 用 milvus 时配 attu 做可视化管理，无需单独研究 (P3)

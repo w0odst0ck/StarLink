@@ -1,108 +1,98 @@
 # StarLink Vault Index
 
-共 95 个仓库
+共 87 个仓库
 
 ## ArchStack
-- [alibaba/zvec](stars/ArchStack/alibaba.zvec.md) [C++]
-- [artidoro/qlora](stars/ArchStack/artidoro.qlora.md) [Jupyter Notebook]
-- [fastapi/fastapi](stars/ArchStack/fastapi.fastapi.md) [Python]
-- [IndicoDataSolutions/finetune](stars/ArchStack/indicodatasolutions.finetune.md) [Python]
-- [kvcache-ai/ktransformers](stars/ArchStack/kvcache-ai.ktransformers.md) [Python]
-- [langchain-ai/langchain](stars/ArchStack/langchain-ai.langchain.md) [Python]
-- [langgenius/dify](stars/ArchStack/langgenius.dify.md) [TypeScript]
-- [lyogavin/airllm](stars/ArchStack/lyogavin.airllm.md) [Jupyter Notebook]
-- [milvus-io/milvus](stars/ArchStack/milvus-io.milvus.md) [Go]
-- [milvus-io/pymilvus](stars/ArchStack/milvus-io.pymilvus.md) [Python]
-- [modelscope/ms-swift](stars/ArchStack/modelscope.ms-swift.md) [Python]
-- [nodejs/node](stars/ArchStack/nodejs.node.md) [JavaScript]
-- [ollama/ollama](stars/ArchStack/ollama.ollama.md) [Go]
-- [sierra-research/tau2-bench](stars/ArchStack/sierra-research.tau2-bench.md) [Python]
-- [xorbitsai/inference](stars/ArchStack/xorbitsai.inference.md) [Python]
+- [alibaba/zvec](stars/ArchStack/alibaba.zvec.md) [C++] ✅
+- [artidoro/qlora](stars/ArchStack/artidoro.qlora.md) [Jupyter Notebook] ✅
+- [fastapi/fastapi](stars/ArchStack/fastapi.fastapi.md) [Python] ✅
+- [kvcache-ai/ktransformers](stars/ArchStack/kvcache-ai.ktransformers.md) [Python] ✅
+- [langchain-ai/langchain](stars/ArchStack/langchain-ai.langchain.md) [Python] ✅
+- [langgenius/dify](stars/ArchStack/langgenius.dify.md) [TypeScript] ✅
+- [lyogavin/airllm](stars/ArchStack/lyogavin.airllm.md) [Python] ✅
+- [milvus-io/milvus](stars/ArchStack/milvus-io.milvus.md) [Go] ✅
+- [milvus-io/pymilvus](stars/ArchStack/milvus-io.pymilvus.md) [Python] ✅
+- [modelscope/ms-swift](stars/ArchStack/modelscope.ms-swift.md) [Python] ✅
+- [ollama/ollama](stars/ArchStack/ollama.ollama.md) [Go] ✅
+- [sierra-research/tau2-bench](stars/ArchStack/sierra-research.tau2-bench.md) [Python] ✅
+- [xorbitsai/inference](stars/ArchStack/xorbitsai.inference.md) [Python] ✅
 
 ## BizTools
-- [1jehuang/jcode](stars/BizTools/1jehuang.jcode.md) [Rust]
-- [addyosmani/agent-skills](stars/BizTools/addyosmani.agent-skills.md) [JavaScript]
-- [affaan-m/ECC](stars/BizTools/affaan-m.ecc.md) [JavaScript]
-- [alibaba/open-code-review](stars/BizTools/alibaba.open-code-review.md) [Go]
-- [alibaba/page-agent](stars/BizTools/alibaba.page-agent.md) [TypeScript]
-- [AstrBotDevs/AstrBot](stars/BizTools/astrbotdevs.astrbot.md) [Python]
-- [browser-use/video-use](stars/BizTools/browser-use.video-use.md) [Python]
-- [calesthio/OpenMontage](stars/BizTools/calesthio.openmontage.md) [Python]
-- [Canner/WrenAI](stars/BizTools/canner.wrenai.md) [Python]
-- [commaai/openpilot](stars/BizTools/commaai.openpilot.md) [Python]
-- [CoplayDev/unity-mcp](stars/BizTools/coplaydev.unity-mcp.md) [C#]
-- [CoreBunch/Instatic](stars/BizTools/corebunch.instatic.md) [TypeScript]
-- [coreyhaines31/marketingskills](stars/BizTools/coreyhaines31.marketingskills.md) [JavaScript]
-- [diegosouzapw/OmniRoute](stars/BizTools/diegosouzapw.omniroute.md) [TypeScript]
-- [dontbesilent2025/dbskill](stars/BizTools/dontbesilent2025.dbskill.md) [JavaScript]
-- [github/spec-kit](stars/BizTools/github.spec-kit.md) [Python]
-- [hasaneyldrm/exercises-dataset](stars/BizTools/hasaneyldrm.exercises-dataset.md) [HTML]
-- [HKUDS/Vibe-Trading](stars/BizTools/hkuds.vibe-trading.md) [Python]
-- [hugohe3/ppt-master](stars/BizTools/hugohe3.ppt-master.md) [Python]
-- [IceWhaleTech/CasaOS](stars/BizTools/icewhaletech.casaos.md) [Go]
-- [iOfficeAI/OfficeCLI](stars/BizTools/iofficeai.officecli.md) [C#]
-- [jamiepine/voicebox](stars/BizTools/jamiepine.voicebox.md) [TypeScript]
-- [KnockOutEZ/wigolo](stars/BizTools/knockoutez.wigolo.md) [TypeScript]
-- [MadsLorentzen/ai-job-search](stars/BizTools/madslorentzen.ai-job-search.md) [TypeScript]
-- [MoonshotAI/kimi-cli](stars/BizTools/moonshotai.kimi-cli.md) [Python]
-- [msitarzewski/agency-agents](stars/BizTools/msitarzewski.agency-agents.md) [Shell]
-- [NevaMind-AI/memU](stars/BizTools/nevamind-ai.memu.md) [Python]
-- [next-1688/1688-shopkeeper](stars/BizTools/next-1688.1688-shopkeeper.md) [Python]
-- [obra/superpowers](stars/BizTools/obra.superpowers.md) [Shell]
-- [OpenBB-finance/OpenBB](stars/BizTools/openbb-finance.openbb.md) [Python]
-- [openclaw/openclaw](stars/BizTools/openclaw.openclaw.md) [TypeScript]
-- [Panniantong/Agent-Reach](stars/BizTools/panniantong.agent-reach.md) [Python]
-- [PostHog/posthog](stars/BizTools/posthog.posthog.md) [Python]
-- [refactoringhq/tolaria](stars/BizTools/refactoringhq.tolaria.md) [TypeScript]
-- [Robbyant/lingbot-map](stars/BizTools/robbyant.lingbot-map.md) [Python]
-- [ruvnet/RuView](stars/BizTools/ruvnet.ruview.md) [Rust]
-- [shiyu-coder/Kronos](stars/BizTools/shiyu-coder.kronos.md) [Python]
-- [Shubhamsaboo/awesome-llm-apps](stars/BizTools/shubhamsaboo.awesome-llm-apps.md) [Python]
-- [simplex-chat/simplex-chat](stars/BizTools/simplex-chat.simplex-chat.md) [Haskell]
-- [Tampermonkey/tampermonkey](stars/BizTools/tampermonkey.tampermonkey.md) [JavaScript]
-- [virgiliojr94/book-to-skill](stars/BizTools/virgiliojr94.book-to-skill.md) [Python]
-- [vxcontrol/pentagi](stars/BizTools/vxcontrol.pentagi.md) [Go]
-- [xbtlin/ai-berkshire](stars/BizTools/xbtlin.ai-berkshire.md) [Python]
-- [Zackriya-Solutions/meetily](stars/BizTools/zackriya-solutions.meetily.md) [Rust]
-- [ZhuLinsen/daily_stock_analysis](stars/BizTools/zhulinsen.daily_stock_analysis.md) [Python]
+- [1jehuang/jcode](stars/BizTools/1jehuang.jcode.md) [Rust] ✅
+- [addyosmani/agent-skills](stars/BizTools/addyosmani.agent-skills.md) [JavaScript] ✅
+- [affaan-m/ECC](stars/BizTools/affaan-m.ecc.md) [JavaScript] ✅
+- [alibaba/open-code-review](stars/BizTools/alibaba.open-code-review.md) [Go] ✅
+- [alibaba/page-agent](stars/BizTools/alibaba.page-agent.md) [TypeScript] ✅
+- [AstrBotDevs/AstrBot](stars/BizTools/astrbotdevs.astrbot.md) [Python] ✅
+- [browser-use/video-use](stars/BizTools/browser-use.video-use.md) [Python] ✅
+- [calesthio/OpenMontage](stars/BizTools/calesthio.openmontage.md) [Python] ✅
+- [Canner/WrenAI](stars/BizTools/canner.wrenai.md) [Python] ✅
+- [chatwoot/chatwoot](stars/BizTools/chatwoot.chatwoot.md) [Ruby] ✅
+- [ChromeDevTools/chrome-devtools-mcp](stars/BizTools/chromedevtools.chrome-devtools-mcp.md) [TypeScript] ✅
+- [commaai/openpilot](stars/BizTools/commaai.openpilot.md) [Python] ✅
+- [CoplayDev/unity-mcp](stars/BizTools/coplaydev.unity-mcp.md) [C#] ✅
+- [coreyhaines31/marketingskills](stars/BizTools/coreyhaines31.marketingskills.md) [JavaScript] ✅
+- [diegosouzapw/OmniRoute](stars/BizTools/diegosouzapw.omniroute.md) [TypeScript] ✅
+- [different-ai/openwork](stars/BizTools/different-ai.openwork.md) [TypeScript] ✅
+- [dontbesilent2025/dbskill](stars/BizTools/dontbesilent2025.dbskill.md) [JavaScript] ✅
+- [github/spec-kit](stars/BizTools/github.spec-kit.md) [Python] ✅
+- [hasaneyldrm/exercises-dataset](stars/BizTools/hasaneyldrm.exercises-dataset.md) [HTML] ✅
+- [HKUDS/Vibe-Trading](stars/BizTools/hkuds.vibe-trading.md) [Python] ✅
+- [hugohe3/ppt-master](stars/BizTools/hugohe3.ppt-master.md) [Python] ✅
+- [IceWhaleTech/CasaOS](stars/BizTools/icewhaletech.casaos.md) [Go] ✅
+- [iOfficeAI/OfficeCLI](stars/BizTools/iofficeai.officecli.md) [C#] ✅
+- [jamiepine/voicebox](stars/BizTools/jamiepine.voicebox.md) [TypeScript] ✅
+- [KnockOutEZ/wigolo](stars/BizTools/knockoutez.wigolo.md) [TypeScript] ✅
+- [MadsLorentzen/ai-job-search](stars/BizTools/madslorentzen.ai-job-search.md) [TypeScript] ✅
+- [msitarzewski/agency-agents](stars/BizTools/msitarzewski.agency-agents.md) [Shell] ✅
+- [mvanhorn/last30days-skill](stars/BizTools/mvanhorn.last30days-skill.md) [Python] ✅
+- [NevaMind-AI/memU](stars/BizTools/nevamind-ai.memu.md) [Python] ✅
+- [obra/superpowers](stars/BizTools/obra.superpowers.md) [Shell] ✅
+- [OpenBB-finance/OpenBB](stars/BizTools/openbb-finance.openbb.md) [Python] ✅
+- [openclaw/openclaw](stars/BizTools/openclaw.openclaw.md) [TypeScript] ✅
+- [Panniantong/Agent-Reach](stars/BizTools/panniantong.agent-reach.md) [Python] ✅
+- [PostHog/posthog](stars/BizTools/posthog.posthog.md) [Python] ✅
+- [refactoringhq/tolaria](stars/BizTools/refactoringhq.tolaria.md) [TypeScript] ✅
+- [Robbyant/lingbot-map](stars/BizTools/robbyant.lingbot-map.md) [Python] ✅
+- [ruvnet/RuView](stars/BizTools/ruvnet.ruview.md) [Rust] ✅
+- [shiyu-coder/Kronos](stars/BizTools/shiyu-coder.kronos.md) [Python] ✅
+- [Shubhamsaboo/awesome-llm-apps](stars/BizTools/shubhamsaboo.awesome-llm-apps.md) [Python] ✅
+- [simplex-chat/simplex-chat](stars/BizTools/simplex-chat.simplex-chat.md) [Haskell] ✅
+- [virgiliojr94/book-to-skill](stars/BizTools/virgiliojr94.book-to-skill.md) [Python] ✅
+- [vxcontrol/pentagi](stars/BizTools/vxcontrol.pentagi.md) [Go] ✅
+- [xbtlin/ai-berkshire](stars/BizTools/xbtlin.ai-berkshire.md) [Python] ✅
+- [Zackriya-Solutions/meetily](stars/BizTools/zackriya-solutions.meetily.md) [Rust] ✅
+- [ZhuLinsen/daily_stock_analysis](stars/BizTools/zhulinsen.daily_stock_analysis.md) [Python] ✅
 
 ## LearnHub
-- [bojieli/ai-agent-book](stars/LearnHub/bojieli.ai-agent-book.md) [Python]
-- [ByteByteGoHq/system-design-101](stars/LearnHub/bytebytegohq.system-design-101.md)
-- [codecrafters-io/build-your-own-x](stars/LearnHub/codecrafters-io.build-your-own-x.md) [Markdown]
-- [earendil-works/pi](stars/LearnHub/earendil-works.pi.md) [TypeScript]
-- [harvard-edge/cs249r_book](stars/LearnHub/harvard-edge.cs249r_book.md) [Python]
-- [jackfrued/Python-100-Days](stars/LearnHub/jackfrued.python-100-days.md) [Jupyter Notebook]
-- [microsoft/ai-edu](stars/LearnHub/microsoft.ai-edu.md) [HTML]
-- [microsoft/AI-For-Beginners](stars/LearnHub/microsoft.ai-for-beginners.md) [Jupyter Notebook]
-- [microsoft/generative-ai-for-beginners](stars/LearnHub/microsoft.generative-ai-for-beginners.md) [Jupyter Notebook]
-- [ossu/computer-science](stars/LearnHub/ossu.computer-science.md) [HTML]
-- [PKUFlyingPig/cs-self-learning](stars/LearnHub/pkuflyingpig.cs-self-learning.md) [HTML]
+- [bojieli/ai-agent-book](stars/LearnHub/bojieli.ai-agent-book.md) [Python] ✅
+- [ByteByteGoHq/system-design-101](stars/LearnHub/bytebytegohq.system-design-101.md) ✅
+- [codecrafters-io/build-your-own-x](stars/LearnHub/codecrafters-io.build-your-own-x.md) [Markdown] ✅
+- [earendil-works/pi](stars/LearnHub/earendil-works.pi.md) [TypeScript] ✅
+- [harvard-edge/cs249r_book](stars/LearnHub/harvard-edge.cs249r_book.md) [Python] ✅
+- [microsoft/generative-ai-for-beginners](stars/LearnHub/microsoft.generative-ai-for-beginners.md) [Jupyter Notebook] ✅
+- [paperswithbacktest/awesome-systematic-trading](stars/LearnHub/paperswithbacktest.awesome-systematic-trading.md) [Python] ✅
+- [THU-MAIC/OpenMAIC](stars/LearnHub/thu-maic.openmaic.md) [TypeScript] ✅
+- [wistbean/learn_python3_spider](stars/LearnHub/wistbean.learn_python3_spider.md) [Python] ✅
 
 ## PrepTools
-- [abhigyanpatwari/GitNexus](stars/PrepTools/abhigyanpatwari.gitnexus.md) [TypeScript]
-- [AhmadIbrahiim/Website-downloader](stars/PrepTools/ahmadibrahiim.website-downloader.md) [HTML]
-- [andrewyng/aisuite](stars/PrepTools/andrewyng.aisuite.md) [Python]
-- [apache/ossie](stars/PrepTools/apache.ossie.md) [Python]
-- [deepseek-ai/awesome-deepseek-integration](stars/PrepTools/deepseek-ai.awesome-deepseek-integration.md)
-- [DeusData/codebase-memory-mcp](stars/PrepTools/deusdata.codebase-memory-mcp.md) [C]
-- [Evil0ctal/Douyin_TikTok_Download_API](stars/PrepTools/evil0ctal.douyin_tiktok_download_api.md) [Python]
-- [Graphify-Labs/graphify](stars/PrepTools/graphify-labs.graphify.md) [Python]
-- [ibelick/ui-skills](stars/PrepTools/ibelick.ui-skills.md) [TypeScript]
-- [jiyun/1688](stars/PrepTools/jiyun.1688.md) [Python]
-- [JuliusBrussee/caveman](stars/PrepTools/juliusbrussee.caveman.md) [JavaScript]
-- [justoneapi/data-api](stars/PrepTools/justoneapi.data-api.md) [JavaScript]
-- [mattpocock/skills](stars/PrepTools/mattpocock.skills.md) [Shell]
-- [NanmiCoder/MediaCrawler](stars/PrepTools/nanmicoder.mediacrawler.md) [Python]
-- [opendatalab/MinerU](stars/PrepTools/opendatalab.mineru.md) [Python]
-- [OtterMind/Chat2DB](stars/PrepTools/ottermind.chat2db.md) [Java]
-- [pbakaus/impeccable](stars/PrepTools/pbakaus.impeccable.md) [JavaScript]
-- [punkpeye/awesome-mcp-servers](stars/PrepTools/punkpeye.awesome-mcp-servers.md)
-- [ripienaar/free-for-dev](stars/PrepTools/ripienaar.free-for-dev.md) [HTML]
-- [roboflow/supervision](stars/PrepTools/roboflow.supervision.md) [Python]
-- [tirth8205/code-review-graph](stars/PrepTools/tirth8205.code-review-graph.md) [Python]
-- [zilliztech/attu](stars/PrepTools/zilliztech.attu.md) [Shell]
-
-## _uncategorized
-- [THU-MAIC/OpenMAIC](stars/_uncategorized/thu-maic.openmaic.md) [TypeScript]
-- [wistbean/learn_python3_spider](stars/_uncategorized/wistbean.learn_python3_spider.md) [Python]
+- [abhigyanpatwari/GitNexus](stars/PrepTools/abhigyanpatwari.gitnexus.md) [TypeScript] ✅
+- [andrewyng/aisuite](stars/PrepTools/andrewyng.aisuite.md) [Python] ✅
+- [deepseek-ai/awesome-deepseek-integration](stars/PrepTools/deepseek-ai.awesome-deepseek-integration.md) ✅
+- [DeusData/codebase-memory-mcp](stars/PrepTools/deusdata.codebase-memory-mcp.md) [C] ✅
+- [Evil0ctal/Douyin_TikTok_Download_API](stars/PrepTools/evil0ctal.douyin_tiktok_download_api.md) [Python] ✅
+- [geo-tp/ESP32-Bit-Pirate](stars/PrepTools/geo-tp.esp32-bit-pirate.md) [C++] ✅
+- [Graphify-Labs/graphify](stars/PrepTools/graphify-labs.graphify.md) [Python] ✅
+- [ibelick/ui-skills](stars/PrepTools/ibelick.ui-skills.md) [TypeScript] ✅
+- [JuliusBrussee/caveman](stars/PrepTools/juliusbrussee.caveman.md) [JavaScript] ✅
+- [mattpocock/skills](stars/PrepTools/mattpocock.skills.md) [Shell] ✅
+- [microsoft/PowerToys](stars/PrepTools/microsoft.powertoys.md) [C] ✅
+- [NanmiCoder/MediaCrawler](stars/PrepTools/nanmicoder.mediacrawler.md) [Python] ✅
+- [opendatalab/MinerU](stars/PrepTools/opendatalab.mineru.md) [Python] ✅
+- [OtterMind/Chat2DB](stars/PrepTools/ottermind.chat2db.md) [Java] ✅
+- [pbakaus/impeccable](stars/PrepTools/pbakaus.impeccable.md) [JavaScript] ✅
+- [punkpeye/awesome-mcp-servers](stars/PrepTools/punkpeye.awesome-mcp-servers.md) ✅
+- [ripienaar/free-for-dev](stars/PrepTools/ripienaar.free-for-dev.md) [HTML] ✅
+- [roboflow/supervision](stars/PrepTools/roboflow.supervision.md) [Python] ✅
+- [tirth8205/code-review-graph](stars/PrepTools/tirth8205.code-review-graph.md) [Python] ✅
+- [zilliztech/attu](stars/PrepTools/zilliztech.attu.md) [Shell] ✅
