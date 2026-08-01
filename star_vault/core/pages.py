@@ -91,8 +91,11 @@ def _parse_frontmatter(content: str) -> dict:
         data = yaml.safe_load(m.group(1)) or {}
         if isinstance(data, dict):
             return data
-    except Exception:
-        pass
+    except yaml.YAMLError as e:
+        # frontmatter 不是合法 YAML 时回退旧解析器，但记录问题便于排查
+        print(f"[warn] frontmatter YAML 解析失败，回退逐行解析: {e}")
+    except Exception as e:
+        print(f"[warn] frontmatter 解析异常，回退逐行解析: {e}")
 
     # 回退：逐行解析（兼容非标准格式）
     result: dict = {}
