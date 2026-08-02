@@ -2,12 +2,17 @@
 
 from __future__ import annotations
 
+import logging
 from pathlib import Path
 
 from star_vault.core.template import render_note
 from star_vault.models.note import NoteData, TodoItem
 from star_vault.models.relation import RelationRef
 from star_vault.models.repo import RepoData
+
+logger = logging.getLogger(__name__)
+
+_HUMAN_EDITED_MARK = "human_edited: true"
 
 
 def slug_for_repo(owner: str, name: str) -> str:
@@ -52,12 +57,20 @@ def build_note(
     )
 
 
-def write_note(note_data: NoteData, vault_path: Path) -> Path:
+def write_note(
+    note_data: NoteData,
+    vault_path: Path,
+    *,
+    force: bool = False,
+) -> Path:
     """渲染并写入单篇笔记到 vault。
 
     1. 自动反填 slug（如果为空）
     2. 创建 <vault>/stars/<list_name>/ 目录
     3. 写入 <slug>.md
+
+    human_edited 保护：目标文件已含 `human_edited: true` 时默认跳过写入
+    （人工编辑优先，除非 force=True 显式覆盖）。
 
     返回写入的文件路径。
 
@@ -78,6 +91,14 @@ def write_note(note_data: NoteData, vault_path: Path) -> Path:
     list_dir.mkdir(parents=True, exist_ok=True)
 
     note_path = list_dir / f"{slug}.md"
+
+    # human_edited 保护：人工编辑过的笔记不覆盖（除非 force）
+    if not force and note_path.is_file():
+        existing = note_path.read_text(encoding="utf-8")
+        if _HUMAN_EDITED_MARK in existing:
+            logger.info("跳过人工编辑笔记（human_edited 保护）: %s", note_path)
+            return note_path
+
     content = render_note(note_data)
     note_path.write_text(content, encoding="utf-8")
 

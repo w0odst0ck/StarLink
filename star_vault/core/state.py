@@ -135,14 +135,16 @@ class StateManager:
     def needs_ai(self, repo_full_name: str) -> bool:
         """判断 repo 是否需要 AI 分析。
 
-        规则：
-          - 未分析过 → True
-          - 已分析过 → False
-          - 状态为 failed/stale → True（兼容三级状态）
+        规则（ai_status 三级状态优先，ai_analyzed 旧字段兜底）：
+          - done/locked → False（已分析 / 人工锁定，不重跑）
+          - failed/stale → True（失败 / 过期，重跑）
+          - 其余（空状态）→ 回退旧字段 ai_analyzed
         """
         existing = self._current.repos.get(repo_full_name)
         if existing is None:
             return True
+        if existing.ai_status in (AI_STATUS_DONE, AI_STATUS_LOCKED):
+            return False
         if existing.ai_status in (AI_STATUS_FAILED, AI_STATUS_STALE):
             return True
         return not existing.ai_analyzed

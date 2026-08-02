@@ -36,6 +36,21 @@ def _prompt_version() -> str:
     return hasher.hexdigest()[:12]
 
 
+def _has_human_edited_note(vault_path: Path, repo_full_name: str) -> bool:
+    """检查 repo 是否已有 human_edited 人工笔记（防 AI 重跑覆盖）。
+
+    按 slug 在 stars/ 下全目录搜索（兼容 list_name 迁移）。
+    """
+    slug = repo_full_name.replace("/", ".").lower()
+    stars_dir = vault_path / "stars"
+    if not stars_dir.is_dir():
+        return False
+    for note_path in stars_dir.rglob(f"{slug}.md"):
+        if "human_edited: true" in note_path.read_text(encoding="utf-8"):
+            return True
+    return False
+
+
 app = typer.Typer(
     name="star-vault",
     help="GitHub Stars → structured Markdown knowledge vault",
@@ -158,6 +173,15 @@ def sync(
         from star_vault.ai.client import AIClient
         from star_vault.models.note import TodoItem
 
+        # human_edited 保护：人工编辑过的笔记不重跑 AI（避免覆盖）
+        ai_targets = [
+            r for r in all_repos
+            if not _has_human_edited_note(vault_path, r.full_name)
+        ]
+        skipped_human = len(all_repos) - len(ai_targets)
+        if skipped_human:
+            typer.echo(f"  跳过 {skipped_human} 个人工编辑笔记（human_edited 保护）")
+
         client = AIClient(
             api_key=config.ai.api_key or os.environ.get("OPENAI_API_KEY", ""),
             gh_token=config.github.token,
@@ -169,8 +193,8 @@ def sync(
         state = sm.load()
 
         prompt_key = _prompt_version()
-        analysis = client.analyze_batch(all_repos)
-        for repo in all_repos:
+        analysis = client.analyze_batch(ai_targets)
+        for repo in ai_targets:
             if r := analysis.get(repo.full_name):
                 ai_results[repo.full_name] = {
                     "summary": r.summary,
@@ -398,7 +422,7 @@ def analyze(
             maintenance=r.maintenance if r else "",
             ai_tags=r.tags if r else [],
         )
-        write_note(note, vault_path)
+        write_note(note, vault_path, force=unlock)
 
     sm.save()
     typer.echo(f"\n✓ {len(repos)} 个 repo 处理完成")
