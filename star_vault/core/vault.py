@@ -25,6 +25,14 @@ def slug_from_full_name(full_name: str) -> str:
     return full_name.replace("/", ".").lower()
 
 
+def _find_slug_files(vault_path: Path, slug: str) -> list[Path]:
+    """全库查找同 slug 笔记文件（含其他分类目录）。"""
+    stars_root = vault_path / "stars"
+    if not stars_root.is_dir():
+        return []
+    return [p for p in stars_root.rglob("*.md") if p.stem == slug]
+
+
 def build_note(
     repo: RepoData,
     *,
@@ -91,6 +99,25 @@ def write_note(
     list_dir.mkdir(parents=True, exist_ok=True)
 
     note_path = list_dir / f"{slug}.md"
+
+    # slug 唯一性拦截（锚点语义）：全库同 slug 只允许一份
+    # 背景：sync 按 GitHub 实时 list 落盘，人工分类与 GitHub list 不一致时
+    #       会在另一目录重复写一份模板版 → 历史 17 个重复副本即由此产生。
+    # 规则：
+    #   - 别处存在 human_edited 人工版 → 人工版是锚点，跳过写入（保留人工分类）
+    #   - 别处存在模板版（孤儿副本）→ 删除，保证任意时刻每 slug 仅一份
+    for other in _find_slug_files(vault_path, slug):
+        if other == note_path:
+            continue
+        if _HUMAN_EDITED_MARK in other.read_text(encoding="utf-8"):
+            logger.warning(
+                "跳过写入：slug %s 的人工版在 %s（list 归属不一致，保留人工版）",
+                slug,
+                other,
+            )
+            return other
+        other.unlink()
+        logger.info("清理孤儿副本 %s（slug 唯一化）", other)
 
     # human_edited 保护：人工编辑过的笔记不覆盖（除非 force）
     if not force and note_path.is_file():

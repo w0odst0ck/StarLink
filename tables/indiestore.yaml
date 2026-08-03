@@ -1,0 +1,21 @@
+project: indiestore
+title: 独立站
+purpose: 独立站从 0 到 1（建站/获客/转化分析）
+status: active
+repos:
+  - repo: ripienaar/free-for-dev
+    role: 辅助
+    usage: weekly
+    note: 免费资源清单（建站/部署选型）
+  - repo: github/spec-kit
+    role: 候选
+    usage: rare
+    note: 规格驱动开发候选
+  - repo: coreyhaines31/marketingskills
+    role: 候选
+    usage: weekly
+    note: 营销技能集（SEO/文案/CRO）
+  - repo: posthog/posthog
+    role: 候选
+    usage: rare
+    note: 推断：独立站上线后的产品分析基建（事件/转化漏斗/A-B）

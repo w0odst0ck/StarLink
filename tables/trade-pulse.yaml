@@ -1,0 +1,25 @@
+project: trade-pulse
+title: 量化信号系统
+purpose: 东财 588000 日线择时
+status: active
+repos:
+  - repo: hkuds/vibe-trading
+    role: 辅助
+    usage: weekly
+    note: 信号交叉验证参考
+  - repo: shiyu-coder/kronos
+    role: 辅助
+    usage: weekly
+    note: 方向预测参考
+  - repo: openbb-finance/openbb
+    role: 辅助
+    usage: weekly
+    note: 市场数据源
+  - repo: paperswithbacktest/awesome-systematic-trading
+    role: 辅助
+    usage: rare
+    note: 系统化交易资料清单
+  - repo: w0odst0ck/trade-pulse
+    role: 核心
+    usage: daily
+    note: 主项目本体（未收录：本项目仓库无 star，正是候选机制要支持的）

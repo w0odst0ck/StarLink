@@ -24,7 +24,7 @@ const app = createApp({
     const filterLang = ref('');
     // 分组偏好：默认按 list（与 vault 目录结构一致），持久化到 localStorage
     // 版本 bump 时重置旧缓存，确保新默认值生效
-    const STORAGE_VER = 'v2';
+    const STORAGE_VER = 'v3';
     if (localStorage.getItem('starlink_ver') !== STORAGE_VER) {
       localStorage.removeItem('starlink_groupBy');
       localStorage.setItem('starlink_ver', STORAGE_VER);
@@ -167,6 +167,33 @@ const app = createApp({
       const p = m[1];
       return allNotes.value.find(n => n.slug === p || n.slug === toSlug(p)) || null;
     });
+
+    // ── 项目工具箱（tables/*.yaml → site-data.json.tables）──
+    const activeTable = ref(null);  // 当前选中表 project，默认第一张
+    const allTables = computed(() => data.value?.tables ?? []);
+    // repo → 出现的表名列表（多表交叉引用）
+    const tablesByRepo = computed(() => {
+      const m = {};
+      allTables.value.forEach(t => {
+        t.repos.forEach(r => {
+          const key = r.repo.toLowerCase();
+          if (!m[key]) m[key] = [];
+          m[key].push(t.project);
+        });
+      });
+      return m;
+    });
+    const selectedTable = computed(() => {
+      const t = allTables.value.find(x => x.project === activeTable.value);
+      return t || allTables.value[0] || null;
+    });
+    function selectTable(project) { activeTable.value = project; }
+    // 卡片交叉引用：repo 所在的其他表（排除当前表，最多 3 个）
+    function crossRefs(r) {
+      const others = (tablesByRepo.value[r.repo.toLowerCase()] || [])
+        .filter(p => p !== (selectedTable.value && selectedTable.value.project));
+      return others.slice(0, 3);
+    }
 
     // ── TODO with localStorage persistence ──
     const doneCache = ref({});
@@ -323,6 +350,7 @@ const app = createApp({
       nav, langColor, toSlug,
       catIcon, ratingStars, maintStyle,
       todoKey, isDone, toggleDone,
+      allTables, selectedTable, selectTable, crossRefs,
     };
   },
 

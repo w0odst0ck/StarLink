@@ -1,0 +1,21 @@
+project: starlink-self
+title: StarLink 自用
+purpose: StarLink 项目自身运行依赖与开发参考
+status: active
+repos:
+  - repo: openclaw/openclaw
+    role: 核心
+    usage: daily
+    note: 本项目运行依赖（Agent 运行环境）
+  - repo: alibaba/open-code-review
+    role: 辅助
+    usage: weekly
+    note: 代码评审参考
+  - repo: fastapi/fastapi
+    role: 候选
+    usage: rare
+    note: Web 层候选（pydantic 生态）
+  - repo: deepseek-ai/awesome-deepseek-integration
+    role: 候选
+    usage: rare
+    note: 推断：StarLink AI 客户端走 DeepSeek API，集成方式参考

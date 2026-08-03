@@ -330,6 +330,91 @@ a:hover { text-decoration: underline; }
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
+/* ── Toolbox view ─────────────────────── */
+
+.toolbox-layout {
+  display: grid; grid-template-columns: 260px 1fr; gap: 20px;
+  align-items: start;
+}
+
+.toolbox-side { display: flex; flex-direction: column; gap: 6px; }
+.toolbox-side-item {
+  padding: 10px 12px; border-radius: var(--radius);
+  background: var(--bg-card); border: 1px solid var(--border);
+  cursor: pointer; transition: .12s;
+}
+.toolbox-side-item:hover { background: var(--bg-hover); }
+.toolbox-side-item.active {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+.toolbox-side-title {
+  font-weight: 600; font-size: 0.92rem;
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+}
+.toolbox-side-meta { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+
+.toolbox-badge {
+  display: inline-block; padding: 1px 8px; border-radius: 10px;
+  font-size: 0.7rem; font-weight: 500; white-space: nowrap;
+}
+.toolbox-badge.status-active { background: #3fb95033; color: var(--green); }
+.toolbox-badge.status-paused { background: #d2992233; color: var(--yellow); }
+.toolbox-badge.status-archived { background: #f8514933; color: var(--red); }
+.toolbox-badge.role-核心 { background: #f8514933; color: var(--red); }
+.toolbox-badge.role-辅助 { background: #58a6ff33; color: var(--accent); }
+.toolbox-badge.role-候选 { background: #8b949e33; color: var(--text-muted); }
+.toolbox-badge.usage-badge { background: #1f6feb22; color: var(--accent); }
+.toolbox-badge.badge-uncollected { background: #8b949e22; color: var(--text-muted); }
+
+.toolbox-main { min-width: 0; }
+.toolbox-main-head {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.toolbox-main-head h3 { font-size: 1.15rem; }
+.toolbox-main-purpose { color: var(--text-muted); font-size: 0.85rem; }
+
+.toolbox-empty {
+  color: var(--text-muted); text-align: center; padding: 48px 0;
+  background: var(--bg-card); border: 1px dashed var(--border);
+  border-radius: var(--radius);
+}
+
+.toolbox-cards { display: flex; flex-direction: column; gap: 8px; }
+.toolbox-card {
+  padding: 12px 14px; border-radius: var(--radius);
+  background: var(--bg-card); border: 1px solid var(--border);
+  cursor: pointer; transition: .12s;
+}
+.toolbox-card:hover { background: var(--bg-hover); border-color: var(--text-muted); }
+.toolbox-card.uncollected {
+  border-style: dashed; border-color: var(--text-muted);
+  cursor: default;
+}
+.toolbox-card.uncollected:hover { background: var(--bg-card); border-color: var(--text-muted); }
+
+.toolbox-card-head {
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+}
+.toolbox-card-repo {
+  font-weight: 600; font-size: 0.95rem;
+  font-family: var(--mono);
+  margin-right: 4px;
+}
+.toolbox-card-note { font-size: 0.85rem; color: var(--text); margin-top: 4px; }
+.toolbox-card-summary {
+  font-size: 0.82rem; color: var(--text-muted); margin-top: 4px;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.toolbox-card-cross {
+  font-size: 0.75rem; color: var(--accent); margin-top: 6px;
+}
+.toolbox-card-links {
+  display: flex; gap: 14px; margin-top: 8px; font-size: 0.82rem;
+}
+
 /* ── Responsive ──────────────────────── */
 
 @media (max-width: 640px) {
@@ -337,6 +422,7 @@ a:hover { text-decoration: underline; }
   .topbar { flex-direction: column; align-items: flex-start; }
   .repo-card-desc { max-width: 180px; }
   .detail-section { padding: 14px; }
+  .toolbox-layout { grid-template-columns: 1fr; }
 }
 
 /* ── hl.js overrides ─────────────────── */

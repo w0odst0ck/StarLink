@@ -24,6 +24,24 @@ from star_vault.core.state import AI_STATUS_DONE, AI_STATUS_FAILED, AI_STATUS_LO
 from star_vault.core.vault import build_note, write_note
 from star_vault.core.index_generator import render_vault_index, render_todo_index
 from star_vault.core.pages import generate_site_data, scan_vault_notes
+from star_vault.core.tables import (
+    DEFAULT_ROLE,
+    DEFAULT_STATUS,
+    DEFAULT_USAGE,
+    ROLES,
+    STATUSES,
+    USAGES,
+    RepoRow,
+    TableData,
+    delete_table,
+    join_table,
+    load_table,
+    load_tables,
+    repo_to_slug,
+    save_table,
+    tables_dir,
+    validate_tables,
+)
 from star_vault.models.note import NoteData, TodoItem
 from star_vault.models.relation import RelationRef
 
@@ -545,6 +563,218 @@ def pages(
     typer.echo(f"  ├─ app.js")
     typer.echo(f"  └─ style.css")
     typer.echo(f"\n下一步：将 {vault_path} 部署到 GitHub Pages，或运行 star-vault sync --with-pages")
+
+
+# ── 项目工具箱：table 子命令组 ─────────────────────────────
+
+
+def _vault_path() -> Path:
+    """优先取配置 vault.path；配置不可用（如无 token）时回退 ./vault。"""
+    try:
+        cfg = load_config()
+        return Path(cfg.vault.path).expanduser().resolve()
+    except ConfigError:
+        return Path("./vault").expanduser().resolve()
+
+
+def _interactive_prompt(text: str, default: str) -> str:
+    """交互式补全：TTY 时询问（带默认值），非 TTY 直接采用默认值。"""
+    if sys.stdin.isatty():
+        return typer.prompt(text, default=default)
+    return default
+
+
+table_app = typer.Typer(
+    name="table",
+    help="项目工具箱：管理 tables/*.yaml（每项目一张表）",
+    no_args_is_help=True,
+)
+
+
+@table_app.command("list")
+def table_list() -> None:
+    """列出所有表：project / title / status / 仓库数 / purpose。"""
+    vault_path = _vault_path()
+    tables = load_tables(vault_path)
+    if not tables:
+        typer.echo(f"✗ {tables_dir(vault_path)} 下暂无项目表")
+        typer.echo("  用 `star-vault table add <project> <repo>` 创建第一张表")
+        raise typer.Exit(1)
+
+    typer.echo(f"{'project':<18} {'status':<9} {'repos':>5}  title / purpose")
+    typer.echo("-" * 76)
+    for t in tables:
+        head = t.title or "-"
+        if t.purpose:
+            head = f"{head} / {t.purpose}"
+        typer.echo(f"{t.project:<18} {t.status:<9} {len(t.repos):>5}  {head}")
+    typer.echo(f"\n共 {len(tables)} 张表（{tables_dir(vault_path)}）")
+
+
+@table_app.command("show")
+def table_show(
+    project: str = typer.Argument(..., help="表名（project slug，如 trade-pulse）"),
+) -> None:
+    """单表详情：每行仓库 + join 后的 vault 元数据。"""
+    vault_path = _vault_path()
+    table = load_table(vault_path, project)
+    if table is None:
+        typer.echo(f"✗ 未找到表: {project}（tables/{project}.yaml 不存在）")
+        typer.echo("  用 `star-vault table list` 查看现有表")
+        raise typer.Exit(1)
+
+    notes_index = {n["slug"]: n for n in scan_vault_notes(vault_path)}
+    data = join_table(table, notes_index)
+
+    typer.echo(f"# {data['project']} — {data['title'] or '(无标题)'}")
+    typer.echo(f"  状态: {data['status']}    目的: {data['purpose'] or '-'}")
+    typer.echo(f"  仓库数: {len(data['repos'])}")
+    typer.echo("")
+    for r in data["repos"]:
+        mark = "✓" if r["collected"] else "○"
+        typer.echo(f"[{mark}] {r['repo']}  ({r['role']} / {r['usage']})")
+        if r["note"]:
+            typer.echo(f"      note: {r['note']}")
+        if r["collected"]:
+            extra = ", ".join(
+                x
+                for x in (
+                    f"list={r['list_name']}",
+                    f"lang={r['language']}" if r["language"] else "",
+                    f"summary={r['summary'][:60]}" if r["summary"] else "",
+                )
+                if x
+            )
+            typer.echo(f"      vault: {extra}")
+        else:
+            typer.echo(f"      vault: 未收录（候选仓库）")
+
+
+@table_app.command("add")
+def table_add(
+    project: str = typer.Argument(..., help="表名（slug，如 trade-pulse）"),
+    repo: str = typer.Argument(..., help="仓库 full_name（owner/repo）或纯 name"),
+    role: str = typer.Option(
+        DEFAULT_ROLE,
+        "--role",
+        help="角色：核心 | 辅助 | 候选",
+    ),
+    usage: str = typer.Option(
+        DEFAULT_USAGE,
+        "--usage",
+        help="使用频率：daily | weekly | rare",
+    ),
+    note: str | None = typer.Option(
+        None, "--note", help="一句话用途（更新已存在行时不传则保留原 note）"
+    ),
+) -> None:
+    """加仓库到表；表不存在自动创建（交互补全 title/purpose/status）；repo 已存在则更新。"""
+    vault_path = _vault_path()
+    if role not in ROLES:
+        typer.echo(f"✗ 非法 role: {role}（{'|'.join(ROLES)}）")
+        raise typer.Exit(1)
+    if usage not in USAGES:
+        typer.echo(f"✗ 非法 usage: {usage}（{'|'.join(USAGES)}）")
+        raise typer.Exit(1)
+    table = load_table(vault_path, project)
+    created = False
+    if table is None:
+        title = _interactive_prompt("表标题（默认取表名）", project)
+        purpose = _interactive_prompt("项目目标一句话", "")
+        status = _interactive_prompt("状态（active|paused|archived）", DEFAULT_STATUS)
+        if status not in STATUSES:
+            typer.echo(f"✗ 非法 status: {status}（{'|'.join(STATUSES)}）")
+            raise typer.Exit(1)
+        table = TableData(project=project, title=title, purpose=purpose, status=status)
+        created = True
+
+    existing = next(
+        (r for r in table.repos if repo_to_slug(r.repo) == repo_to_slug(repo)), None
+    )
+    if existing:
+        existing.role = role
+        existing.usage = usage
+        if note is not None:
+            existing.note = note
+        action = "更新"
+    else:
+        table.repos.append(RepoRow(repo=repo, role=role, usage=usage, note=note or ""))
+        action = "新增"
+
+    save_table(table, vault_path)
+    if created:
+        typer.echo(f"✓ 已创建表 {project} 并{action}仓库 {repo}（role={role}, usage={usage}）")
+    else:
+        typer.echo(f"✓ 表 {project} {action}仓库 {repo}（role={role}, usage={usage}）")
+    typer.echo(f"  → {table.path}")
+
+
+@table_app.command("rm")
+def table_rm(
+    project: str = typer.Argument(..., help="表名"),
+    repo: str = typer.Argument(..., help="仓库 full_name 或纯 name"),
+    force: bool = typer.Option(
+        False, "--force", help="移除后表为空时，强制删除整个表文件"
+    ),
+) -> None:
+    """从表中移除仓库；移除后表为空需 --force 才删除表文件。"""
+    vault_path = _vault_path()
+    table = load_table(vault_path, project)
+    if table is None:
+        typer.echo(f"✗ 未找到表: {project}")
+        raise typer.Exit(1)
+
+    target_slug = repo_to_slug(repo)
+    remaining = [r for r in table.repos if repo_to_slug(r.repo) != target_slug]
+    if len(remaining) == len(table.repos):
+        typer.echo(f"✗ 表 {project} 中不存在仓库: {repo}")
+        raise typer.Exit(1)
+
+    table.repos = remaining
+    if not remaining:
+        if not force:
+            typer.echo(f"✗ 移除后表 {project} 将为空；如需删除整个表请加 --force")
+            raise typer.Exit(1)
+        delete_table(table, vault_path)
+        typer.echo(f"✓ 已移除 {repo}，表 {project} 为空，已删除（--force）")
+        return
+
+    save_table(table, vault_path)
+    typer.echo(f"✓ 已从 {project} 移除 {repo}（剩余 {len(remaining)} 个仓库）")
+
+
+@table_app.command("validate")
+def table_validate() -> None:
+    """一致性检查：未收录 warning；重复行 / 未知 role/usage 为 error。"""
+    vault_path = _vault_path()
+    tdir = tables_dir(vault_path)
+    if not tdir.is_dir():
+        typer.echo(f"✗ {tdir} 不存在，请先创建表")
+        raise typer.Exit(1)
+
+    warnings, errors = validate_tables(vault_path)
+    typer.echo(f"检查 {tdir}…")
+
+    if warnings:
+        typer.echo("\n⚠  Warnings（未收录 = 候选仓库，允许存在）:")
+        for w in warnings:
+            typer.echo(f"  - {w}")
+    if errors:
+        typer.echo("\n✗  Errors:")
+        for e in errors:
+            typer.echo(f"  - {e}")
+
+    typer.echo("")
+    typer.echo(
+        f"汇总: {len(warnings)} warning, {len(errors)} error"
+        f"（{len(load_tables(vault_path))} 张表）"
+    )
+    if errors:
+        raise typer.Exit(1)
+    typer.echo("✓ 校验通过")
+
+
+app.add_typer(table_app, name="table")
 
 
 if __name__ == "__main__":

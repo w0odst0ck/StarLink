@@ -1,0 +1,21 @@
+project: ai-shortfilm
+title: AI 短剧工作流
+purpose: AI 短剧制作流水线（剪辑/视频/文档/素材下载）
+status: active
+repos:
+  - repo: calesthio/openmontage
+    role: 核心
+    usage: weekly
+    note: 剪辑工作流核心
+  - repo: browser-use/video-use
+    role: 辅助
+    usage: weekly
+    note: 视频浏览/操作自动化
+  - repo: opendatalab/mineru
+    role: 辅助
+    usage: rare
+    note: 剧本/文档解析
+  - repo: evil0ctal/douyin_tiktok_download_api
+    role: 辅助
+    usage: rare
+    note: 短视频素材下载

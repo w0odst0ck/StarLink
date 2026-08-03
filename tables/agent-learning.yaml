@@ -1,0 +1,29 @@
+project: agent-learning
+title: 学 Agent 开发
+purpose: 系统学习 AI Agent 开发（架构/记忆/工具链）
+status: active
+repos:
+  - repo: earendil-works/pi
+    role: 核心
+    usage: daily
+    note: Agent 架构学习主线
+  - repo: openclaw/openclaw
+    role: 核心
+    usage: daily
+    note: 主力 Agent 本体，学习其设计
+  - repo: alibaba/open-code-review
+    role: 辅助
+    usage: weekly
+    note: 代码评审 Agent 参考
+  - repo: deusdata/codebase-memory-mcp
+    role: 候选
+    usage: rare
+    note: 代码库记忆 MCP 候选
+  - repo: graphify-labs/graphify
+    role: 候选
+    usage: rare
+    note: 知识图谱 Agent 候选
+  - repo: abhigyanpatwari/gitnexus
+    role: 候选
+    usage: rare
+    note: Git 仓库 Agent 候选

@@ -1,0 +1,21 @@
+project: ms-swift
+title: 3060 微调 7B
+purpose: 3060 显卡上微调 7B 级模型（SWIFT 主链路）
+status: active
+repos:
+  - repo: modelscope/ms-swift
+    role: 核心
+    usage: daily
+    note: 微调主框架
+  - repo: artidoro/qlora
+    role: 辅助
+    usage: rare
+    note: QLoRA 方法参考
+  - repo: kvcache-ai/ktransformers
+    role: 候选
+    usage: rare
+    note: 推理加速候选
+  - repo: ollama/ollama
+    role: 辅助
+    usage: weekly
+    note: 本地推理/部署

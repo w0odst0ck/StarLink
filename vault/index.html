@@ -41,6 +41,7 @@
       </div>
       <nav class="topbar-nav">
         <a href="#/" :class="{active: route==='/'}">&#x1F3E0; 首页</a>
+        <a href="#/toolbox" :class="{active: route==='/toolbox'}">&#x1F9F0; 工具箱</a>
         <a href="#/todo" :class="{active: route==='/todo'}">&#x2705; TODO</a>
         <a href="#/recommend" :class="{active: route==='/recommend'}">&#x1F3AF; 推荐</a>
         <a href="#/relations" :class="{active: route==='/relations'}">&#x1F517; 关系</a>
@@ -101,6 +102,70 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- &#x2B50;&#x2B50; TOOLBOX &#x2B50;&#x2B50; -->
+    <div v-if="route === '/toolbox'">
+      <h2 style="margin-bottom:16px">&#x1F9F0; 项目工具箱 &middot; {{ allTables.length }} 张表</h2>
+      <div v-if="allTables.length === 0" style="color:var(--text-muted);padding:24px">
+        暂无项目表。运行 <code style="background:var(--bg-card);padding:2px 6px;border-radius:4px">star-vault table add &lt;project&gt; &lt;repo&gt;</code> 创建第一张表。
+      </div>
+      <div v-else class="toolbox-layout">
+        <!-- 左侧：项目表列表 -->
+        <aside class="toolbox-side">
+          <div v-for="t in allTables" :key="t.project"
+               class="toolbox-side-item"
+               :class="{active: selectedTable && selectedTable.project === t.project}"
+               @click="selectTable(t.project)">
+            <div class="toolbox-side-title">
+              {{ t.title || t.project }}
+              <span class="toolbox-badge" :class="'status-' + t.status">{{ t.status }}</span>
+            </div>
+            <div class="toolbox-side-meta">{{ t.project }} &middot; {{ t.repos.length }} 仓库</div>
+          </div>
+        </aside>
+
+        <!-- 右侧：仓库卡片流 -->
+        <section class="toolbox-main">
+          <template v-if="selectedTable">
+            <div class="toolbox-main-head">
+              <h3>{{ selectedTable.title || selectedTable.project }}</h3>
+              <span class="toolbox-badge" :class="'status-' + selectedTable.status">{{ selectedTable.status }}</span>
+              <span v-if="selectedTable.purpose" class="toolbox-main-purpose">{{ selectedTable.purpose }}</span>
+            </div>
+
+            <div v-if="selectedTable.repos.length === 0" class="toolbox-empty">
+              此项目暂无仓库
+            </div>
+
+            <div v-else class="toolbox-cards">
+              <div v-for="r in selectedTable.repos" :key="r.repo"
+                   class="toolbox-card"
+                   :class="{uncollected: !r.collected}"
+                   @click="r.collected && nav('/repo/' + r.slug)">
+                <div class="toolbox-card-head">
+                  <span class="toolbox-card-repo">{{ r.repo }}</span>
+                  <span v-if="!r.collected" class="toolbox-badge badge-uncollected">未收录</span>
+                  <span class="toolbox-badge" :class="'role-' + r.role">{{ r.role }}</span>
+                  <span class="toolbox-badge usage-badge">{{ r.usage }}</span>
+                </div>
+                <div v-if="r.note" class="toolbox-card-note">{{ r.note }}</div>
+                <div v-if="r.summary" class="toolbox-card-summary">{{ r.summary }}</div>
+                <div v-if="crossRefs(r).length" class="toolbox-card-cross">
+                  &#x1F517; 也用于: {{ crossRefs(r).join('、') }}
+                </div>
+                <div class="toolbox-card-links">
+                  <a :href="'https://github.com/' + r.repo" target="_blank" rel="noopener" @click.stop>GitHub &#x2197;</a>
+                  <a v-if="r.collected" :href="'#/repo/' + r.slug" @click.stop>本地笔记 &#x2192;</a>
+                </div>
+              </div>
+            </div>
+          </template>
+          <div v-else class="toolbox-empty">
+            暂无项目表
+          </div>
+        </section>
       </div>
     </div>
 

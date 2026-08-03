@@ -47,6 +47,23 @@ class SyncResult:
 # ── 内部类型 ──────────────────────────────────────────────
 
 
+# star 数量级分档阈值（降序）。跨档才触发 resync，档内小波动忽略。
+_STAR_BANDS: tuple[tuple[str, int], ...] = (
+    ("10k+", 10000),
+    ("1k+", 1000),
+    ("100+", 100),
+    ("10+", 10),
+)
+
+
+def _star_band(count: int) -> str:
+    """star 数量级分档：小变化不触发 resync，跨档才触发。"""
+    for band, threshold in _STAR_BANDS:
+        if count >= threshold:
+            return band
+    return "0-9"
+
+
 def _build_headers(token: str) -> dict[str, str]:
     """构建 GitHub API 请求头，含 star+json 媒体类型。"""
     return {
@@ -328,8 +345,9 @@ def sync(
     for repo in fetched:
         # 根据 GitHub Star List 覆盖 list_name
         repo.list_name = list_map.get(repo.full_name, repo.list_name)
-        # 取可变字段哈希作为变更标识（description/topics/language/stargazers 变化时触发 resync）
-        _content_key = f"{repo.description}|{sorted(repo.topics)}|{repo.language}|{repo.stargazers_count}"
+        # 取可变字段哈希作为变更标识（description/topics/language/star 量级变化时触发 resync）
+        # star 数用数量级分档而非裸数值：实时波动不误报，跨档（如 999→1001）才触发
+        _content_key = f"{repo.description}|{sorted(repo.topics)}|{repo.language}|{_star_band(repo.stargazers_count)}"
         current_sha = hashlib.sha256(_content_key.encode()).hexdigest()[:16]
 
         if sm.needs_sync(repo.full_name, current_sha):

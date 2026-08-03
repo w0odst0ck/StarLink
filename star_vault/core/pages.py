@@ -11,9 +11,14 @@ scan_vault_notes() 扫描 vault/stars/ 目录，解析全部笔记 markdown 文�
 from __future__ import annotations
 
 import json
+import logging
 import re
 from datetime import datetime, timezone
 from pathlib import Path
+
+from star_vault.core.tables import join_table, load_tables
+
+logger = logging.getLogger(__name__)
 
 _PAGES_STATIC = ("index.html", "app.js", "style.css", "graph.js")
 
@@ -27,7 +32,18 @@ def scan_vault_notes(vault_path: Path) -> list[dict]:
         return []
 
     notes: list[dict] = []
+    seen: dict[str, Path] = {}
     for md_file in sorted(stars_dir.rglob("*.md")):
+        if md_file.stem in seen:
+            # 兜底：重复 slug 报警并跳过，避免脏数据进 site-data
+            logger.warning(
+                "重复笔记 slug=%s: %s 与 %s 并存（建议清理，可先跑 sync 收敛）",
+                md_file.stem,
+                seen[md_file.stem],
+                md_file,
+            )
+            continue
+        seen[md_file.stem] = md_file
         note = _parse_note_file(md_file)
         if note:
             notes.append(note)
@@ -206,15 +222,21 @@ def generate_site_data(vault_path: Path) -> int:
         if n.get("language"):
             languages.add(n["language"])
 
+    # 项目工具箱：tables/*.yaml → join vault 元数据（v2）
+    notes_index = {n["slug"]: n for n in notes}
+    tables_data = [join_table(t, notes_index) for t in load_tables(vault_path)]
+
     site_data = {
-        "version": 1,
+        "version": 2,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "stats": {
             "total": len(notes),
             "languages": len(languages),
             "lists": len({n["list_name"] for n in notes}),
+            "tables": len(tables_data),
         },
         "notes": notes,
+        "tables": tables_data,
     }
 
     # 写入 site-data.json
