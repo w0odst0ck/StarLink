@@ -10,6 +10,7 @@ category: tool
 rating: 4
 maintenance: active
 ai_tags: [agent-skills, ai-coding, best-practices, workflow-automation, productivity]
+toolboxes: [agent-learning]
 summary: |-
   Addy Osmani（Google Chrome 团队）的 AI 编程 Agent 技能库（8.1 万 star，MIT，活跃）。把资深工程师工作流、质量门禁、最佳实践编码成 slash 命令，覆盖从需求到发布全生命周期，Claude Code / Codex / Cursor 通用。
   

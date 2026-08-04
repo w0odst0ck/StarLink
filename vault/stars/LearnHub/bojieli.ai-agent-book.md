@@ -10,6 +10,7 @@ category: tutorial
 rating: 5
 maintenance: active
 ai_tags: [ai-agent, llm, multi-agent, rag, mcp]
+toolboxes: [learning]
 summary: |-
   李博杰（月之暗面 / kvcache.ai）的《深入理解 AI Agent》开源书（2.9 万 star，Apache 2.0，活跃）：10 章正文 + 92 个配套实验 + 多语言 PDF。
   

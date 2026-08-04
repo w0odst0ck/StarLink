@@ -10,6 +10,7 @@ category: framework
 rating: 5
 maintenance: active
 ai_tags: [agents, llm, framework, langgraph, python]
+toolboxes: [agent-learning]
 summary: |-
   LLM 应用与 Agent 开发的事实标准框架（14.3 万 star，MIT，全库连接度最高的枢纽节点）。LangChain 提供组件与集成，LangGraph 提供状态化 Agent 编排（状态机 + 工具调用）。
   

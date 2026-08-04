@@ -10,6 +10,7 @@ category: tool
 rating: 4
 maintenance: active
 ai_tags: [agent-skills, shell, ai, developer-tools, engineering-workflow]
+toolboxes: [agent-learning]
 summary: |-
   Matt Pocock（TS 圈大佬）的实战 agent 技能集（19.8 万 star，MIT，活跃）：shell 基础、可组合、**模型无关**，"真实工程师"向（反 vibe coding），小而可改。
   

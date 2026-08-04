@@ -10,6 +10,7 @@ category: tool
 rating: 5
 maintenance: active
 ai_tags: [javascript, typescript, ai-agent, browser-automation, natural-language]
+toolboxes: [crawler]
 summary: |-
   阿里的页面内嵌 GUI Agent（2.8 万 star，MIT，活跃）。一行 script 把 AI 代理嵌入网页，自然语言操控界面（点击/填表），纯文本 DOM 操作——不需要浏览器插件、无头浏览器或多模态模型。提供 MCP Server（beta）。
   

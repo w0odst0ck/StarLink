@@ -10,6 +10,7 @@ category: tool
 rating: 4
 maintenance: active
 ai_tags: [go, ai-agents, penetration-testing, security-automation, autonomous-agents]
+toolboxes: [indiestore]
 summary: |-
   全自主 AI 渗透测试 Agent 系统（2.1 万 star，MIT，活跃）：Go 实现，多 LLM 驱动，沙箱 Docker + 20+ 安全工具，知识图谱 + 智能记忆，自动化安全评估。
   

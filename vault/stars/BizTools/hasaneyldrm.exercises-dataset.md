@@ -10,6 +10,7 @@ category: tool
 rating: 2
 maintenance: active
 ai_tags: [dataset, fitness, exercise, json, gym]
+toolboxes: [efficiency]
 summary: |-
   1324 个健身动作数据集（1.8 万 star，活跃）：动作 GIF、肌肉群/器械分类、6 语言分步指导，JSON 格式，LogPress App 的数据层。
   

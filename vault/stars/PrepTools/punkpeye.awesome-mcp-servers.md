@@ -10,6 +10,7 @@ category: tool
 rating: 4
 maintenance: active
 ai_tags: [mcp, ai, awesome-list, curated-list, resources]
+toolboxes: [agent-learning]
 summary: |-
   MCP Server 精选目录（9.2 万 star，MIT，活跃）：文件访问/数据库/API 集成等各类 MCP server 的分类索引。
   

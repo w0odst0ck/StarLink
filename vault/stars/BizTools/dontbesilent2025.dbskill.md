@@ -10,6 +10,7 @@ category: tool
 rating: 3
 maintenance: active
 ai_tags: [ai-skills, business-diagnosis, content-creation, knowledge-base]
+toolboxes: [agent-learning]
 summary: |-
   商业诊断 AI Skills 工具箱（9k star，活跃）：29 个业务技能（商业诊断/内容优化/行动决策），基于 4000+ 结构化知识原子，跨平台 Agent 兼容。
   

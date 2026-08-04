@@ -10,6 +10,7 @@ category: tutorial
 rating: 5
 maintenance: active
 ai_tags: [python, web-scraping, crawler, reverse-engineering, selenium]
+toolboxes: [crawler]
 summary: |-
   中文爬虫圈最经典的从 0 到 1 教程库（2.2 万 star，仍在更新）。覆盖面极全：抓包（fiddler/mitmproxy，含手机 APP）、requests/bs4/selenium/appium/scrapy 全家桶、IP 代理、验证码识别、MySQL/MongoDB、多线程多进程、CSS 加密逆向、JS 逆向、分布式爬虫与实战项目。
   

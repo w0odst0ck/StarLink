@@ -10,6 +10,7 @@ category: tool
 rating: 3
 maintenance: active
 ai_tags: [driver-assistance, robotics, automotive, self-driving, python]
+toolboxes: [embedded-auto]
 summary: |-
   comma.ai 的开源驾驶辅助操作系统（6.3 万 star，MIT，活跃）：给 300+ 车型升级 ADAS，Python（AI 模型层）+ C++（实时控制层）混合架构，端到端驾驶模型 + 确定性控制分离。
   

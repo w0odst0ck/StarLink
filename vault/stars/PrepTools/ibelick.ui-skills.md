@@ -10,6 +10,7 @@ category: tool
 rating: 3
 maintenance: active
 ai_tags: [cli, design-engineering, ui-skills, typescript]
+toolboxes: [indiestore]
 summary: |-
   设计工程师 UI 技能包 CLI（6.8k star，MIT，活跃）：`npx ui-skills start` 路由 agent 到对应 UI 设计技能（布局/动效/可访问性等）。
   

@@ -10,6 +10,7 @@ category: tool
 rating: 3
 maintenance: active
 ai_tags: [haskell, messaging, privacy, encryption, e2ee]
+toolboxes: [efficiency]
 summary: |-
   无用户标识的隐私通讯网络（1.9 万 star，AGPL-3.0，活跃）：无需手机号/用户名，100% 隐私设计，Trail of Bits 审计，全平台客户端。
   

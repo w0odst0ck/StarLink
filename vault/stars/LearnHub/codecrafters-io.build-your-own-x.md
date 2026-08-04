@@ -10,6 +10,7 @@ category: tutorial
 rating: 4
 maintenance: active
 ai_tags: [awesome-list, tutorial, computer-science, learning, programming]
+toolboxes: [learning]
 summary: |-
   从零重造技术的教程合集（53.4 万 star，GitHub 顶级项目）：数据库/编译器/操作系统/3D 渲染/正则引擎等，"learn by doing"。
   

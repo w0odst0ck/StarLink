@@ -1,0 +1,33 @@
+project: learning
+title: 学习栈
+purpose: AI 书籍 / 系统设计 / 造轮子 / 入门教程
+status: active
+repos:
+  - repo: bojieli/ai-agent-book
+    role: 核心
+    usage: weekly
+    note: Agent 学习主线核心教材
+  - repo: bytebytegohq/system-design-101
+    role: 辅助
+    usage: rare
+    note: 系统设计图解地图
+  - repo: codecrafters-io/build-your-own-x
+    role: 辅助
+    usage: rare
+    note: 从零造轮子教程地图
+  - repo: microsoft/generative-ai-for-beginners
+    role: 辅助
+    usage: rare
+    note: 生成式 AI 基础体系回顾
+  - repo: harvard-edge/cs249r_book
+    role: 辅助
+    usage: rare
+    note: ML 系统工程进阶教材（TinyML 底座）
+  - repo: virgiliojr94/book-to-skill
+    role: 候选
+    usage: rare
+    note: 技术书转可执行知识
+  - repo: thu-maic/openmaic
+    role: 候选
+    usage: rare
+    note: 多智能体编排工程实践

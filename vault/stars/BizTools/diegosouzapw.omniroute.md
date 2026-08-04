@@ -10,6 +10,7 @@ category: tool
 rating: 4
 maintenance: active
 ai_tags: [ai-gateway, llm, openai-proxy, token-saver, auto-fallback]
+toolboxes: [efficiency]
 summary: |-
   免费 AI 网关（3.6 万 star，MIT，活跃）：一个端点聚合 290+ 供应商（90+ 免费）/500+ 模型，配额感知自动 fallback，RTK+Caveman 压缩省 15-95% token，兼容主流编码工具，MCP/A2A。
   

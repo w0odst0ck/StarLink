@@ -10,6 +10,7 @@ category: tool
 rating: 5
 maintenance: active
 ai_tags: [crawler, scraping, playwright, python, social-media]
+toolboxes: [crawler]
 summary: |-
   Playwright 驱动的多平台自媒体数据采集（6 万 star，活跃）：小红书/抖音/快手/B站/微博/贴吧/知乎，**无需 JS 逆向**抓公开内容（笔记/视频/评论/帖子）。
   

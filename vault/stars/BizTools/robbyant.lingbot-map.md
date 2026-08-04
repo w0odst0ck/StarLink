@@ -10,6 +10,7 @@ category: tool
 rating: 3
 maintenance: active
 ai_tags: [3d-reconstruction, transformer, streaming, computer-vision, pytorch]
+toolboxes: [embedded-auto]
 summary: |-
   前馈式 3D 基础模型（1.6 万 star，Apache 2.0，活跃）：从流式数据实时重建 3D 场景（Geometric Context Transformer），~20 FPS 实时推理，KITTI/Oxford Spires SOTA。
   

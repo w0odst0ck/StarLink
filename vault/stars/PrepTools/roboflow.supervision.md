@@ -10,6 +10,7 @@ category: lib
 rating: 5
 maintenance: active
 ai_tags: [python, computer-vision, object-detection, deep-learning, pytorch]
+toolboxes: [embedded-auto]
 summary: |-
   模型无关 CV 工具库（4.9 万 star，MIT，活跃）：检测/分割/跟踪/标注一站式可复用工具，无缝接 Ultralytics YOLO / Transformers。
   

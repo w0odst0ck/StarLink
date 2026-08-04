@@ -1,0 +1,57 @@
+project: efficiency
+title: 效率工具
+purpose: 日常效率 / 办公自动化 / 会议 / 通讯
+status: active
+repos:
+  - repo: microsoft/powertoys
+    role: 核心
+    usage: daily
+    note: Windows 主机日常效率工具（已安装）
+  - repo: hugohe3/ppt-master
+    role: 核心
+    usage: weekly
+    note: 每周汇报 PPT 依赖
+  - repo: iofficeai/officecli
+    role: 辅助
+    usage: weekly
+    note: 办公自动化（AI 读写 Office）
+  - repo: jamiepine/voicebox
+    role: 辅助
+    usage: rare
+    note: 内容创作配音（短剧/视频）
+  - repo: zackriya-solutions/meetily
+    role: 辅助
+    usage: rare
+    note: 自用会议纪要工具
+  - repo: diegosouzapw/omniroute
+    role: 辅助
+    usage: rare
+    note: 开发省钱工具（AI 网关参照）
+  - repo: ottermind/chat2db
+    role: 辅助
+    usage: rare
+    note: 数据方向日常 AI 查数（trade-pulse 提速）
+  - repo: simplex-chat/simplex-chat
+    role: 辅助
+    usage: rare
+    note: 自用通讯工具
+  - repo: refactoringhq/tolaria
+    role: 候选
+    usage: rare
+    note: Markdown 知识库桌面查看备选
+  - repo: pbakaus/impeccable
+    role: 候选
+    usage: rare
+    note: UI 设计质检（独立站配套）
+  - repo: hasaneyldrm/exercises-dataset
+    role: 候选
+    usage: rare
+    note: 健身知识库数据源（低优先）
+  - repo: madslorentzen/ai-job-search
+    role: 候选
+    usage: rare
+    note: 条件工具（有求职需求时启用）
+  - repo: 1jehuang/jcode
+    role: 候选
+    usage: rare
+    note: AI 编程 agent 竞品参照（可归 agent-learning）

@@ -10,6 +10,7 @@ category: tutorial
 rating: 4
 maintenance: active
 ai_tags: [multi-agent, ai-education, langgraph, nextjs]
+toolboxes: [learning]
 summary: |-
   清华大学的开源多智能体交互教室（Open Multi-Agent Interactive Classroom）。用 LLM 编排多个 AI 角色模拟真实课堂互动，实现沉浸式多智能体学习体验；基于 Next.js + LangGraph 构建，支持一键部署（Vercel）、视频导出、项目式学习，并可接入各类 LLM 服务商。MIT 协议，2 万+ star，有 JCST 2026 论文背书。
   

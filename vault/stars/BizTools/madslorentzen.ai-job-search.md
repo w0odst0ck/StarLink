@@ -10,6 +10,7 @@ category: tool
 rating: 3
 maintenance: active
 ai_tags: [ai, job-search, claude-code, automation, career]
+toolboxes: [efficiency]
 summary: |-
   基于 Claude Code 的 AI 求职自动化框架（2.9 万 star，MIT，活跃）：评估职位、定制简历、写求职信、面试准备，本地运行。
   

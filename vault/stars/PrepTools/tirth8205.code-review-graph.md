@@ -10,6 +10,7 @@ category: tool
 rating: 4
 maintenance: active
 ai_tags: [python, tree-sitter, mcp, static-analysis, knowledge-graph]
+toolboxes: [starlink-self]
 summary: |-
   本地代码智能图谱（2.8 万 star，MIT，活跃）：tree-sitter 建持久代码图，让 AI 审查只读相关上下文，token 降 38x-528x，MCP + CLI 支持。
   

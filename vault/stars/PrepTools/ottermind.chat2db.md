@@ -10,6 +10,7 @@ category: tool
 rating: 4
 maintenance: active
 ai_tags: [database-client, sql-editor, ai-assistant, cross-platform, java]
+toolboxes: [efficiency]
 summary: |-
   AI 驱动数据库客户端 + SQL 编辑器（2.8 万 star，活跃）：30+ 数据库支持，自然语言生成/解释/优化 SQL，跨平台 GUI。
   

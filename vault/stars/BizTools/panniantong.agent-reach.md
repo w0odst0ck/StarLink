@@ -10,6 +10,7 @@ category: tool
 rating: 5
 maintenance: active
 ai_tags: [ai-agent, cli, web-scraper, python, mcp]
+toolboxes: [crawler]
 summary: |-
   零 API 费用的跨平台读取/搜索 CLI（6.4 万 star，MIT，活跃）：Twitter/Reddit/YouTube/GitHub/B站/小红书全读，免费后端 + 自动降级 + cookie 配置，MCP/CLI 皆可。
   

@@ -10,6 +10,7 @@ category: tool
 rating: 5
 maintenance: active
 ai_tags: [ruby, rails, vuejs, omnichannel, customer-support]
+toolboxes: [indiestore]
 summary: |-
   开源客服工单平台（3.5 万 star，活跃）——Intercom/Zendesk 的自托管替代：全渠道收件箱（在线聊天/邮件/WhatsApp）、帮助中心、内置 AI 客服 Agent（Captain）、Docker 一键部署。
   

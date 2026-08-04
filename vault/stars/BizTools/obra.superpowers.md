@@ -10,6 +10,7 @@ category: framework
 rating: 3
 maintenance: active
 ai_tags: [ai, agentic, sdlc, skills, shell]
+toolboxes: [agent-learning]
 summary: |-
   Agentic skills 框架 + 软件开发方法论（26.5 万 star，MIT，活跃）：子 Agent 驱动开发（subagent-driven development），把软件工程流程（头脑风暴→规划→执行）组织成可组合技能。Obra（Perl 社区大佬）出品。
   

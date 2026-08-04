@@ -10,6 +10,7 @@ category: tool
 rating: 5
 maintenance: active
 ai_tags: [ai-agent, research, social-media, claude, web-search]
+toolboxes: [crawler]
 summary: |-
   AI Agent 趋势调研技能（5.6 万 star，MIT，活跃）：并行搜索 Reddit/X/YouTube/HN/Polymarket/全网，按真实互动信号排序，AI 裁判合成有依据的简报。**OpenClaw 原生技能**（topics 含 openclaw/clawhub），可直接安装使用。
   

@@ -10,6 +10,7 @@ category: tutorial
 rating: 5
 maintenance: active
 ai_tags: [machine-learning-systems, deep-learning, embedded-ml, tinyml, textbook]
+toolboxes: [learning]
 summary: |-
   哈佛 CS249r 开源教材《Machine Learning Systems》（2.8 万 star，活跃）：ML 系统工程原理与实践——云端/移动端/嵌入式 ML，动手实验 + TinyTorch 框架，多语言。
   

@@ -10,6 +10,7 @@ category: framework
 rating: 3
 maintenance: active
 ai_tags: [python, llm, chatbot, multi-platform, agent]
+toolboxes: [crawler]
 summary: |-
   Python 多 IM 平台 AI 聊天机器人框架（3.8 万 star，AGPL-3.0，活跃）：接 QQ/Discord/Telegram 等，多 LLM、插件市场、Docker 部署。README 自称 "openclaw alternative"。
   

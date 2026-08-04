@@ -10,6 +10,7 @@ category: tool
 rating: 3
 maintenance: active
 ai_tags: [milvus, vector-database, gui, ai-workbench, docker]
+toolboxes: [indiestore]
 summary: |-
   Milvus 官方 GUI 管理工具（3k star，活跃）：浏览 collection、向量搜索、备份恢复、集群监控、LLM 助手，Web/桌面双端。
   

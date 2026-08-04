@@ -10,6 +10,7 @@ category: lib
 rating: 4
 maintenance: active
 ai_tags: [milvus, vector-database, python-sdk, anns]
+toolboxes: [indiestore]
 summary: |-
   Milvus 官方 Python SDK（1.4k star，Apache 2.0）。Python 里操作 Milvus 的标准接口：建 collection、索引管理、增删改查、向量搜索。
   

@@ -10,6 +10,7 @@ category: tool
 rating: 5
 maintenance: active
 ai_tags: [esp32, hardware-hacking, firmware, protocols, web-cli]
+toolboxes: [embedded-auto]
 summary: |-
   把 ESP32 变成万能协议硬件调试工具（5.1k star，MIT，活跃）：I2C/SPI/UART/蓝牙/WiFi/Sub-GHz/CAN 全协议，USB 串口 + Web CLI，带嗅探/脚本/EEPROM 工具（Bus Pirate 精神续作）。
   

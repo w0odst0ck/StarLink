@@ -10,6 +10,7 @@ category: lib
 rating: 4
 maintenance: active
 ai_tags: [vector-database, similarity-search, embedded, rag, cpp]
+toolboxes: [indiestore]
 summary: |-
   阿里开源的嵌入式（in-process）向量数据库，C++ 实现，主打轻量 + 极速。支持稠密/稀疏向量、全文检索、混合查询，可直接嵌进应用进程（类似 SQLite 的定位），提供 Python/Node.js 绑定。1.5 万 star，Apache 2.0，活跃维护。
   

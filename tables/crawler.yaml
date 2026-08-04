@@ -1,0 +1,37 @@
+project: crawler
+title: 爬虫 / 数据采集
+purpose: 多平台内容采集、网页自动化、信息搜索
+status: active
+repos:
+  - repo: nanmicoder/mediacrawler
+    role: 核心
+    usage: weekly
+    note: 爬虫三件套核心，多平台自媒体采集
+  - repo: panniantong/agent-reach
+    role: 核心
+    usage: weekly
+    note: 信息采集主线核心工具
+  - repo: wistbean/learn_python3_spider
+    role: 辅助
+    usage: rare
+    note: 爬虫教程字典按需查
+  - repo: mvanhorn/last30days-skill
+    role: 辅助
+    usage: weekly
+    note: 海外趋势采集（舆情消费场景）
+  - repo: alibaba/page-agent
+    role: 辅助
+    usage: rare
+    note: 网页自动化新范式
+  - repo: chromedevtools/chrome-devtools-mcp
+    role: 辅助
+    usage: rare
+    note: 复杂登录/JS渲染/反爬调试
+  - repo: knockoutez/wigolo
+    role: 候选
+    usage: rare
+    note: MCP 化本地搜索/爬取
+  - repo: astrbotdevs/astrbot
+    role: 候选
+    usage: rare
+    note: 采集后处理/机器人（或归 starlink-self 竞品参照）

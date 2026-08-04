@@ -1,0 +1,147 @@
+# 工具箱粗分映射（2026-08-04 reasonix 建议 + 人工复验修正）
+# 用途：apply_toolbox_map.py 批量写入笔记 frontmatter toolboxes 字段（幂等追加）
+# 编辑：改这里 → 重跑脚本 → 差异以笔记为准（--report 对账）
+# 来源：reasonix 读 90 篇笔记定位段产出；ruview 人工修正（reasonix 误归 efficiency，定位为嵌入式感知层）
+
+# ── 新建 4 个工具箱 ──────────────────────────────
+embedded-auto:
+  title: 嵌入式智能化 + 自动驾驶仿真
+  purpose: ESP32 硬件调试 / 视觉感知 / 自动驾驶仿真方向储备
+  repos:
+    - geo-tp/esp32-bit-pirate
+    - commaai/openpilot
+    - roboflow/supervision
+    - robbyant/lingbot-map
+    - ruvnet/ruview
+    - icewhaletech/casaos
+
+crawler:
+  title: 爬虫 / 数据采集
+  purpose: 多平台内容采集、网页自动化、信息搜索
+  repos:
+    - nanmicoder/mediacrawler
+    - wistbean/learn_python3_spider
+    - astrbotdevs/astrbot
+    - alibaba/page-agent
+    - chromedevtools/chrome-devtools-mcp
+    - knockoutez/wigolo
+    - mvanhorn/last30days-skill
+    - panniantong/agent-reach
+
+learning:
+  title: 学习栈
+  purpose: AI 书籍 / 系统设计 / 造轮子 / 入门教程
+  repos:
+    - bojieli/ai-agent-book
+    - bytebytegohq/system-design-101
+    - codecrafters-io/build-your-own-x
+    - harvard-edge/cs249r_book
+    - microsoft/generative-ai-for-beginners
+    - thu-maic/openmaic
+    - virgiliojr94/book-to-skill
+
+efficiency:
+  title: 效率工具
+  purpose: 日常效率 / 办公自动化 / 会议 / 通讯
+  repos:
+    - microsoft/powertoys
+    - 1jehuang/jcode
+    - hugohe3/ppt-master
+    - iofficeai/officecli
+    - jamiepine/voicebox
+    - zackriya-solutions/meetily
+    - pbakaus/impeccable
+    - ottermind/chat2db
+    - simplex-chat/simplex-chat
+    - diegosouzapw/omniroute
+    - hasaneyldrm/exercises-dataset
+    - madslorentzen/ai-job-search
+    - refactoringhq/tolaria
+
+# ── 归入现有工具箱 ──────────────────────────────
+agent-learning:
+  title: Agent 开发学习
+  purpose: pi 源码学习 / MCP / skills / agent 框架 / 代码审查
+  repos:
+    - earendil-works/pi
+    - alibaba/open-code-review
+    - deusdata/codebase-memory-mcp
+    - graphify-labs/graphify
+    - abhigyanpatwari/gitnexus
+    - langchain-ai/langchain
+    - langgenius/dify
+    - sierra-research/tau2-bench
+    - addyosmani/agent-skills
+    - affaan-m/ecc
+    - different-ai/openwork
+    - dontbesilent2025/dbskill
+    - esengine/deepseek-reasonix
+    - msitarzewski/agency-agents
+    - obra/superpowers
+    - shubhamsaboo/awesome-llm-apps
+    - tencentcloud/tencentdb-agent-memory
+    - andrewyng/aisuite
+    - mattpocock/skills
+    - punkpeye/awesome-mcp-servers
+
+trade-pulse:
+  title: 量化信号系统
+  purpose: 东财 588000 日线择时 / Kronos / 舆情
+  repos:
+    - hkuds/vibe-trading
+    - shiyu-coder/kronos
+    - openbb-finance/openbb
+    - paperswithbacktest/awesome-systematic-trading
+    - xbtlin/ai-berkshire
+    - zhulinsen/daily_stock_analysis
+
+ai-shortfilm:
+  title: AI 短剧
+  purpose: OpenMontage 工作流 / 视频生成 / 配音
+  repos:
+    - calesthio/openmontage
+    - browser-use/video-use
+    - opendatalab/mineru
+    - evil0ctal/douyin_tiktok_download_api
+    - coplaydev/unity-mcp
+
+indiestore:
+  title: 独立站
+  purpose: GitHub 部署 / AI 客服 / 向量检索 / 营销
+  repos:
+    - ripienaar/free-for-dev
+    - github/spec-kit
+    - coreyhaines31/marketingskills
+    - posthog/posthog
+    - milvus-io/milvus
+    - milvus-io/pymilvus
+    - zilliztech/attu
+    - canner/wrenai
+    - chatwoot/chatwoot
+    - vxcontrol/pentagi
+    - ibelick/ui-skills
+    - alibaba/zvec
+
+ms-swift:
+  title: 模型微调 / 推理
+  purpose: ms-swift 微调 / 本地推理 / 量化
+  repos:
+    - modelscope/ms-swift
+    - artidoro/qlora
+    - kvcache-ai/ktransformers
+    - ollama/ollama
+    - antirez/ds4
+    - lyogavin/airllm
+    - xorbitsai/inference
+
+starlink-self:
+  title: StarLink 自身建设
+  purpose: OpenClaw / ocr review / DeepSeek 生态
+  repos:
+    - openclaw/openclaw
+    - alibaba/open-code-review
+    - fastapi/fastapi
+    - deepseek-ai/awesome-deepseek-integration
+    - juliusbrussee/caveman
+    - nevamind-ai/memu
+    - tirth8205/code-review-graph

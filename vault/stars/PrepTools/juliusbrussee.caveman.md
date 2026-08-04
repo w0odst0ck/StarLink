@@ -10,6 +10,7 @@ category: tool
 rating: 5
 maintenance: active
 ai_tags: [prompt-engineering, token-efficiency, caveman, claude-code, ai]
+toolboxes: [starlink-self]
 summary: |-
   caveman 技能（9.5 万 star，MIT，活跃）：让 AI 用原始人腔回答，省 65% 输出 token 不影响准确性。OmniRoute 等项目的 token 压缩也借鉴此思路。
   

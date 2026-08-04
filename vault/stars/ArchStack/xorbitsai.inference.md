@@ -10,6 +10,7 @@ category: lib
 rating: 4
 maintenance: active
 ai_tags: [llm-inference, openai-api, multimodal, python]
+toolboxes: [ms-swift]
 summary: |-
   Xinference——统一推理引擎（9.5k star，Apache 2.0，活跃）。LLM/语音/多模态模型统一成 OpenAI 兼容 API 部署，支持 vLLM 后端、自动批处理、云端/本地，主打"改一行代码换模型"。
   

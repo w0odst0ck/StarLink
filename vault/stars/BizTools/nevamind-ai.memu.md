@@ -10,6 +10,7 @@ category: tool
 rating: 4
 maintenance: active
 ai_tags: [agent-memory, memory, mcp, skills, python]
+toolboxes: [starlink-self]
 summary: |-
   跨 Agent 个人记忆系统（1.4 万 star，活跃）：个人记忆存成共享 wiki，跨 LLM 会话/Agent/设备持久化，**自动从 agent 历史提炼可复用技能**，核心逻辑仅 500 行。OpenClaw 生态相关（topics 含 openclaw-skills）。
   

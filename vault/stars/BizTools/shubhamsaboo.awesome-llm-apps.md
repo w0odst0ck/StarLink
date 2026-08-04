@@ -10,6 +10,7 @@ category: other
 rating: 4
 maintenance: active
 ai_tags: [ai-agents, llm, rag, python, open-source]
+toolboxes: [agent-learning]
 summary: |-
   100+ 开源 AI Agent / Agent Skills / RAG 应用合集（12.9 万 star，Apache 2.0，周更），全部端到端跑通。
   

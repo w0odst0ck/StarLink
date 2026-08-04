@@ -1,11 +1,11 @@
 {
   "version": 3,
-  "generated_at": "2026-08-04T02:05:21.950193+00:00",
+  "generated_at": "2026-08-04T03:04:16.197175+00:00",
   "stats": {
     "total": 90,
     "languages": 15,
     "lists": 4,
-    "tables": 6
+    "tables": 10
   },
   "notes": [
     {
@@ -76,7 +76,9 @@
         "rag",
         "cpp"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "indiestore"
+      ]
     },
     {
       "slug": "antirez.ds4",
@@ -94,7 +96,9 @@
       "rating": 0,
       "maintenance": null,
       "ai_tags": [],
-      "toolboxes": []
+      "toolboxes": [
+        "ms-swift"
+      ]
     },
     {
       "slug": "artidoro.qlora",
@@ -560,7 +564,9 @@
         "langgraph",
         "python"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "agent-learning"
+      ]
     },
     {
       "slug": "langgenius.dify",
@@ -782,7 +788,9 @@
         "rag",
         "low-code"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "agent-learning"
+      ]
     },
     {
       "slug": "lyogavin.airllm",
@@ -867,7 +875,9 @@
         "memory-efficient",
         "deep-learning"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "ms-swift"
+      ]
     },
     {
       "slug": "milvus-io.milvus",
@@ -972,7 +982,9 @@
         "distributed",
         "golang"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "indiestore"
+      ]
     },
     {
       "slug": "milvus-io.pymilvus",
@@ -1032,7 +1044,9 @@
         "python-sdk",
         "anns"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "indiestore"
+      ]
     },
     {
       "slug": "modelscope.ms-swift",
@@ -1462,7 +1476,9 @@
         "tool-use",
         "evaluation"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "agent-learning"
+      ]
     },
     {
       "slug": "xorbitsai.inference",
@@ -1638,7 +1654,9 @@
         "multimodal",
         "python"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "ms-swift"
+      ]
     },
     {
       "slug": "1jehuang.jcode",
@@ -1807,7 +1825,9 @@
         "rust",
         "llm"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "efficiency"
+      ]
     },
     {
       "slug": "addyosmani.agent-skills",
@@ -1880,7 +1900,9 @@
         "workflow-automation",
         "productivity"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "agent-learning"
+      ]
     },
     {
       "slug": "affaan-m.ecc",
@@ -2030,7 +2052,9 @@
         "performance-optimization",
         "llm"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "agent-learning"
+      ]
     },
     {
       "slug": "alibaba.open-code-review",
@@ -2210,7 +2234,9 @@
         "browser-automation",
         "natural-language"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "crawler"
+      ]
     },
     {
       "slug": "astrbotdevs.astrbot",
@@ -2484,7 +2510,9 @@
         "multi-platform",
         "agent"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "crawler"
+      ]
     },
     {
       "slug": "browser-use.video-use",
@@ -2894,7 +2922,9 @@
         "ai-agents",
         "business-intelligence"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "indiestore"
+      ]
     },
     {
       "slug": "chatwoot.chatwoot",
@@ -2954,7 +2984,9 @@
         "omnichannel",
         "customer-support"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "indiestore"
+      ]
     },
     {
       "slug": "chromedevtools.chrome-devtools-mcp",
@@ -3003,7 +3035,9 @@
         "typescript",
         "debugging"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "crawler"
+      ]
     },
     {
       "slug": "commaai.openpilot",
@@ -3047,7 +3081,9 @@
         "self-driving",
         "python"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "embedded-auto"
+      ]
     },
     {
       "slug": "coplaydev.unity-mcp",
@@ -3220,7 +3256,9 @@
         "game-development",
         "csharp"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "ai-shortfilm"
+      ]
     },
     {
       "slug": "coreyhaines31.marketingskills",
@@ -3444,7 +3482,9 @@
         "token-saver",
         "auto-fallback"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "efficiency"
+      ]
     },
     {
       "slug": "different-ai.openwork",
@@ -3485,7 +3525,9 @@
         "typescript",
         "desktop-app"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "agent-learning"
+      ]
     },
     {
       "slug": "dontbesilent2025.dbskill",
@@ -3524,7 +3566,9 @@
         "content-creation",
         "knowledge-base"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "agent-learning"
+      ]
     },
     {
       "slug": "esengine.deepseek-reasonix",
@@ -3559,7 +3603,9 @@
       "rating": 0,
       "maintenance": null,
       "ai_tags": [],
-      "toolboxes": []
+      "toolboxes": [
+        "agent-learning"
+      ]
     },
     {
       "slug": "github.spec-kit",
@@ -3666,7 +3712,9 @@
         "json",
         "gym"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "efficiency"
+      ]
     },
     {
       "slug": "hkuds.vibe-trading",
@@ -3947,7 +3995,9 @@
         "python",
         "automation"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "efficiency"
+      ]
     },
     {
       "slug": "icewhaletech.casaos",
@@ -3999,7 +4049,9 @@
         "golang",
         "vuejs"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "embedded-auto"
+      ]
     },
     {
       "slug": "iofficeai.officecli",
@@ -4150,7 +4202,9 @@
         "agent",
         "docx"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "efficiency"
+      ]
     },
     {
       "slug": "jamiepine.voicebox",
@@ -4200,7 +4254,9 @@
         "open-source",
         "typescript"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "efficiency"
+      ]
     },
     {
       "slug": "knockoutez.wigolo",
@@ -4372,7 +4428,9 @@
         "web-search",
         "ai-agent"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "crawler"
+      ]
     },
     {
       "slug": "madslorentzen.ai-job-search",
@@ -4461,7 +4519,9 @@
         "automation",
         "career"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "efficiency"
+      ]
     },
     {
       "slug": "msitarzewski.agency-agents",
@@ -4502,7 +4562,9 @@
         "claude-code",
         "agent-personalities"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "agent-learning"
+      ]
     },
     {
       "slug": "mvanhorn.last30days-skill",
@@ -4568,7 +4630,9 @@
         "claude",
         "web-search"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "crawler"
+      ]
     },
     {
       "slug": "nevamind-ai.memu",
@@ -4640,7 +4704,9 @@
         "skills",
         "python"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "starlink-self"
+      ]
     },
     {
       "slug": "obra.superpowers",
@@ -4690,7 +4756,9 @@
         "skills",
         "shell"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "agent-learning"
+      ]
     },
     {
       "slug": "openbb-finance.openbb",
@@ -5053,7 +5121,9 @@
         "python",
         "mcp"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "crawler"
+      ]
     },
     {
       "slug": "posthog.posthog",
@@ -5163,7 +5233,9 @@
         "typescript",
         "note-taking"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "efficiency"
+      ]
     },
     {
       "slug": "robbyant.lingbot-map",
@@ -5199,7 +5271,9 @@
         "computer-vision",
         "pytorch"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "embedded-auto"
+      ]
     },
     {
       "slug": "ruvnet.ruview",
@@ -5276,7 +5350,9 @@
         "home-automation",
         "spatial-intelligence"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "embedded-auto"
+      ]
     },
     {
       "slug": "shiyu-coder.kronos",
@@ -5460,7 +5536,9 @@
         "python",
         "open-source"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "agent-learning"
+      ]
     },
     {
       "slug": "simplex-chat.simplex-chat",
@@ -5500,7 +5578,9 @@
         "encryption",
         "e2ee"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "efficiency"
+      ]
     },
     {
       "slug": "tencentcloud.tencentdb-agent-memory",
@@ -5528,7 +5608,9 @@
       "rating": 0,
       "maintenance": null,
       "ai_tags": [],
-      "toolboxes": []
+      "toolboxes": [
+        "agent-learning"
+      ]
     },
     {
       "slug": "virgiliojr94.book-to-skill",
@@ -5574,7 +5656,9 @@
         "pdf-processing",
         "claude-code"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "learning"
+      ]
     },
     {
       "slug": "vxcontrol.pentagi",
@@ -5678,7 +5762,9 @@
         "security-automation",
         "autonomous-agents"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "indiestore"
+      ]
     },
     {
       "slug": "xbtlin.ai-berkshire",
@@ -5932,7 +6018,9 @@
         "claude",
         "stock-analysis"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "trade-pulse"
+      ]
     },
     {
       "slug": "zackriya-solutions.meetily",
@@ -6044,7 +6132,9 @@
         "rust",
         "local-ai"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "efficiency"
+      ]
     },
     {
       "slug": "zhulinsen.daily_stock_analysis",
@@ -6183,7 +6273,9 @@
         "ai-agent",
         "stock-analysis"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "trade-pulse"
+      ]
     },
     {
       "slug": "bojieli.ai-agent-book",
@@ -6403,7 +6495,9 @@
         "rag",
         "mcp"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "learning"
+      ]
     },
     {
       "slug": "bytebytegohq.system-design-101",
@@ -6449,7 +6543,9 @@
         "cloud-computing",
         "distributed-systems"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "learning"
+      ]
     },
     {
       "slug": "codecrafters-io.build-your-own-x",
@@ -6491,7 +6587,9 @@
         "learning",
         "programming"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "learning"
+      ]
     },
     {
       "slug": "earendil-works.pi",
@@ -6690,7 +6788,9 @@
         "tinyml",
         "textbook"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "learning"
+      ]
     },
     {
       "slug": "microsoft.generative-ai-for-beginners",
@@ -6791,7 +6891,9 @@
         "prompt-engineering",
         "llms"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "learning"
+      ]
     },
     {
       "slug": "paperswithbacktest.awesome-systematic-trading",
@@ -6898,7 +7000,9 @@
         "langgraph",
         "nextjs"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "learning"
+      ]
     },
     {
       "slug": "wistbean.learn_python3_spider",
@@ -6942,7 +7046,9 @@
         "reverse-engineering",
         "selenium"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "crawler"
+      ]
     },
     {
       "slug": "abhigyanpatwari.gitnexus",
@@ -7024,7 +7130,9 @@
         "ai-agents",
         "multi-provider"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "agent-learning"
+      ]
     },
     {
       "slug": "deepseek-ai.awesome-deepseek-integration",
@@ -7307,7 +7415,9 @@
         "protocols",
         "web-cli"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "embedded-auto"
+      ]
     },
     {
       "slug": "graphify-labs.graphify",
@@ -7582,7 +7692,9 @@
         "ui-skills",
         "typescript"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "indiestore"
+      ]
     },
     {
       "slug": "juliusbrussee.caveman",
@@ -7724,7 +7836,9 @@
         "claude-code",
         "ai"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "starlink-self"
+      ]
     },
     {
       "slug": "mattpocock.skills",
@@ -7765,7 +7879,9 @@
         "developer-tools",
         "engineering-workflow"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "agent-learning"
+      ]
     },
     {
       "slug": "microsoft.powertoys",
@@ -7807,7 +7923,9 @@
         "utilities",
         "open-source"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "efficiency"
+      ]
     },
     {
       "slug": "nanmicoder.mediacrawler",
@@ -7853,7 +7971,9 @@
         "python",
         "social-media"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "crawler"
+      ]
     },
     {
       "slug": "opendatalab.mineru",
@@ -7973,7 +8093,9 @@
         "cross-platform",
         "java"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "efficiency"
+      ]
     },
     {
       "slug": "pbakaus.impeccable",
@@ -8014,7 +8136,9 @@
         "browser-extension",
         "frontend"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "efficiency"
+      ]
     },
     {
       "slug": "punkpeye.awesome-mcp-servers",
@@ -8088,7 +8212,9 @@
         "curated-list",
         "resources"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "agent-learning"
+      ]
     },
     {
       "slug": "ripienaar.free-for-dev",
@@ -8284,7 +8410,9 @@
         "deep-learning",
         "pytorch"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "embedded-auto"
+      ]
     },
     {
       "slug": "tirth8205.code-review-graph",
@@ -8488,7 +8616,9 @@
         "static-analysis",
         "knowledge-graph"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "starlink-self"
+      ]
     },
     {
       "slug": "zilliztech.attu",
@@ -8528,7 +8658,9 @@
         "ai-workbench",
         "docker"
       ],
-      "toolboxes": []
+      "toolboxes": [
+        "indiestore"
+      ]
     }
   ],
   "tables": [
@@ -8615,6 +8747,201 @@
           "list_name": "PrepTools",
           "collected": true,
           "source": "table"
+        },
+        {
+          "repo": "langchain-ai/langchain",
+          "role": "候选",
+          "usage": "rare",
+          "note": "",
+          "slug": "langchain-ai.langchain",
+          "language": "Python",
+          "stars": null,
+          "summary": "LLM 应用与 Agent 开发的事实标准框架（14.3 万 star，MIT，全库连接度最高的枢纽节点）。LangChain 提供组件与集成，LangGraph 提供状态化 Agent 编排（状态机 + 工具调用）。\n\n**对你（Agent 主线）的价值：重点学 LangGraph，别在旧 API 上浪费时间**——Agent 编排本质是状态机设计（节点 + 条件边 + 记忆），LangGraph 就是这套思想的工程化。你日常用的 OpenClaw 同类能力，LangGraph 能帮你理解底层原理并自己搭。",
+          "list_name": "ArchStack",
+          "collected": true,
+          "source": "note"
+        },
+        {
+          "repo": "langgenius/dify",
+          "role": "候选",
+          "usage": "rare",
+          "note": "",
+          "slug": "langgenius.dify",
+          "language": "TypeScript",
+          "stars": null,
+          "summary": "开源可视化 Agent 工作流 + RAG 平台（15.1 万 star，今日仍活跃）。拖拽编排、多模型接入、MCP 支持、云/私有化部署，几分钟搭出可演示的 AI 应用。\n\n**对你（AI 从业者）的定位：交付利器 + 行业参照，不是日常开发栈。** 快速原型、给业务方演示、团队协作场景用它效率极高；深度定制、自己控代码时用 LangGraph（库里已有）。两者的分界线：**要快交付 → Dify，要深控制 → LangGraph**。",
+          "list_name": "ArchStack",
+          "collected": true,
+          "source": "note"
+        },
+        {
+          "repo": "sierra-research/tau2-bench",
+          "role": "候选",
+          "usage": "rare",
+          "note": "",
+          "slug": "sierra-research.tau2-bench",
+          "language": "Python",
+          "stars": null,
+          "summary": "Sierra 出品的 Agent 能力评测基准（1.7k star，MIT，活跃）。模拟真实世界客服场景（航空/零售/银行）测 Agent 的工具调用能力，含知识检索与语音全双工评测，官方排行榜 taubench.com。\n\n**对你（Agent 开发 + 独立站 AI 客服）的价值：Agent 评测的行业参照。** 开发完 Agent 怎么证明\"变好了\"？τ-Bench 就是量化手段——独立站 AI 客服上线前，可参考它的场景设计自己的评测集。属于「需要时再看」型，不是日常依赖。",
+          "list_name": "ArchStack",
+          "collected": true,
+          "source": "note"
+        },
+        {
+          "repo": "addyosmani/agent-skills",
+          "role": "候选",
+          "usage": "rare",
+          "note": "",
+          "slug": "addyosmani.agent-skills",
+          "language": "JavaScript",
+          "stars": null,
+          "summary": "Addy Osmani（Google Chrome 团队）的 AI 编程 Agent 技能库（8.1 万 star，MIT，活跃）。把资深工程师工作流、质量门禁、最佳实践编码成 slash 命令，覆盖从需求到发布全生命周期，Claude Code / Codex / Cursor 通用。\n\n**对你（OpenClaw skills 体系）的价值：skill 设计的参考蓝本。** 你正在用 OpenClaw + 自建 skills（ocr review、caveman 等），这个仓库展示了\"如何把工程经验系统化编码成技能\"——质量门禁、工作流编排、最佳实践注入，直接借鉴它的结构设计优化自己的 skill 体系。",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "note"
+        },
+        {
+          "repo": "affaan-m/ECC",
+          "role": "候选",
+          "usage": "rare",
+          "note": "",
+          "slug": "affaan-m.ecc",
+          "language": "JavaScript",
+          "stars": null,
+          "summary": "AI 编程 Agent 的性能优化体系（23.6 万 star，MIT，活跃）：skills + instincts + memory + security + research-first 开发方法，面向 Claude Code / Codex / Cursor 系。\n\n**定位：参考库，谨慎看待。** star 数异常高（全库第一）可能是传播效应而非工程含金量；主要服务 Claude Code 系，与 OpenClaw 不完全兼容。价值在于观察 agent 工具生态的体系设计（记忆/安全/技能如何组织），不盲从、不深度投入。",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "note"
+        },
+        {
+          "repo": "different-ai/openwork",
+          "role": "候选",
+          "usage": "rare",
+          "note": "",
+          "slug": "different-ai.openwork",
+          "language": "TypeScript",
+          "stars": null,
+          "summary": "Claude Cowork 的开源替代（2 万 star，活跃）：桌面应用 + MCP 平台，跨编码 Agent/团队共享 AI 工作流——skills、MCP 连接、服务配置复用，不锁定单一工具。\n\n**定位：跨工具工作流共享的范式参考。** 单人开发阶段主力是 OpenClaw，跨工具共享需求不强；若以后同时用多个 agent 工具（Claude Code/Cursor）或带团队，它的共享机制值得借鉴。现阶段收藏了解。",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "note"
+        },
+        {
+          "repo": "dontbesilent2025/dbskill",
+          "role": "候选",
+          "usage": "rare",
+          "note": "",
+          "slug": "dontbesilent2025.dbskill",
+          "language": "JavaScript",
+          "stars": null,
+          "summary": "商业诊断 AI Skills 工具箱（9k star，活跃）：29 个业务技能（商业诊断/内容优化/行动决策），基于 4000+ 结构化知识原子，跨平台 Agent 兼容。\n\n**定位：商业诊断 skill 的结构参考。** 重点看「知识原子 → skill」的组织方式，借鉴到自己的 agent 技能体系；商业诊断框架（定位/产品/增长）可用于独立站分析。注意内容偏国内创业者语境，深度需自行验证（star 可能有营销水分）。",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "note"
+        },
+        {
+          "repo": "esengine/DeepSeek-Reasonix",
+          "role": "候选",
+          "usage": "rare",
+          "note": "",
+          "slug": "esengine.deepseek-reasonix",
+          "language": "Go",
+          "stars": null,
+          "summary": "",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "note"
+        },
+        {
+          "repo": "msitarzewski/agency-agents",
+          "role": "候选",
+          "usage": "rare",
+          "note": "",
+          "slug": "msitarzewski.agency-agents",
+          "language": "Shell",
+          "stars": null,
+          "summary": "带人格的专家 Agent 集合（13.8 万 star，MIT，活跃）：\"前端法师\"\"Reddit 忍者\"等角色化 agent，每个有专门角色/人格/工作流/交付物，装进 Claude Code/Cursor 用。\n\n**定位：agent 人格化设计的参考样本，谨慎看待。** star 异常高（可能传播效应），面向 Claude Code 系、OpenClaw 不完全兼容；\"人格化\"内容偏营销向。价值在于观察角色化 agent 的设计思路（角色定义/流程/交付物组织），与 ECC 同类处理——参考不盲从。",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "note"
+        },
+        {
+          "repo": "obra/superpowers",
+          "role": "候选",
+          "usage": "rare",
+          "note": "",
+          "slug": "obra.superpowers",
+          "language": "Shell",
+          "stars": null,
+          "summary": "Agentic skills 框架 + 软件开发方法论（26.5 万 star，MIT，活跃）：子 Agent 驱动开发（subagent-driven development），把软件工程流程（头脑风暴→规划→执行）组织成可组合技能。Obra（Perl 社区大佬）出品。\n\n**状态：已参考提炼，作为来源记录保留。** 其方法论/技能框架已经研究过并提炼成自己的 skill（含 SDLC 流程组织、子任务拆解思路）。后续有新版本可回看，无需重新研究。star 数有传播效应，不代表需要追加投入。",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "note"
+        },
+        {
+          "repo": "Shubhamsaboo/awesome-llm-apps",
+          "role": "候选",
+          "usage": "rare",
+          "note": "",
+          "slug": "shubhamsaboo.awesome-llm-apps",
+          "language": "Python",
+          "stars": null,
+          "summary": "100+ 开源 AI Agent / Agent Skills / RAG 应用合集（12.9 万 star，Apache 2.0，周更），全部端到端跑通。\n\n**定位：AI 应用灵感/模板库——按需查，不系统学。** 做具体项目前先搜有没有现成模板：RAG（study-vault 语义检索）、Agent（独立站客服）、量化分析 Agent 都能找到参考。别当教程通读，用时检索。",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "note"
+        },
+        {
+          "repo": "TencentCloud/TencentDB-Agent-Memory",
+          "role": "候选",
+          "usage": "rare",
+          "note": "",
+          "slug": "tencentcloud.tencentdb-agent-memory",
+          "language": "TypeScript",
+          "stars": null,
+          "summary": "",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "note"
+        },
+        {
+          "repo": "andrewyng/aisuite",
+          "role": "候选",
+          "usage": "rare",
+          "note": "",
+          "slug": "andrewyng.aisuite",
+          "language": "Python",
+          "stars": null,
+          "summary": "吴恩达出品的轻量多 LLM 统一接口库（1.6 万 star，MIT，活跃）：一个 API 切换 OpenAI/Anthropic/Google/DeepSeek 等，带 Agents API（工具/工具包/MCP）。\n\n**对你（多模型接入）的定位：项目内多模型切换的轻量库。** 与 OmniRoute（外部网关服务）定位不同——aisuite 是集成进代码的库。信息采集/舆情管线里不同任务用不同模型时，一行切换。Agents API 可与 pi（TS 系）对照研究。",
+          "list_name": "PrepTools",
+          "collected": true,
+          "source": "note"
+        },
+        {
+          "repo": "mattpocock/skills",
+          "role": "候选",
+          "usage": "rare",
+          "note": "",
+          "slug": "mattpocock.skills",
+          "language": "Shell",
+          "stars": null,
+          "summary": "Matt Pocock（TS 圈大佬）的实战 agent 技能集（19.8 万 star，MIT，活跃）：shell 基础、可组合、**模型无关**，\"真实工程师\"向（反 vibe coding），小而可改。\n\n**对你（skill 体系）的定位：实战技能写法参考。** 与 addyosmani/agent-skills、superpowers 共同构成你的 skill 设计参考源。模型无关特性对 OpenClaw 兼容好——重点学「小而可组合」的 skill 结构设计。",
+          "list_name": "PrepTools",
+          "collected": true,
+          "source": "note"
+        },
+        {
+          "repo": "punkpeye/awesome-mcp-servers",
+          "role": "候选",
+          "usage": "rare",
+          "note": "",
+          "slug": "punkpeye.awesome-mcp-servers",
+          "language": null,
+          "stars": null,
+          "summary": "MCP Server 精选目录（9.2 万 star，MIT，活跃）：文件访问/数据库/API 集成等各类 MCP server 的分类索引。\n\n**定位：MCP 生态资源库——给 OpenClaw/agent 找扩展能力的总入口。** 需要什么能力先来这里搜现成 MCP server。配合库里的 MCP 工具（chrome-devtools-mcp、codebase-memory-mcp）使用，做 agent 开发（pi 方向）时查现成 server。",
+          "list_name": "PrepTools",
+          "collected": true,
+          "source": "note"
         }
       ],
       "orphan": false
@@ -8674,6 +9001,397 @@
           "stars": null,
           "summary": "短视频平台数据爬取工具（1.9 万 star，Apache 2.0，活跃）：抖音/TikTok/快手/B站无水印下载 + 数据采集，异步高性能，FastAPI 提供 RESTful API + 在线批量解析。\n\n**对你（爬虫 + 信息采集主线）的定位：短视频数据采集主力——爬虫三件套成员**（与 MediaCrawler、learn_python3_spider 配套）。抖音/B站舆情与热点数据采集的现成方案；反爬（无水印/签名算法）是逆向参考；FastAPI 架构可直接对接你的服务层。",
           "list_name": "PrepTools",
+          "collected": true,
+          "source": "table"
+        },
+        {
+          "repo": "CoplayDev/unity-mcp",
+          "role": "候选",
+          "usage": "rare",
+          "note": "",
+          "slug": "coplaydev.unity-mcp",
+          "language": "C#",
+          "stars": null,
+          "summary": "AI 助手通过 MCP 控制 Unity 编辑器的桥接（1.3 万 star，MIT，活跃）：管理资源、控制场景、改脚本、自动化（47 个工具）。\n\n**定位：AI 控制 3D 编辑器的范式参考（储备中的储备）。** 潜在用途：AI 短剧的 3D 场景生产、自动驾驶仿真的可视化环境搭建（仿真常用 Unity/Unreal 渲染）。两个方向都未启动，现阶段只看不动。",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "note"
+        }
+      ],
+      "orphan": false
+    },
+    {
+      "project": "crawler",
+      "title": "爬虫 / 数据采集",
+      "purpose": "多平台内容采集、网页自动化、信息搜索",
+      "status": "active",
+      "repos": [
+        {
+          "repo": "nanmicoder/mediacrawler",
+          "role": "核心",
+          "usage": "weekly",
+          "note": "爬虫三件套核心，多平台自媒体采集",
+          "slug": "nanmicoder.mediacrawler",
+          "language": "Python",
+          "stars": null,
+          "summary": "Playwright 驱动的多平台自媒体数据采集（6 万 star，活跃）：小红书/抖音/快手/B站/微博/贴吧/知乎，**无需 JS 逆向**抓公开内容（笔记/视频/评论/帖子）。\n\n**对你（爬虫 + 信息采集主线）的定位：多平台内容采集主力——爬虫三件套核心**（MediaCrawler + Douyin_TikTok_Download_API + learn_python3_spider）。Playwright 方案免逆向、易维护；覆盖比 Douyin API 更广（全平台采集）。注意合规：仅限学习/个人用途。",
+          "list_name": "PrepTools",
+          "collected": true,
+          "source": "table"
+        },
+        {
+          "repo": "panniantong/agent-reach",
+          "role": "核心",
+          "usage": "weekly",
+          "note": "信息采集主线核心工具",
+          "slug": "panniantong.agent-reach",
+          "language": "Python",
+          "stars": null,
+          "summary": "零 API 费用的跨平台读取/搜索 CLI（6.4 万 star，MIT，活跃）：Twitter/Reddit/YouTube/GitHub/B站/小红书全读，免费后端 + 自动降级 + cookie 配置，MCP/CLI 皆可。\n\n**状态：已安装使用中。** 是信息采集主线的核心工具——**与 last30days-skill 分工：它管国内平台直采（B站/小红书/微博），last30days 管海外趋势综合**。国内+海外全渠道覆盖，支撑量化舆情与独立站热点捕获。",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "table"
+        },
+        {
+          "repo": "wistbean/learn_python3_spider",
+          "role": "辅助",
+          "usage": "rare",
+          "note": "爬虫教程字典按需查",
+          "slug": "wistbean.learn_python3_spider",
+          "language": "Python",
+          "stars": null,
+          "summary": "中文爬虫圈最经典的从 0 到 1 教程库（2.2 万 star，仍在更新）。覆盖面极全：抓包（fiddler/mitmproxy，含手机 APP）、requests/bs4/selenium/appium/scrapy 全家桶、IP 代理、验证码识别、MySQL/MongoDB、多线程多进程、CSS 加密逆向、JS 逆向、分布式爬虫与实战项目。\n\n**对你（爬虫主线）的价值：** 把它当**字典按需查**，不是当书读——遇到具体场景（某网站反爬、APP 抓包、JS 逆向）直接翻对应章节。CSS/JS 逆向与验证码部分是进阶硬货，做对抗型爬虫时的现成参考。",
+          "list_name": "LearnHub",
+          "collected": true,
+          "source": "table"
+        },
+        {
+          "repo": "mvanhorn/last30days-skill",
+          "role": "辅助",
+          "usage": "weekly",
+          "note": "海外趋势采集（舆情消费场景）",
+          "slug": "mvanhorn.last30days-skill",
+          "language": "Python",
+          "stars": null,
+          "summary": "AI Agent 趋势调研技能（5.6 万 star，MIT，活跃）：并行搜索 Reddit/X/YouTube/HN/Polymarket/全网，按真实互动信号排序，AI 裁判合成有依据的简报。**OpenClaw 原生技能**（topics 含 openclaw/clawhub），可直接安装使用。\n\n**对你（三线项目）的定位：核心调研基础设施。**\n- **量化舆情分析**：市场情绪/热点事件采集 → 作为交易信号的舆情面输入\n- **独立站热点捕获**：跨平台趋势捕捉 → 选品/内容选题依据\n- **信息采集项目**：其「多平台并行 + 互动信号排序 + AI 合成」架构是信息采集管线的参考范本\n- 通过用户 API key/浏览器会话桥接封闭平台，是传统搜索引擎之外的补充信源",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "table"
+        },
+        {
+          "repo": "alibaba/page-agent",
+          "role": "辅助",
+          "usage": "rare",
+          "note": "网页自动化新范式",
+          "slug": "alibaba.page-agent",
+          "language": "TypeScript",
+          "stars": null,
+          "summary": "阿里的页面内嵌 GUI Agent（2.8 万 star，MIT，活跃）。一行 script 把 AI 代理嵌入网页，自然语言操控界面（点击/填表），纯文本 DOM 操作——不需要浏览器插件、无头浏览器或多模态模型。提供 MCP Server（beta）。\n\n**对你（爬虫 + 独立站）的价值：网页自动化的新范式参考。** 传统爬虫是\"写死选择器/无头浏览器\"，page-agent 是\"自然语言指挥 DOM\"——复杂交互页面的自动化盲区它可能补上。独立站场景：产品页 AI 助手、表单自动填充可直接用。与你的 Python 爬虫主力是平行补充关系，不是替代。",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "table"
+        },
+        {
+          "repo": "chromedevtools/chrome-devtools-mcp",
+          "role": "辅助",
+          "usage": "rare",
+          "note": "复杂登录/JS渲染/反爬调试",
+          "slug": "chromedevtools.chrome-devtools-mcp",
+          "language": "TypeScript",
+          "stars": null,
+          "summary": "Chrome 官方 DevTools 团队的 MCP Server（4.8 万 star，Apache 2.0，活跃）：让 AI Agent 控制/检查真实 Chrome——自动化、调试、性能分析（Puppeteer 驱动），支持 MCP 与 CLI 两种模式。\n\n**对你（爬虫 + OpenClaw）的价值：浏览器自动化的官方调试利器。** 爬虫场景：复杂登录、JS 渲染、反爬对抗的调试神器；MCP 标准可直接接进 OpenClaw 工具链。与 page-agent（页面内嵌 GUI agent）互补：它管浏览器底层调试，page-agent 管页面内自然语言操控。",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "table"
+        },
+        {
+          "repo": "knockoutez/wigolo",
+          "role": "候选",
+          "usage": "rare",
+          "note": "MCP 化本地搜索/爬取",
+          "slug": "knockoutez.wigolo",
+          "language": "TypeScript",
+          "stars": null,
+          "summary": "MCP Server（4k star，beta，活跃）：给 AI Agent 提供本地优先的网页搜索/抓取/爬取/研究能力——无 API key、无云依赖、零成本。\n\n**对你（爬虫 + Agent）的定位：MCP 化的本地搜索/爬取能力。** 与 OpenClaw 自带 web_search（云端聚合）对比，它是本地抓取路线（隐私好、零成本），爬取/研究能力可作 agent 工具补充。beta 阶段稳定性待验证，作为候选方案收藏。",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "table"
+        },
+        {
+          "repo": "astrbotdevs/astrbot",
+          "role": "候选",
+          "usage": "rare",
+          "note": "采集后处理/机器人（或归 starlink-self 竞品参照）",
+          "slug": "astrbotdevs.astrbot",
+          "language": "Python",
+          "stars": null,
+          "summary": "Python 多 IM 平台 AI 聊天机器人框架（3.8 万 star，AGPL-3.0，活跃）：接 QQ/Discord/Telegram 等，多 LLM、插件市场、Docker 部署。README 自称 \"openclaw alternative\"。\n\n**定位：OpenClaw 的国产竞品参照，不深度投入。** 你在用 OpenClaw + 飞书链路，AstrBot 的价值是参考其国内 IM（QQ/飞书）接入方案与插件市场机制，对比自身 skill 体系设计。不会替换主力。",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "table"
+        }
+      ],
+      "orphan": false
+    },
+    {
+      "project": "efficiency",
+      "title": "效率工具",
+      "purpose": "日常效率 / 办公自动化 / 会议 / 通讯",
+      "status": "active",
+      "repos": [
+        {
+          "repo": "microsoft/powertoys",
+          "role": "核心",
+          "usage": "daily",
+          "note": "Windows 主机日常效率工具（已安装）",
+          "slug": "microsoft.powertoys",
+          "language": "C",
+          "stars": null,
+          "summary": "微软官方 Windows 效率工具集（13.7 万 star，MIT，活跃）：30+ 工具——FancyZones 窗口布局、PowerRename 批量改名、Keyboard Manager 键位映射、Advanced Paste 等。\n\n**状态：已安装使用中（Windows 主机日常效率工具）。** 自用工具，不需要研究，跟进版本更新即可。",
+          "list_name": "PrepTools",
+          "collected": true,
+          "source": "table"
+        },
+        {
+          "repo": "hugohe3/ppt-master",
+          "role": "核心",
+          "usage": "weekly",
+          "note": "每周汇报 PPT 依赖",
+          "slug": "hugohe3.ppt-master",
+          "language": "Python",
+          "stars": null,
+          "summary": "AI 生成原生 PowerPoint 的工具（4.2 万 star，MIT，活跃）：文档/主题 → 真 PPT（形状/转场/动画/数据图表/音频旁白/自定义模板），python-pptx 驱动。\n\n**对你：每周汇报的 PPT 依赖工具。** 需要做汇报 PPT 时直接用——把周报内容/项目数据转成 PPT，含图表。与 OfficeCLI（Office 全家桶命令行）互补。实用工具，保持跟进。",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "table"
+        },
+        {
+          "repo": "iofficeai/officecli",
+          "role": "辅助",
+          "usage": "weekly",
+          "note": "办公自动化（AI 读写 Office）",
+          "slug": "iofficeai.officecli",
+          "language": "C#",
+          "stars": null,
+          "summary": "专为 AI Agent 读写/自动化 Office 三件套设计的 CLI（2.4 万 star，Apache 2.0，活跃）：单二进制、免装 Office，Word/Excel/PPT 全操作，独特能力是**把文档渲染成 HTML/PNG 给 AI「看」**——闭环「渲染-查看-修改」。与 OpenClaw 生态有关联。\n\n**对你（办公自动化）的定位：AI 操作 Office 文件的桥梁。** 周报/文档/表格自动化直接可用：让 AI 读写 Word/Excel、处理数据表格。与 ppt-master（专精 PPT 生成）互补：OfficeCLI 管全读写 + 渲染反馈，ppt-master 管高质量 PPT 生成。",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "table"
+        },
+        {
+          "repo": "jamiepine/voicebox",
+          "role": "辅助",
+          "usage": "rare",
+          "note": "内容创作配音（短剧/视频）",
+          "slug": "jamiepine.voicebox",
+          "language": "TypeScript",
+          "stars": null,
+          "summary": "开源本地 AI 语音工作室（4.8 万 star，MIT，活跃）：声音克隆、23 语言 TTS（7 引擎）、全局热键听写，完全本地运行，主打隐私——ElevenLabs/WisprFlow 的开源替代。\n\n**定位：储备能力（3 分）——AI 短剧/内容创作的本地配音引擎。** 声音克隆 + TTS 是短剧配音核心需求，本地免费替代 ElevenLabs（省订阅费）；3060 支持 CUDA 本地跑。与 OpenMontage（短剧生产线）、video-use（剪辑）组成内容工具链。现阶段短剧未启动，收藏备用。",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "table"
+        },
+        {
+          "repo": "zackriya-solutions/meetily",
+          "role": "辅助",
+          "usage": "rare",
+          "note": "自用会议纪要工具",
+          "slug": "zackriya-solutions.meetily",
+          "language": "Rust",
+          "stars": null,
+          "summary": "本地 AI 会议助手（2.8 万 star，MIT，活跃）：Rust 实现，Parakeet/Whisper 实时转写 + 说话人分离 + Ollama 本地总结，100% 本地无云。\n\n**定位：自用会议纪要工具。** 个人使用（非飞书会议/隐私场景），无需深入研究。",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "table"
+        },
+        {
+          "repo": "diegosouzapw/omniroute",
+          "role": "辅助",
+          "usage": "rare",
+          "note": "开发省钱工具（AI 网关参照）",
+          "slug": "diegosouzapw.omniroute",
+          "language": "TypeScript",
+          "stars": null,
+          "summary": "免费 AI 网关（3.6 万 star，MIT，活跃）：一个端点聚合 290+ 供应商（90+ 免费）/500+ 模型，配额感知自动 fallback，RTK+Caveman 压缩省 15-95% token，兼容主流编码工具，MCP/A2A。\n\n**定位：开发省钱工具 + 网关方案参照，商业场景慎用。** 个人开发用免费池省钱可以；但 AI 独立站**不能押注免费池**——配额不稳定、客户数据经第三方有合规风险。商业高可用需求优先自己用 LiteLLM 搭网关（开源可控、同样支持多供应商 fallback）。DeepSeek 直连起步已足够。",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "table"
+        },
+        {
+          "repo": "ottermind/chat2db",
+          "role": "辅助",
+          "usage": "rare",
+          "note": "数据方向日常 AI 查数（trade-pulse 提速）",
+          "slug": "ottermind.chat2db",
+          "language": "Java",
+          "stars": null,
+          "summary": "AI 驱动数据库客户端 + SQL 编辑器（2.8 万 star，活跃）：30+ 数据库支持，自然语言生成/解释/优化 SQL，跨平台 GUI。\n\n**对你（数据方向）的定位：日常 AI 查数工具。** 与 WrenAI 互补：WrenAI 是服务端 text-to-SQL（给业务方/BI 平台），Chat2DB 是客户端 GUI（自己日常用）。trade-pulse 数据存储、独立站数据库操作时提速。当前数据量不大，价值在量级上来后更明显。",
+          "list_name": "PrepTools",
+          "collected": true,
+          "source": "table"
+        },
+        {
+          "repo": "simplex-chat/simplex-chat",
+          "role": "辅助",
+          "usage": "rare",
+          "note": "自用通讯工具",
+          "slug": "simplex-chat.simplex-chat",
+          "language": "Haskell",
+          "stars": null,
+          "summary": "无用户标识的隐私通讯网络（1.9 万 star，AGPL-3.0，活跃）：无需手机号/用户名，100% 隐私设计，Trail of Bits 审计，全平台客户端。\n\n**定位：自用通讯工具。** 个人日常使用，不需要深入研究。",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "table"
+        },
+        {
+          "repo": "refactoringhq/tolaria",
+          "role": "候选",
+          "usage": "rare",
+          "note": "Markdown 知识库桌面查看备选",
+          "slug": "refactoringhq.tolaria",
+          "language": "TypeScript",
+          "stars": null,
+          "summary": "跨平台 Markdown 知识库管理桌面应用（1.9 万 star，AGPL-3.0，活跃）：第二大脑、个人知识管理、团队文档（可作 AI 上下文）。\n\n**定位：Markdown 知识库的桌面查看/管理备选（3 分）。** 你的 study-vault 主链路是 OpenClaw 自动化 + GitHub Pages 展示，tolaria 是本地 GUI 交互方式——不冲突但非必需。需要本地可视化浏览知识库时再用。",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "table"
+        },
+        {
+          "repo": "pbakaus/impeccable",
+          "role": "候选",
+          "usage": "rare",
+          "note": "UI 设计质检（独立站配套）",
+          "slug": "pbakaus.impeccable",
+          "language": "JavaScript",
+          "stars": null,
+          "summary": "AI 前端设计指导工具（5.3 万 star，Apache 2.0，活跃）：23 命令 + 60 条确定性检测规则，让 AI 生成界面摆脱千篇一律、达到精致品牌一致——结构化批评、浏览器实时迭代。\n\n**对你（独立站 UI）的定位：AI 生成界面的设计质检工具。** 独立站改版/美化时与 ui-skills（设计技能包）配套：技能给方法，impeccable 给质检。60 条确定性规则与你的 ocr review 思路同构（确定性规则 + AI 审查），规则设计本身值得参考。",
+          "list_name": "PrepTools",
+          "collected": true,
+          "source": "table"
+        },
+        {
+          "repo": "hasaneyldrm/exercises-dataset",
+          "role": "候选",
+          "usage": "rare",
+          "note": "健身知识库数据源（低优先）",
+          "slug": "hasaneyldrm.exercises-dataset",
+          "language": "HTML",
+          "stars": null,
+          "summary": "1324 个健身动作数据集（1.8 万 star，活跃）：动作 GIF、肌肉群/器械分类、6 语言分步指导，JSON 格式，LogPress App 的数据层。\n\n**定位：健身知识库数据源（低优先）。** 你平时健身，主要用作知识库素材——动作库/肌肉群知识的参考数据。非工作方向，非高频需求，放着备用即可。",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "table"
+        },
+        {
+          "repo": "madslorentzen/ai-job-search",
+          "role": "候选",
+          "usage": "rare",
+          "note": "条件工具（有求职需求时启用）",
+          "slug": "madslorentzen.ai-job-search",
+          "language": "TypeScript",
+          "stars": null,
+          "summary": "基于 Claude Code 的 AI 求职自动化框架（2.9 万 star，MIT，活跃）：评估职位、定制简历、写求职信、面试准备，本地运行。\n\n**定位：条件工具（3 分）——有求职需求时启用。** 现阶段无求职需求，收藏备用。若跳槽/求职 AI 岗，这套框架可自动化投递流程；同时作为「agent 多步复杂流程」的范式参考有价值。",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "table"
+        },
+        {
+          "repo": "1jehuang/jcode",
+          "role": "候选",
+          "usage": "rare",
+          "note": "AI 编程 agent 竞品参照（可归 agent-learning）",
+          "slug": "1jehuang.jcode",
+          "language": "Rust",
+          "stars": null,
+          "summary": "Rust 写的 AI 编程 Agent CLI/TUI（1.5 万 star，MIT，活跃），主打 RAM 效率，接 Claude/OpenAI，支持 MCP。AI 编程 agent 赛道的 Rust 路线代表。\n\n**定位：竞品参照，非主力工具。** 日常主力是 OpenClaw；jcode 的价值在于了解同类工具的差异化设计（Rust 轻量路线、RAM 优化、MCP 集成）。保留观察即可，不必深入。",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "table"
+        }
+      ],
+      "orphan": false
+    },
+    {
+      "project": "embedded-auto",
+      "title": "嵌入式智能化 + 自动驾驶仿真",
+      "purpose": "ESP32 硬件调试 / 视觉感知 / 自动驾驶仿真方向储备",
+      "status": "active",
+      "repos": [
+        {
+          "repo": "geo-tp/esp32-bit-pirate",
+          "role": "核心",
+          "usage": "weekly",
+          "note": "嵌入式调试万能工具，第一批入手",
+          "slug": "geo-tp.esp32-bit-pirate",
+          "language": "C++",
+          "stars": null,
+          "summary": "把 ESP32 变成万能协议硬件调试工具（5.1k star，MIT，活跃）：I2C/SPI/UART/蓝牙/WiFi/Sub-GHz/CAN 全协议，USB 串口 + Web CLI，带嗅探/脚本/EEPROM 工具（Bus Pirate 精神续作）。\n\n**对你（嵌入式智能化改造方向）的定位：调试/协议学习的万能工具。** 嵌入式开发调试传感器/芯片/协议时一个工具全搞定；CAN 总线支持衔接自动驾驶方向。与 RuView（ESP32 感知）、openpilot（车载）组成嵌入式工具链。方向启动时第一批入手。",
+          "list_name": "PrepTools",
+          "collected": true,
+          "source": "table"
+        },
+        {
+          "repo": "ruvnet/ruview",
+          "role": "核心",
+          "usage": "rare",
+          "note": "感知层参考案例（ESP32+CSI+边缘AI）",
+          "slug": "ruvnet.ruview",
+          "language": "Rust",
+          "stars": null,
+          "summary": "WiFi 信号空间感知平台（8.8 万 star，MIT，活跃）：ESP32 廉价传感器采集 CSI，穿墙存在检测/呼吸心率监测/空间智能，无摄像头；原生接 Home Assistant/Apple Home 等。\n\n**对你（嵌入式智能化改造）的定位：感知层参考案例。** ESP32 传感器 + CSI 信号处理 + 边缘 AI 栈的完整实现——与 openpilot（车载）互补，RuView 是家居/环境感知方向。嵌入式方向启动时重点研究其固件与信号处理管线。",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "table"
+        },
+        {
+          "repo": "commaai/openpilot",
+          "role": "辅助",
+          "usage": "rare",
+          "note": "自动驾驶启发性参考，现阶段不动手",
+          "slug": "commaai.openpilot",
+          "language": "Python",
+          "stars": null,
+          "summary": "comma.ai 的开源驾驶辅助操作系统（6.3 万 star，MIT，活跃）：给 300+ 车型升级 ADAS，Python（AI 模型层）+ C++（实时控制层）混合架构，端到端驾驶模型 + 确定性控制分离。\n\n**对你（未来方向）的定位：嵌入式 AI 改造 + 自动驾驶仿真的启发性参考。** 它是\"给现有设备加 AI 能力\"的教科书案例：消费级硬件替代 ECU、模型/控制分层解耦——这套范式可复用到你的嵌入式智能改造方向。自动驾驶仿真方面，它提供\"真实部署 + 数据训练闭环\"的视角（专业仿真生态另看 CARLA/SUMO）。现阶段不动手，收藏参考。",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "table"
+        },
+        {
+          "repo": "roboflow/supervision",
+          "role": "辅助",
+          "usage": "rare",
+          "note": "CV 工具层，嵌入式摄像头检测/跟踪",
+          "slug": "roboflow.supervision",
+          "language": "Python",
+          "stars": null,
+          "summary": "模型无关 CV 工具库（4.9 万 star，MIT，活跃）：检测/分割/跟踪/标注一站式可复用工具，无缝接 Ultralytics YOLO / Transformers。\n\n**对你（视觉相关方向）的定位：CV 应用开发工具层。** 三用：① 嵌入式智能化改造——摄像头检测/跟踪是核心场景；② AI 短剧——视频对象跟踪/标注；③ 学习路线——配 cs249r_book 的 CV 部分实践。现阶段方向未启动，作为储备。",
+          "list_name": "PrepTools",
+          "collected": true,
+          "source": "table"
+        },
+        {
+          "repo": "robbyant/lingbot-map",
+          "role": "候选",
+          "usage": "rare",
+          "note": "3D 场景重建技术底座",
+          "slug": "robbyant.lingbot-map",
+          "language": "Python",
+          "stars": null,
+          "summary": "前馈式 3D 基础模型（1.6 万 star，Apache 2.0，活跃）：从流式数据实时重建 3D 场景（Geometric Context Transformer），~20 FPS 实时推理，KITTI/Oxford Spires SOTA。\n\n**定位：研究方向储备（3 分），目前用不到。** 与自动驾驶仿真/视觉方向相关——3D 场景重建是仿真环境构建与感知的技术底座。研究型模型（CV 论文代码，训练代码未放出），方向启动时再看。",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "table"
+        },
+        {
+          "repo": "icewhaletech/casaos",
+          "role": "候选",
+          "usage": "rare",
+          "note": "边缘保留（树莓派家用网关面板）",
+          "slug": "icewhaletech.casaos",
+          "language": "Go",
+          "stars": null,
+          "summary": "开源个人云系统（3.7 万 star，Apache 2.0，活跃）：家用服务器/树莓派的 Docker 应用管理面板，一键装服务、管存储，Web 界面。\n\n**定位：边缘保留（2 分）。** 嵌入式智能化改造用不上它的核心能力（那是 OTA/边缘容器编排/边缘推理的领域，如 K3s、Balena、hawkBit）；它只是\"能跑 Docker 的 Linux 板子\"的图形化管理面板。仅当未来弄树莓派做智能家居/家用服务网关时可能用到。",
+          "list_name": "BizTools",
           "collected": true,
           "source": "table"
         }
@@ -8737,6 +9455,210 @@
           "list_name": "BizTools",
           "collected": true,
           "source": "table"
+        },
+        {
+          "repo": "alibaba/zvec",
+          "role": "候选",
+          "usage": "rare",
+          "note": "",
+          "slug": "alibaba.zvec",
+          "language": "C++",
+          "stars": null,
+          "summary": "阿里开源的嵌入式（in-process）向量数据库，C++ 实现，主打轻量 + 极速。支持稠密/稀疏向量、全文检索、混合查询，可直接嵌进应用进程（类似 SQLite 的定位），提供 Python/Node.js 绑定。1.5 万 star，Apache 2.0，活跃维护。\n\n**对你（RAG 选型）的价值：** 与库里的 milvus/pymilvus 形成互补——milvus 是分布式重型服务，zvec 是嵌入式轻量款。本地小规模 RAG / LLM 记忆 / 个人知识库语义检索场景，用 zvec 免运维、零部署成本；量级上来再上 milvus。做 study-vault 类本地知识库语义检索时，优先试它。",
+          "list_name": "ArchStack",
+          "collected": true,
+          "source": "note"
+        },
+        {
+          "repo": "milvus-io/milvus",
+          "role": "候选",
+          "usage": "rare",
+          "note": "",
+          "slug": "milvus-io.milvus",
+          "language": "Go",
+          "stars": null,
+          "summary": "云原生分布式向量数据库标杆（4.5 万 star，Apache 2.0，活跃）。支持 ANN 搜索、混合查询、实时更新、水平扩展，是生产级 RAG/多模态检索的行业标准。\n\n**对你（独立站 AI 商业产品）的定位：第二阶段的基础设施，起步不用它。** 独立站 AI 客服/商品语义搜索起步阶段（<10 万向量），用 zvec 或 pgvector 轻量方案即可；数据量上来（十万级+、高并发、多租户 SaaS）再迁移 milvus——生态成熟（pymilvus SDK + LangChain/Dify 集成），迁移成本可控。",
+          "list_name": "ArchStack",
+          "collected": true,
+          "source": "note"
+        },
+        {
+          "repo": "milvus-io/pymilvus",
+          "role": "候选",
+          "usage": "rare",
+          "note": "",
+          "slug": "milvus-io.pymilvus",
+          "language": "Python",
+          "stars": null,
+          "summary": "Milvus 官方 Python SDK（1.4k star，Apache 2.0）。Python 里操作 Milvus 的标准接口：建 collection、索引管理、增删改查、向量搜索。\n\n**定位：milvus 的配套工具，无独立价值。** 用 milvus 时自然要装它，不用单独研究。跟进 milvus 主仓库的版本走即可（注意 SDK 与 server 版本兼容表）。深度需求看 milvus 那篇笔记。",
+          "list_name": "ArchStack",
+          "collected": true,
+          "source": "note"
+        },
+        {
+          "repo": "Canner/WrenAI",
+          "role": "候选",
+          "usage": "rare",
+          "note": "",
+          "slug": "canner.wrenai",
+          "language": "Python",
+          "stars": null,
+          "summary": "开源 GenBI（生成式 BI）引擎（1.7 万 star，活跃）：自然语言问数据 → 生成可信 SQL/图表/看板，20+ 数据源。核心创新是 **Context Layer（语义层）**——把业务口径与治理规则注入生成过程，让 text-to-SQL 结果可信可控。\n\n**对你（数据 + 独立站）的价值：AI 数据问答的方向储备。** 数据分析的下一形态是\"直接问数据\"：独立站店主不用写 SQL，自然语言查经营数据；量化场景也可用。与库里 Chat2DB 是竞品，值得对比选型。Context Layer 的语义注入思路对设计 AI 数据产品有参考价值。",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "note"
+        },
+        {
+          "repo": "chatwoot/chatwoot",
+          "role": "候选",
+          "usage": "rare",
+          "note": "",
+          "slug": "chatwoot.chatwoot",
+          "language": "Ruby",
+          "stars": null,
+          "summary": "开源客服工单平台（3.5 万 star，活跃）——Intercom/Zendesk 的自托管替代：全渠道收件箱（在线聊天/邮件/WhatsApp）、帮助中心、内置 AI 客服 Agent（Captain）、Docker 一键部署。\n\n**对你（独立站）的定位：独立站上线时的客服基础设施储备。** 客户咨询/工单/售后是商业产品标配，Chatwoot 是开源首选——省掉 Intercom 按坐席的订阅费。自带 AI Agent 与你的 AI 客服方向契合。现阶段不用动，上线前第一个看它。",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "note"
+        },
+        {
+          "repo": "vxcontrol/pentagi",
+          "role": "候选",
+          "usage": "rare",
+          "note": "",
+          "slug": "vxcontrol.pentagi",
+          "language": "Go",
+          "stars": null,
+          "summary": "全自主 AI 渗透测试 Agent 系统（2.1 万 star，MIT，活跃）：Go 实现，多 LLM 驱动，沙箱 Docker + 20+ 安全工具，知识图谱 + 智能记忆，自动化安全评估。\n\n**定位：技术储备（4 分）。** 两个价值点：① 独立站上线后做自动化安全测试（漏洞/渗透评估，只测自己的系统，注意合规边界）；② 多 Agent + 沙箱隔离架构是技术参考。现阶段不投入。",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "note"
+        },
+        {
+          "repo": "ibelick/ui-skills",
+          "role": "候选",
+          "usage": "rare",
+          "note": "",
+          "slug": "ibelick.ui-skills",
+          "language": "TypeScript",
+          "stars": null,
+          "summary": "设计工程师 UI 技能包 CLI（6.8k star，MIT，活跃）：`npx ui-skills start` 路由 agent 到对应 UI 设计技能（布局/动效/可访问性等）。\n\n**定位：独立站前端 UI 优化的技能包储备（3 分）。** 独立站已在 GitHub 部署，后续改版/美化 UI 时让 AI 生成更好的界面可用。前端非你的主力方向，低频需求。",
+          "list_name": "PrepTools",
+          "collected": true,
+          "source": "note"
+        },
+        {
+          "repo": "zilliztech/attu",
+          "role": "候选",
+          "usage": "rare",
+          "note": "",
+          "slug": "zilliztech.attu",
+          "language": "Shell",
+          "stars": null,
+          "summary": "Milvus 官方 GUI 管理工具（3k star，活跃）：浏览 collection、向量搜索、备份恢复、集群监控、LLM 助手，Web/桌面双端。\n\n**定位：milvus 的配套 GUI 工具，无独立价值。** 用 milvus 时自然配它做可视化管理（与 pymilvus 同为配套）。milvus 还没实际启用（独立站第二阶段基建），跟随主仓库走即可。",
+          "list_name": "PrepTools",
+          "collected": true,
+          "source": "note"
+        }
+      ],
+      "orphan": false
+    },
+    {
+      "project": "learning",
+      "title": "学习栈",
+      "purpose": "AI 书籍 / 系统设计 / 造轮子 / 入门教程",
+      "status": "active",
+      "repos": [
+        {
+          "repo": "bojieli/ai-agent-book",
+          "role": "核心",
+          "usage": "weekly",
+          "note": "Agent 学习主线核心教材",
+          "slug": "bojieli.ai-agent-book",
+          "language": "Python",
+          "stars": null,
+          "summary": "李博杰（月之暗面 / kvcache.ai）的《深入理解 AI Agent》开源书（2.9 万 star，Apache 2.0，活跃）：10 章正文 + 92 个配套实验 + 多语言 PDF。\n\n**对你（Agent 学习主线）的定位：核心教材。** 中文世界最好的 Agent 系统教材之一，理论 + 代码结合；作者与库中 ktransformers 同源（kvcache.ai），实践可互证。边读边跑实验，与你的 OpenClaw 日常实践互相印证。",
+          "list_name": "LearnHub",
+          "collected": true,
+          "source": "table"
+        },
+        {
+          "repo": "bytebytegohq/system-design-101",
+          "role": "辅助",
+          "usage": "rare",
+          "note": "系统设计图解地图",
+          "slug": "bytebytegohq.system-design-101",
+          "language": null,
+          "stars": null,
+          "summary": "ByteByteGo（Alex Xu）的图解系统设计库（8.7 万 star，活跃）：用视觉 + 简单语言讲 API/网络/数据库/分布式/云等复杂系统。\n\n**定位：系统设计的图解地图（4 分）。** 覆盖面广、深度浅——是\"地图\"不是\"教材\"。两种用法：① 独立站架构设计时按需查对应章节（API 层/数据库/缓存/CDN）；② 面试准备时系统过一遍。平时不系统学。",
+          "list_name": "LearnHub",
+          "collected": true,
+          "source": "table"
+        },
+        {
+          "repo": "codecrafters-io/build-your-own-x",
+          "role": "辅助",
+          "usage": "rare",
+          "note": "从零造轮子教程地图",
+          "slug": "codecrafters-io.build-your-own-x",
+          "language": "Markdown",
+          "stars": null,
+          "summary": "从零重造技术的教程合集（53.4 万 star，GitHub 顶级项目）：数据库/编译器/操作系统/3D 渲染/正则引擎等，\"learn by doing\"。\n\n**定位：从零造轮子的教程地图（4 分）——按需挑，不系统学。** 学习某个技术时配套做一次实现，是理解最深的方式。与学习路线配合：学到数据库/网络/编译器等内容时，来这里找对应 \"build your own X\" 实践。",
+          "list_name": "LearnHub",
+          "collected": true,
+          "source": "table"
+        },
+        {
+          "repo": "microsoft/generative-ai-for-beginners",
+          "role": "辅助",
+          "usage": "rare",
+          "note": "生成式 AI 基础体系回顾",
+          "slug": "microsoft.generative-ai-for-beginners",
+          "language": "Jupyter Notebook",
+          "stars": null,
+          "summary": "微软官方 21 课生成式 AI 课程（11.4 万 star，MIT，活跃）：Azure OpenAI、ChatGPT、DALL-E、提示工程、RAG、transformer，Jupyter 实践，多语言。\n\n**定位：生成式 AI 基础体系的系统回顾源（4 分）。** 比你的实践层（OpenClaw/Agent 开发）低一阶，但概念体系完整——提示工程、RAG、LLM 原理查漏补缺用。注意实践偏 Azure 生态，概念通用。",
+          "list_name": "LearnHub",
+          "collected": true,
+          "source": "table"
+        },
+        {
+          "repo": "harvard-edge/cs249r_book",
+          "role": "辅助",
+          "usage": "rare",
+          "note": "ML 系统工程进阶教材（TinyML 底座）",
+          "slug": "harvard-edge.cs249r_book",
+          "language": "Python",
+          "stars": null,
+          "summary": "哈佛 CS249r 开源教材《Machine Learning Systems》（2.8 万 star，活跃）：ML 系统工程原理与实践——云端/移动端/嵌入式 ML，动手实验 + TinyTorch 框架，多语言。\n\n**对你（两条主线）的定位：ML 系统工程进阶教材。** ① 嵌入式智能化改造方向——边缘/嵌入式 ML（TinyML）是理论底座；② AI 学习主线——训练/推理/部署的工程实践是 AI 从业者进阶必学。比纯模型算法更贴近工程，配合动手实验（TinyTorch 从零实现）。",
+          "list_name": "LearnHub",
+          "collected": true,
+          "source": "table"
+        },
+        {
+          "repo": "virgiliojr94/book-to-skill",
+          "role": "候选",
+          "usage": "rare",
+          "note": "技术书转可执行知识",
+          "slug": "virgiliojr94.book-to-skill",
+          "language": "Python",
+          "stars": null,
+          "summary": "把技术书 PDF/EPUB 转成 agent skill 的工具（1.4 万 star，MIT，活跃）：提炼成框架/决策规则/分章文件，省 token（24x-51x），消除幻觉（agent 引用原文而非全文灌入）。\n\n**对你（学习 + skill 体系）的定位：技术书→可执行知识的转换工具。** 与你的学习方式契合：study-vault 是\"知识入库\"，它是\"书→agent 可引用 skill\"——学习与实践一体。生成的 skill 是 markdown 结构，可适配 OpenClaw。注意版权边界（自购书籍没问题）。",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "table"
+        },
+        {
+          "repo": "thu-maic/openmaic",
+          "role": "候选",
+          "usage": "rare",
+          "note": "多智能体编排工程实践",
+          "slug": "thu-maic.openmaic",
+          "language": "TypeScript",
+          "stars": null,
+          "summary": "清华大学的开源多智能体交互教室（Open Multi-Agent Interactive Classroom）。用 LLM 编排多个 AI 角色模拟真实课堂互动，实现沉浸式多智能体学习体验；基于 Next.js + LangGraph 构建，支持一键部署（Vercel）、视频导出、项目式学习，并可接入各类 LLM 服务商。MIT 协议，2 万+ star，有 JCST 2026 论文背书。\n\n**对你（AI 从业者）的价值：** 多智能体协作落地教育场景的清华官方参考实现，LangGraph 编排 + 多角色对话的工程实践值得拆解；若未来做 AI 教学/培训产品，可直接借鉴其交互设计。",
+          "list_name": "LearnHub",
+          "collected": true,
+          "source": "table"
         }
       ],
       "orphan": false
@@ -8798,6 +9720,45 @@
           "list_name": "ArchStack",
           "collected": true,
           "source": "table"
+        },
+        {
+          "repo": "antirez/ds4",
+          "role": "候选",
+          "usage": "rare",
+          "note": "",
+          "slug": "antirez.ds4",
+          "language": "C",
+          "stars": null,
+          "summary": "",
+          "list_name": "ArchStack",
+          "collected": true,
+          "source": "note"
+        },
+        {
+          "repo": "lyogavin/airllm",
+          "role": "候选",
+          "usage": "rare",
+          "note": "",
+          "slug": "lyogavin.airllm",
+          "language": "Python",
+          "stars": null,
+          "summary": "AirLLM——极低显存跑超大模型的推理方案（2.4 万 star，Apache 2.0，活跃）。原理是分层推理：逐层把权重加载进显存计算，不量化不蒸馏，4GB 可跑 70B、12GB 可跑 DeepSeek-V3 671B。\n\n**对你（3060 12GB）的价值：兜底方案，不是主力。** 代价是速度极慢——逐层反复加载权重，吞吐远低于正常推理，只适合离线/批量/实验场景。与 ktransformers（异构调度、需内存配合、快）形成互补：**要快 → KTransformers，没内存只能等 → AirLLM**。",
+          "list_name": "ArchStack",
+          "collected": true,
+          "source": "note"
+        },
+        {
+          "repo": "xorbitsai/inference",
+          "role": "候选",
+          "usage": "rare",
+          "note": "",
+          "slug": "xorbitsai.inference",
+          "language": "Python",
+          "stars": null,
+          "summary": "Xinference——统一推理引擎（9.5k star，Apache 2.0，活跃）。LLM/语音/多模态模型统一成 OpenAI 兼容 API 部署，支持 vLLM 后端、自动批处理、云端/本地，主打\"改一行代码换模型\"。\n\n**对你（本地推理）的定位：ollama 的工程化备选。** 日常快速跑用 ollama（更傻瓜、生态更大）；需要多模态/语音/生产级部署时切 Xinference。两者功能重叠，不必都深度研究——主用 ollama，按需切换。",
+          "list_name": "ArchStack",
+          "collected": true,
+          "source": "note"
         }
       ],
       "orphan": false
@@ -8859,6 +9820,45 @@
           "list_name": "PrepTools",
           "collected": true,
           "source": "table"
+        },
+        {
+          "repo": "NevaMind-AI/memU",
+          "role": "候选",
+          "usage": "rare",
+          "note": "",
+          "slug": "nevamind-ai.memu",
+          "language": "Python",
+          "stars": null,
+          "summary": "跨 Agent 个人记忆系统（1.4 万 star，活跃）：个人记忆存成共享 wiki，跨 LLM 会话/Agent/设备持久化，**自动从 agent 历史提炼可复用技能**，核心逻辑仅 500 行。OpenClaw 生态相关（topics 含 openclaw-skills）。\n\n**对你（记忆体系）的定位：记忆系统设计的参考。** 你已有 OpenClaw 记忆体系（MEMORY.md + memory/），memU 的价值在于「自动提炼技能」机制——从历史中沉淀可复用能力，正是你手动做技能沉淀（ocr review 等）的思路自动化。值得研究其 500 行核心逻辑，借鉴到自己的记忆/技能流程。",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "note"
+        },
+        {
+          "repo": "JuliusBrussee/caveman",
+          "role": "候选",
+          "usage": "rare",
+          "note": "",
+          "slug": "juliusbrussee.caveman",
+          "language": "JavaScript",
+          "stars": null,
+          "summary": "caveman 技能（9.5 万 star，MIT，活跃）：让 AI 用原始人腔回答，省 65% 输出 token 不影响准确性。OmniRoute 等项目的 token 压缩也借鉴此思路。\n\n**状态：已投入使用——你的 OpenClaw caveman 模式就基于它。** 已配置 lite/full/ultra/wenyan 分级强度，日常节省 DeepSeek token 成本。作为来源记录保留，跟进更新即可。",
+          "list_name": "PrepTools",
+          "collected": true,
+          "source": "note"
+        },
+        {
+          "repo": "tirth8205/code-review-graph",
+          "role": "候选",
+          "usage": "rare",
+          "note": "",
+          "slug": "tirth8205.code-review-graph",
+          "language": "Python",
+          "stars": null,
+          "summary": "本地代码智能图谱（2.8 万 star，MIT，活跃）：tree-sitter 建持久代码图，让 AI 审查只读相关上下文，token 降 38x-528x，MCP + CLI 支持。\n\n**对你（ocr review 工作流）的定位：代码审查场景的知识图谱。** 与 GitNexus/codebase-memory-mcp/graphify 区分：这个是**审查专用**——大仓库审查时只喂相关上下文，直接省 DeepSeek token 成本。可接入现有「提交前 ocr review」流程。",
+          "list_name": "PrepTools",
+          "collected": true,
+          "source": "note"
         }
       ],
       "orphan": false
@@ -8933,6 +9933,32 @@
           "list_name": null,
           "collected": false,
           "source": "table"
+        },
+        {
+          "repo": "xbtlin/ai-berkshire",
+          "role": "候选",
+          "usage": "rare",
+          "note": "",
+          "slug": "xbtlin.ai-berkshire",
+          "language": "Python",
+          "stars": null,
+          "summary": "AI 价值投资研究框架（1.5 万 star，MIT，活跃）：巴菲特/芒格/段永平/李录四大师方法论 + 多 Agent 对抗分析（裁判 Agent 模式），反偏见机制 + 数据校验，实盘验证跑赢主要指数。\n\n**对你（trade-pulse 量化主线）的定位：多 Agent 对抗验证的参考实现。** 核心借鉴点：决策门引入对抗验证（多信号一致才执行）、冲突时暂缓/降仓的裁判机制。与 Vibe-Trading、Kronos、OpenBB、daily_stock_analysis 组成量化工具链。",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "note"
+        },
+        {
+          "repo": "ZhuLinsen/daily_stock_analysis",
+          "role": "候选",
+          "usage": "rare",
+          "note": "",
+          "slug": "zhulinsen.daily_stock_analysis",
+          "language": "Python",
+          "stars": null,
+          "summary": "LLM 多市场股票分析系统（6 万 star，MIT，活跃）：A股/港股/美股多源行情 + 实时新闻 + 决策看板 + 自动推送，GitHub Actions 零成本定时运行，被大量 fork 自用。\n\n**对你（trade-pulse 量化主线）的定位：架构升级的具体蓝图。** 两个核心借鉴点：① data_provider/ 抽象模式——把数据层解耦成 Provider 接口（摆脱对单一数据源的依赖）；② strategies/ 的 YAML 声明式信号设计。与 Vibe-Trading、Kronos、OpenBB、ai-berkshire 组成量化工具链。",
+          "list_name": "BizTools",
+          "collected": true,
+          "source": "note"
         }
       ],
       "orphan": false

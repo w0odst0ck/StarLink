@@ -10,6 +10,7 @@ category: tool
 rating: 5
 maintenance: active
 ai_tags: [ai, value-investing, fintech, multi-agent, fundamental-analysis, claude, stock-analysis]
+toolboxes: [trade-pulse]
 summary: |-
   AI 价值投资研究框架（1.5 万 star，MIT，活跃）：巴菲特/芒格/段永平/李录四大师方法论 + 多 Agent 对抗分析（裁判 Agent 模式），反偏见机制 + 数据校验，实盘验证跑赢主要指数。
   

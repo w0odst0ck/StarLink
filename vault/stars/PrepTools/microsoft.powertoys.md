@@ -10,6 +10,7 @@ category: tool
 rating: 3
 maintenance: active
 ai_tags: [windows, productivity, utilities, open-source]
+toolboxes: [efficiency]
 summary: |-
   微软官方 Windows 效率工具集（13.7 万 star，MIT，活跃）：30+ 工具——FancyZones 窗口布局、PowerRename 批量改名、Keyboard Manager 键位映射、Advanced Paste 等。
   

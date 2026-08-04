@@ -10,6 +10,7 @@ category: tool
 rating: 4
 maintenance: active
 ai_tags: [llm, inference, gpu-optimization, memory-efficient, deep-learning]
+toolboxes: [ms-swift]
 summary: |-
   AirLLM——极低显存跑超大模型的推理方案（2.4 万 star，Apache 2.0，活跃）。原理是分层推理：逐层把权重加载进显存计算，不量化不蒸馏，4GB 可跑 70B、12GB 可跑 DeepSeek-V3 671B。
   

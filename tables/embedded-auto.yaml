@@ -1,0 +1,29 @@
+project: embedded-auto
+title: 嵌入式智能化 + 自动驾驶仿真
+purpose: ESP32 硬件调试 / 视觉感知 / 自动驾驶仿真方向储备
+status: active
+repos:
+  - repo: geo-tp/esp32-bit-pirate
+    role: 核心
+    usage: weekly
+    note: 嵌入式调试万能工具，第一批入手
+  - repo: ruvnet/ruview
+    role: 核心
+    usage: rare
+    note: 感知层参考案例（ESP32+CSI+边缘AI）
+  - repo: commaai/openpilot
+    role: 辅助
+    usage: rare
+    note: 自动驾驶启发性参考，现阶段不动手
+  - repo: roboflow/supervision
+    role: 辅助
+    usage: rare
+    note: CV 工具层，嵌入式摄像头检测/跟踪
+  - repo: robbyant/lingbot-map
+    role: 候选
+    usage: rare
+    note: 3D 场景重建技术底座
+  - repo: icewhaletech/casaos
+    role: 候选
+    usage: rare
+    note: 边缘保留（树莓派家用网关面板）

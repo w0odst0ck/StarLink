@@ -10,6 +10,7 @@ category: tool
 rating: 3
 maintenance: active
 ai_tags: [unity, mcp, ai, game-development, csharp]
+toolboxes: [ai-shortfilm]
 summary: |-
   AI 助手通过 MCP 控制 Unity 编辑器的桥接（1.3 万 star，MIT，活跃）：管理资源、控制场景、改脚本、自动化（47 个工具）。
   

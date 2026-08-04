@@ -10,6 +10,7 @@ category: tool
 rating: 3
 maintenance: active
 ai_tags: [ai-agents, developer-tools, agent-harness, performance-optimization, llm]
+toolboxes: [agent-learning]
 summary: |-
   AI 编程 Agent 的性能优化体系（23.6 万 star，MIT，活跃）：skills + instincts + memory + security + research-first 开发方法，面向 Claude Code / Codex / Cursor 系。
   

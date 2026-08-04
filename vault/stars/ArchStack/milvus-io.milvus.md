@@ -10,6 +10,7 @@ category: tool
 rating: 5
 maintenance: active
 ai_tags: [vector-database, approximate-nearest-neighbor-search, cloud-native, distributed, golang]
+toolboxes: [indiestore]
 summary: |-
   云原生分布式向量数据库标杆（4.5 万 star，Apache 2.0，活跃）。支持 ANN 搜索、混合查询、实时更新、水平扩展，是生产级 RAG/多模态检索的行业标准。
   

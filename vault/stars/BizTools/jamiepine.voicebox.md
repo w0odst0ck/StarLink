@@ -10,6 +10,7 @@ category: tool
 rating: 3
 maintenance: active
 ai_tags: [voice-cloning, tts, local-ai, open-source, typescript]
+toolboxes: [efficiency]
 summary: |-
   开源本地 AI 语音工作室（4.8 万 star，MIT，活跃）：声音克隆、23 语言 TTS（7 引擎）、全局热键听写，完全本地运行，主打隐私——ElevenLabs/WisprFlow 的开源替代。
   

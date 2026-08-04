@@ -10,6 +10,7 @@ category: tool
 rating: 4
 maintenance: active
 ai_tags: [ai, cli, office, agent, docx]
+toolboxes: [efficiency]
 summary: |-
   专为 AI Agent 读写/自动化 Office 三件套设计的 CLI（2.4 万 star，Apache 2.0，活跃）：单二进制、免装 Office，Word/Excel/PPT 全操作，独特能力是**把文档渲染成 HTML/PNG 给 AI「看」**——闭环「渲染-查看-修改」。与 OpenClaw 生态有关联。
   

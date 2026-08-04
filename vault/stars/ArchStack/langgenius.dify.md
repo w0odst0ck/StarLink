@@ -10,6 +10,7 @@ category: tool
 rating: 5
 maintenance: active
 ai_tags: [agentic-ai, workflow, llm, rag, low-code]
+toolboxes: [agent-learning]
 summary: |-
   开源可视化 Agent 工作流 + RAG 平台（15.1 万 star，今日仍活跃）。拖拽编排、多模型接入、MCP 支持、云/私有化部署，几分钟搭出可演示的 AI 应用。
   

@@ -10,6 +10,7 @@ category: tool
 rating: 2
 maintenance: active
 ai_tags: [self-hosted, home-server, docker, golang, vuejs]
+toolboxes: [embedded-auto]
 summary: |-
   开源个人云系统（3.7 万 star，Apache 2.0，活跃）：家用服务器/树莓派的 Docker 应用管理面板，一键装服务、管存储，Web 界面。
   

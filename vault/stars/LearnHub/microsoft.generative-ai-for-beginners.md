@@ -10,6 +10,7 @@ category: tutorial
 rating: 4
 maintenance: active
 ai_tags: [generative-ai, azure, openai, prompt-engineering, llms]
+toolboxes: [learning]
 summary: |-
   微软官方 21 课生成式 AI 课程（11.4 万 star，MIT，活跃）：Azure OpenAI、ChatGPT、DALL-E、提示工程、RAG、transformer，Jupyter 实践，多语言。
   

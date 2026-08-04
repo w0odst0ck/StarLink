@@ -10,6 +10,7 @@ category: tool
 rating: 5
 maintenance: active
 ai_tags: [llm, quant, multi-market, ai-agent, stock-analysis]
+toolboxes: [trade-pulse]
 summary: |-
   LLM 多市场股票分析系统（6 万 star，MIT，活跃）：A股/港股/美股多源行情 + 实时新闻 + 决策看板 + 自动推送，GitHub Actions 零成本定时运行，被大量 fork 自用。
   

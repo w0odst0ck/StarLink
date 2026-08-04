@@ -10,6 +10,7 @@ category: tool
 rating: 3
 maintenance: active
 ai_tags: [markdown, knowledge-base, desktop-app, typescript, note-taking]
+toolboxes: [efficiency]
 summary: |-
   跨平台 Markdown 知识库管理桌面应用（1.9 万 star，AGPL-3.0，活跃）：第二大脑、个人知识管理、团队文档（可作 AI 上下文）。
   

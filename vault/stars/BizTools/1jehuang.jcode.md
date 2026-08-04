@@ -10,6 +10,7 @@ category: tool
 rating: 4
 maintenance: active
 ai_tags: [ai-agent, cli, tui, rust, llm]
+toolboxes: [efficiency]
 summary: |-
   Rust 写的 AI 编程 Agent CLI/TUI（1.5 万 star，MIT，活跃），主打 RAM 效率，接 Claude/OpenAI，支持 MCP。AI 编程 agent 赛道的 Rust 路线代表。
   

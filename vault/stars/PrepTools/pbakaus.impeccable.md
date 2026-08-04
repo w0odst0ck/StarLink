@@ -10,6 +10,7 @@ category: tool
 rating: 4
 maintenance: active
 ai_tags: [ai, design, cli, browser-extension, frontend]
+toolboxes: [efficiency]
 summary: |-
   AI 前端设计指导工具（5.3 万 star，Apache 2.0，活跃）：23 命令 + 60 条确定性检测规则，让 AI 生成界面摆脱千篇一律、达到精致品牌一致——结构化批评、浏览器实时迭代。
   

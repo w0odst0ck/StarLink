@@ -10,6 +10,7 @@ category: tutorial
 rating: 4
 maintenance: active
 ai_tags: [system-design, interview-preparation, software-architecture, cloud-computing, distributed-systems]
+toolboxes: [learning]
 summary: |-
   ByteByteGo（Alex Xu）的图解系统设计库（8.7 万 star，活跃）：用视觉 + 简单语言讲 API/网络/数据库/分布式/云等复杂系统。
   

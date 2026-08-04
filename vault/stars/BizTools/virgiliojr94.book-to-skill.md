@@ -10,6 +10,7 @@ category: tool
 rating: 4
 maintenance: active
 ai_tags: [python, agent-skills, book-distillation, pdf-processing, claude-code]
+toolboxes: [learning]
 summary: |-
   把技术书 PDF/EPUB 转成 agent skill 的工具（1.4 万 star，MIT，活跃）：提炼成框架/决策规则/分章文件，省 token（24x-51x），消除幻觉（agent 引用原文而非全文灌入）。
   

@@ -10,6 +10,7 @@ category: tool
 rating: 4
 maintenance: active
 ai_tags: [ai, powerpoint, presentation-generation, python, automation]
+toolboxes: [efficiency]
 summary: |-
   AI 生成原生 PowerPoint 的工具（4.2 万 star，MIT，活跃）：文档/主题 → 真 PPT（形状/转场/动画/数据图表/音频旁白/自定义模板），python-pptx 驱动。
   

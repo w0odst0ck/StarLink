@@ -10,6 +10,7 @@ category: tool
 rating: 3
 maintenance: active
 ai_tags: [ai-agents, prompt-engineering, developer-tools, claude-code, agent-personalities]
+toolboxes: [agent-learning]
 summary: |-
   带人格的专家 Agent 集合（13.8 万 star，MIT，活跃）："前端法师""Reddit 忍者"等角色化 agent，每个有专门角色/人格/工作流/交付物，装进 Claude Code/Cursor 用。
   

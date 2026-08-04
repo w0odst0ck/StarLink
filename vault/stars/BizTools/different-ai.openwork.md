@@ -10,6 +10,7 @@ category: tool
 rating: 3
 maintenance: active
 ai_tags: [mcp, ai-agents, workflow-sharing, typescript, desktop-app]
+toolboxes: [agent-learning]
 summary: |-
   Claude Cowork 的开源替代（2 万 star，活跃）：桌面应用 + MCP 平台，跨编码 Agent/团队共享 AI 工作流——skills、MCP 连接、服务配置复用，不锁定单一工具。
   

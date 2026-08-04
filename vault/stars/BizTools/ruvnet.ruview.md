@@ -10,6 +10,7 @@ category: tool
 rating: 4
 maintenance: active
 ai_tags: [wifi-sensing, iot, esp32, home-automation, spatial-intelligence]
+toolboxes: [embedded-auto]
 summary: |-
   WiFi 信号空间感知平台（8.8 万 star，MIT，活跃）：ESP32 廉价传感器采集 CSI，穿墙存在检测/呼吸心率监测/空间智能，无摄像头；原生接 Home Assistant/Apple Home 等。
   

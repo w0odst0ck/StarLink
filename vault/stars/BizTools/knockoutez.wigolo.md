@@ -10,6 +10,7 @@ category: tool
 rating: 4
 maintenance: active
 ai_tags: [mcp, typescript, local-first, web-search, ai-agent]
+toolboxes: [crawler]
 summary: |-
   MCP Server（4k star，beta，活跃）：给 AI Agent 提供本地优先的网页搜索/抓取/爬取/研究能力——无 API key、无云依赖、零成本。
   

@@ -10,6 +10,7 @@ category: lib
 rating: 4
 maintenance: active
 ai_tags: [python, llm, ai-agents, multi-provider]
+toolboxes: [agent-learning]
 summary: |-
   吴恩达出品的轻量多 LLM 统一接口库（1.6 万 star，MIT，活跃）：一个 API 切换 OpenAI/Anthropic/Google/DeepSeek 等，带 Agents API（工具/工具包/MCP）。
   

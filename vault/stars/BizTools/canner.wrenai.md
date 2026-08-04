@@ -10,6 +10,7 @@ category: tool
 rating: 5
 maintenance: active
 ai_tags: [genbi, text-to-sql, context-engineering, ai-agents, business-intelligence]
+toolboxes: [indiestore]
 summary: |-
   开源 GenBI（生成式 BI）引擎（1.7 万 star，活跃）：自然语言问数据 → 生成可信 SQL/图表/看板，20+ 数据源。核心创新是 **Context Layer（语义层）**——把业务口径与治理规则注入生成过程，让 text-to-SQL 结果可信可控。
   

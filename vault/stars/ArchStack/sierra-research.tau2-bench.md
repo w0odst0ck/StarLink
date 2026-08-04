@@ -10,6 +10,7 @@ category: tool
 rating: 4
 maintenance: active
 ai_tags: [llm, benchmark, conversational-agents, tool-use, evaluation]
+toolboxes: [agent-learning]
 summary: |-
   Sierra 出品的 Agent 能力评测基准（1.7k star，MIT，活跃）。模拟真实世界客服场景（航空/零售/银行）测 Agent 的工具调用能力，含知识检索与语音全双工评测，官方排行榜 taubench.com。
   

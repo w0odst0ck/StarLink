@@ -10,6 +10,7 @@ category: tool
 rating: 5
 maintenance: active
 ai_tags: [mcp, chrome-devtools, puppeteer, typescript, debugging]
+toolboxes: [crawler]
 summary: |-
   Chrome 官方 DevTools 团队的 MCP Server（4.8 万 star，Apache 2.0，活跃）：让 AI Agent 控制/检查真实 Chrome——自动化、调试、性能分析（Puppeteer 驱动），支持 MCP 与 CLI 两种模式。
   

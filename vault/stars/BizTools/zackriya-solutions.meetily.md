@@ -10,6 +10,7 @@ category: tool
 rating: 3
 maintenance: active
 ai_tags: [privacy, meeting-assistant, transcription, rust, local-ai]
+toolboxes: [efficiency]
 summary: |-
   本地 AI 会议助手（2.8 万 star，MIT，活跃）：Rust 实现，Parakeet/Whisper 实时转写 + 说话人分离 + Ollama 本地总结，100% 本地无云。
   
