@@ -22,7 +22,7 @@ Thumbs.db
 # StarLink specific
 .star-vault-state.json
 .ai-cache/
-star-vault.yaml          # 用户配置（含 API Token）
+star-vault.yaml
 *.tmp
 
 # Credentials & secrets
@@ -42,6 +42,7 @@ scratch/
 
 experiments/
 
-# Vault - notes only (tracked: site-data.json, index.html)
-vault/stars/
-# VS Code workspace (Windows local)\n*.code-workspace
+# (vault/stars/ 已入库：笔记开源，GitHub Actions 全自动生成 site-data 并部署)
+
+# VS Code workspace (Windows local)
+*.code-workspace

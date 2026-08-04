@@ -13,6 +13,26 @@ from star_vault.models.repo import RepoData
 logger = logging.getLogger(__name__)
 
 _HUMAN_EDITED_MARK = "human_edited: true"
+# v3：笔记 frontmatter 含 toolboxes 字段 = 人工维护的归属声明，视为人工内容
+_TOOLBOXES_MARK = "toolboxes:"
+
+
+def _is_human_protected(content: str) -> bool:
+    """判断笔记是否为人工内容（不被 sync 覆盖）：
+
+    - 显式标记 human_edited: true
+    - frontmatter 含 toolboxes: 字段（人工维护的项目归属）
+    """
+    if _HUMAN_EDITED_MARK in content:
+        return True
+    # toolboxes 只在 frontmatter 有效：取第一个 --- 块检查
+    if content.startswith("---\n"):
+        end = content.find("\n---", 4)
+        if end != -1:
+            fm = content[4:end]
+            if _TOOLBOXES_MARK in fm:
+                return True
+    return False
 
 
 def slug_for_repo(owner: str, name: str) -> str:
@@ -44,6 +64,7 @@ def build_note(
     rating: int = 0,
     maintenance: str = "",
     ai_tags: list[str] | None = None,
+    toolboxes: list[str] | None = None,
 ) -> NoteData:
     """RepoData → NoteData（自动生成 slug）。"""
     return NoteData(
@@ -62,6 +83,7 @@ def build_note(
         rating=rating,
         maintenance=maintenance,
         ai_tags=ai_tags or [],
+        toolboxes=toolboxes or [],
     )
 
 
@@ -109,7 +131,7 @@ def write_note(
     for other in _find_slug_files(vault_path, slug):
         if other == note_path:
             continue
-        if _HUMAN_EDITED_MARK in other.read_text(encoding="utf-8"):
+        if _is_human_protected(other.read_text(encoding="utf-8")):
             logger.warning(
                 "跳过写入：slug %s 的人工版在 %s（list 归属不一致，保留人工版）",
                 slug,
@@ -119,11 +141,11 @@ def write_note(
         other.unlink()
         logger.info("清理孤儿副本 %s（slug 唯一化）", other)
 
-    # human_edited 保护：人工编辑过的笔记不覆盖（除非 force）
+    # 人工内容保护：人工编辑/维护过的笔记不覆盖（除非 force）
     if not force and note_path.is_file():
         existing = note_path.read_text(encoding="utf-8")
-        if _HUMAN_EDITED_MARK in existing:
-            logger.info("跳过人工编辑笔记（human_edited 保护）: %s", note_path)
+        if _is_human_protected(existing):
+            logger.info("跳过人工内容笔记（human_edited/toolboxes 保护）: %s", note_path)
             return note_path
 
     content = render_note(note_data)

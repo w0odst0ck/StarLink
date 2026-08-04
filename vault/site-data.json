@@ -1,6 +1,6 @@
 {
-  "version": 2,
-  "generated_at": "2026-08-03T14:12:09.545916+00:00",
+  "version": 3,
+  "generated_at": "2026-08-04T02:05:21.950193+00:00",
   "stats": {
     "total": 90,
     "languages": 15,
@@ -75,7 +75,8 @@
         "embedded",
         "rag",
         "cpp"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "antirez.ds4",
@@ -92,7 +93,8 @@
       "category": null,
       "rating": 0,
       "maintenance": null,
-      "ai_tags": []
+      "ai_tags": [],
+      "toolboxes": []
     },
     {
       "slug": "artidoro.qlora",
@@ -136,6 +138,9 @@
         "llm",
         "lora",
         "nlp"
+      ],
+      "toolboxes": [
+        "ms-swift"
       ]
     },
     {
@@ -217,6 +222,9 @@
         "asynchronous",
         "openapi",
         "pydantic"
+      ],
+      "toolboxes": [
+        "starlink-self"
       ]
     },
     {
@@ -262,6 +270,9 @@
         "heterogeneous-computing",
         "cpu-gpu",
         "moe"
+      ],
+      "toolboxes": [
+        "ms-swift"
       ]
     },
     {
@@ -548,7 +559,8 @@
         "framework",
         "langgraph",
         "python"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "langgenius.dify",
@@ -769,7 +781,8 @@
         "llm",
         "rag",
         "low-code"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "lyogavin.airllm",
@@ -853,7 +866,8 @@
         "gpu-optimization",
         "memory-efficient",
         "deep-learning"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "milvus-io.milvus",
@@ -957,7 +971,8 @@
         "cloud-native",
         "distributed",
         "golang"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "milvus-io.pymilvus",
@@ -1016,7 +1031,8 @@
         "vector-database",
         "python-sdk",
         "anns"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "modelscope.ms-swift",
@@ -1182,6 +1198,9 @@
         "fine-tuning",
         "peft",
         "megatron"
+      ],
+      "toolboxes": [
+        "ms-swift"
       ]
     },
     {
@@ -1278,6 +1297,9 @@
         "go",
         "open-source",
         "model-serving"
+      ],
+      "toolboxes": [
+        "ms-swift"
       ]
     },
     {
@@ -1439,7 +1461,8 @@
         "conversational-agents",
         "tool-use",
         "evaluation"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "xorbitsai.inference",
@@ -1614,7 +1637,8 @@
         "openai-api",
         "multimodal",
         "python"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "1jehuang.jcode",
@@ -1782,7 +1806,8 @@
         "tui",
         "rust",
         "llm"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "addyosmani.agent-skills",
@@ -1854,7 +1879,8 @@
         "best-practices",
         "workflow-automation",
         "productivity"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "affaan-m.ecc",
@@ -2003,7 +2029,8 @@
         "agent-harness",
         "performance-optimization",
         "llm"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "alibaba.open-code-review",
@@ -2049,6 +2076,10 @@
         "agent",
         "go",
         "alibaba"
+      ],
+      "toolboxes": [
+        "starlink-self",
+        "agent-learning"
       ]
     },
     {
@@ -2178,7 +2209,8 @@
         "ai-agent",
         "browser-automation",
         "natural-language"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "astrbotdevs.astrbot",
@@ -2451,7 +2483,8 @@
         "chatbot",
         "multi-platform",
         "agent"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "browser-use.video-use",
@@ -2491,6 +2524,9 @@
         "python",
         "ffmpeg",
         "ai-agents"
+      ],
+      "toolboxes": [
+        "ai-shortfilm"
       ]
     },
     {
@@ -2641,6 +2677,9 @@
         "video-production",
         "ffmpeg",
         "open-source"
+      ],
+      "toolboxes": [
+        "ai-shortfilm"
       ]
     },
     {
@@ -2854,7 +2893,8 @@
         "context-engineering",
         "ai-agents",
         "business-intelligence"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "chatwoot.chatwoot",
@@ -2913,7 +2953,8 @@
         "vuejs",
         "omnichannel",
         "customer-support"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "chromedevtools.chrome-devtools-mcp",
@@ -2961,7 +3002,8 @@
         "puppeteer",
         "typescript",
         "debugging"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "commaai.openpilot",
@@ -3004,7 +3046,8 @@
         "automotive",
         "self-driving",
         "python"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "coplaydev.unity-mcp",
@@ -3176,7 +3219,8 @@
         "ai",
         "game-development",
         "csharp"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "coreyhaines31.marketingskills",
@@ -3225,6 +3269,9 @@
         "claude-code",
         "seo",
         "cro"
+      ],
+      "toolboxes": [
+        "indiestore"
       ]
     },
     {
@@ -3396,7 +3443,8 @@
         "openai-proxy",
         "token-saver",
         "auto-fallback"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "different-ai.openwork",
@@ -3436,7 +3484,8 @@
         "workflow-sharing",
         "typescript",
         "desktop-app"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "dontbesilent2025.dbskill",
@@ -3474,7 +3523,8 @@
         "business-diagnosis",
         "content-creation",
         "knowledge-base"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "esengine.deepseek-reasonix",
@@ -3508,7 +3558,8 @@
       "category": null,
       "rating": 0,
       "maintenance": null,
-      "ai_tags": []
+      "ai_tags": [],
+      "toolboxes": []
     },
     {
       "slug": "github.spec-kit",
@@ -3566,6 +3617,9 @@
         "python",
         "ai",
         "copilot"
+      ],
+      "toolboxes": [
+        "indiestore"
       ]
     },
     {
@@ -3611,7 +3665,8 @@
         "exercise",
         "json",
         "gym"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "hkuds.vibe-trading",
@@ -3832,6 +3887,9 @@
         "backtesting",
         "llm",
         "quantitative-finance"
+      ],
+      "toolboxes": [
+        "trade-pulse"
       ]
     },
     {
@@ -3888,7 +3946,8 @@
         "presentation-generation",
         "python",
         "automation"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "icewhaletech.casaos",
@@ -3939,7 +3998,8 @@
         "docker",
         "golang",
         "vuejs"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "iofficeai.officecli",
@@ -4089,7 +4149,8 @@
         "office",
         "agent",
         "docx"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "jamiepine.voicebox",
@@ -4138,7 +4199,8 @@
         "local-ai",
         "open-source",
         "typescript"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "knockoutez.wigolo",
@@ -4309,7 +4371,8 @@
         "local-first",
         "web-search",
         "ai-agent"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "madslorentzen.ai-job-search",
@@ -4397,7 +4460,8 @@
         "claude-code",
         "automation",
         "career"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "msitarzewski.agency-agents",
@@ -4437,7 +4501,8 @@
         "developer-tools",
         "claude-code",
         "agent-personalities"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "mvanhorn.last30days-skill",
@@ -4502,7 +4567,8 @@
         "social-media",
         "claude",
         "web-search"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "nevamind-ai.memu",
@@ -4573,7 +4639,8 @@
         "mcp",
         "skills",
         "python"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "obra.superpowers",
@@ -4622,7 +4689,8 @@
         "sdlc",
         "skills",
         "shell"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "openbb-finance.openbb",
@@ -4786,6 +4854,9 @@
         "data-integration",
         "quantitative-finance",
         "ai"
+      ],
+      "toolboxes": [
+        "trade-pulse"
       ]
     },
     {
@@ -4839,6 +4910,10 @@
         "personal",
         "open-source",
         "typescript"
+      ],
+      "toolboxes": [
+        "starlink-self",
+        "agent-learning"
       ]
     },
     {
@@ -4977,7 +5052,8 @@
         "web-scraper",
         "python",
         "mcp"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "posthog.posthog",
@@ -5048,6 +5124,9 @@
         "react",
         "feature-flags",
         "product-analytics"
+      ],
+      "toolboxes": [
+        "indiestore"
       ]
     },
     {
@@ -5083,7 +5162,8 @@
         "desktop-app",
         "typescript",
         "note-taking"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "robbyant.lingbot-map",
@@ -5118,7 +5198,8 @@
         "streaming",
         "computer-vision",
         "pytorch"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "ruvnet.ruview",
@@ -5194,7 +5275,8 @@
         "esp32",
         "home-automation",
         "spatial-intelligence"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "shiyu-coder.kronos",
@@ -5249,6 +5331,9 @@
         "deep-learning",
         "transformer",
         "time-series"
+      ],
+      "toolboxes": [
+        "trade-pulse"
       ]
     },
     {
@@ -5374,7 +5459,8 @@
         "rag",
         "python",
         "open-source"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "simplex-chat.simplex-chat",
@@ -5413,7 +5499,8 @@
         "privacy",
         "encryption",
         "e2ee"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "tencentcloud.tencentdb-agent-memory",
@@ -5440,7 +5527,8 @@
       "category": null,
       "rating": 0,
       "maintenance": null,
-      "ai_tags": []
+      "ai_tags": [],
+      "toolboxes": []
     },
     {
       "slug": "virgiliojr94.book-to-skill",
@@ -5485,7 +5573,8 @@
         "book-distillation",
         "pdf-processing",
         "claude-code"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "vxcontrol.pentagi",
@@ -5588,7 +5677,8 @@
         "penetration-testing",
         "security-automation",
         "autonomous-agents"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "xbtlin.ai-berkshire",
@@ -5841,7 +5931,8 @@
         "fundamental-analysis",
         "claude",
         "stock-analysis"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "zackriya-solutions.meetily",
@@ -5952,7 +6043,8 @@
         "transcription",
         "rust",
         "local-ai"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "zhulinsen.daily_stock_analysis",
@@ -6090,7 +6182,8 @@
         "multi-market",
         "ai-agent",
         "stock-analysis"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "bojieli.ai-agent-book",
@@ -6309,7 +6402,8 @@
         "multi-agent",
         "rag",
         "mcp"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "bytebytegohq.system-design-101",
@@ -6354,7 +6448,8 @@
         "software-architecture",
         "cloud-computing",
         "distributed-systems"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "codecrafters-io.build-your-own-x",
@@ -6395,7 +6490,8 @@
         "computer-science",
         "learning",
         "programming"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "earendil-works.pi",
@@ -6447,6 +6543,9 @@
         "agent-framework",
         "cli",
         "tui"
+      ],
+      "toolboxes": [
+        "agent-learning"
       ]
     },
     {
@@ -6590,7 +6689,8 @@
         "embedded-ml",
         "tinyml",
         "textbook"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "microsoft.generative-ai-for-beginners",
@@ -6690,7 +6790,8 @@
         "openai",
         "prompt-engineering",
         "llms"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "paperswithbacktest.awesome-systematic-trading",
@@ -6744,6 +6845,9 @@
         "awesome-list",
         "python",
         "finance"
+      ],
+      "toolboxes": [
+        "trade-pulse"
       ]
     },
     {
@@ -6793,7 +6897,8 @@
         "ai-education",
         "langgraph",
         "nextjs"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "wistbean.learn_python3_spider",
@@ -6836,7 +6941,8 @@
         "crawler",
         "reverse-engineering",
         "selenium"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "abhigyanpatwari.gitnexus",
@@ -6876,6 +6982,9 @@
         "graph-rag",
         "typescript",
         "code-exploration"
+      ],
+      "toolboxes": [
+        "agent-learning"
       ]
     },
     {
@@ -6914,7 +7023,8 @@
         "llm",
         "ai-agents",
         "multi-provider"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "deepseek-ai.awesome-deepseek-integration",
@@ -6945,6 +7055,9 @@
         "awesome-list",
         "api-integration",
         "ai"
+      ],
+      "toolboxes": [
+        "starlink-self"
       ]
     },
     {
@@ -7051,6 +7164,9 @@
         "mcp",
         "tree-sitter",
         "static-analysis"
+      ],
+      "toolboxes": [
+        "agent-learning"
       ]
     },
     {
@@ -7132,6 +7248,9 @@
         "api",
         "asynchronous",
         "fastapi"
+      ],
+      "toolboxes": [
+        "ai-shortfilm"
       ]
     },
     {
@@ -7187,7 +7306,8 @@
         "firmware",
         "protocols",
         "web-cli"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "graphify-labs.graphify",
@@ -7427,6 +7547,9 @@
         "ast",
         "tree-sitter",
         "developer-tools"
+      ],
+      "toolboxes": [
+        "agent-learning"
       ]
     },
     {
@@ -7458,7 +7581,8 @@
         "design-engineering",
         "ui-skills",
         "typescript"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "juliusbrussee.caveman",
@@ -7599,7 +7723,8 @@
         "caveman",
         "claude-code",
         "ai"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "mattpocock.skills",
@@ -7639,7 +7764,8 @@
         "ai",
         "developer-tools",
         "engineering-workflow"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "microsoft.powertoys",
@@ -7680,7 +7806,8 @@
         "productivity",
         "utilities",
         "open-source"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "nanmicoder.mediacrawler",
@@ -7725,7 +7852,8 @@
         "playwright",
         "python",
         "social-media"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "opendatalab.mineru",
@@ -7787,6 +7915,9 @@
         "document-analysis",
         "python",
         "llm-data-processing"
+      ],
+      "toolboxes": [
+        "ai-shortfilm"
       ]
     },
     {
@@ -7841,7 +7972,8 @@
         "ai-assistant",
         "cross-platform",
         "java"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "pbakaus.impeccable",
@@ -7881,7 +8013,8 @@
         "cli",
         "browser-extension",
         "frontend"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "punkpeye.awesome-mcp-servers",
@@ -7954,7 +8087,8 @@
         "awesome-list",
         "curated-list",
         "resources"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "ripienaar.free-for-dev",
@@ -7991,6 +8125,9 @@
         "devops",
         "awesome-list",
         "saas"
+      ],
+      "toolboxes": [
+        "indiestore"
       ]
     },
     {
@@ -8146,7 +8283,8 @@
         "object-detection",
         "deep-learning",
         "pytorch"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "tirth8205.code-review-graph",
@@ -8349,7 +8487,8 @@
         "mcp",
         "static-analysis",
         "knowledge-graph"
-      ]
+      ],
+      "toolboxes": []
     },
     {
       "slug": "zilliztech.attu",
@@ -8388,7 +8527,8 @@
         "gui",
         "ai-workbench",
         "docker"
-      ]
+      ],
+      "toolboxes": []
     }
   ],
   "tables": [
@@ -8408,7 +8548,8 @@
           "stars": null,
           "summary": "TypeScript 模块化 AI Agent 工具包（8.2 万 star，MIT，活跃）：统一 LLM API + agent 运行时（工具调用）+ TUI 库 + 编码 agent CLI。\n\n**对你（Agent 开发学习方向）的定位：学习 + 实践的主线教材。** 想学 Agent 开发并动手尝试——pi 是理想的入门到实践路径：从统一 LLM API 到 agent loop 再到完整 CLI，代码即教程。与 LangGraph（Python 系）对照学习，能同时理解两种生态的 agent 设计。",
           "list_name": "LearnHub",
-          "collected": true
+          "collected": true,
+          "source": "table"
         },
         {
           "repo": "openclaw/openclaw",
@@ -8420,7 +8561,8 @@
           "stars": null,
           "summary": "个人 AI 助手本体（38.5 万 star，活跃）——**你每天都在用的主力工具**，本地跑在 WSL2（v22.22.3），经飞书连接使用，数据自有。\n\n**定位：使用中工具本体，非待研究仓库。** 日常深度使用（记忆体系、skills、多项目协作）。关注点应是版本演进与生态能力（新工具、skills 生态、渠道支持），以及自身配置/技能体系的持续维护，而不是\"了解它是什么\"。",
           "list_name": "BizTools",
-          "collected": true
+          "collected": true,
+          "source": "table"
         },
         {
           "repo": "alibaba/open-code-review",
@@ -8432,7 +8574,8 @@
           "stars": null,
           "summary": "阿里开源的 AI 代码审查 CLI（1.7 万 star，Apache 2.0，活跃）。混合架构：确定性规则管道 + LLM Agent，行级审查意见，内置微调规则集（NPE、线程安全、XSS、SQL 注入），OpenAI/Anthropic 兼容。\n\n**对你：已在用的日常工具。** 你的工作流就是「提交前跑 `ocr review`（全局 npm 包，配 DeepSeek）→ 修 high/medium → 再交付」。不用评估\"要不要用\"，而是**吃透它的审查能力边界**：内置规则集覆盖哪些坑、LLM 审查在什么场景会漏，把它的审查维度对接自己的项目踩坑记录。",
           "list_name": "BizTools",
-          "collected": true
+          "collected": true,
+          "source": "table"
         },
         {
           "repo": "deusdata/codebase-memory-mcp",
@@ -8444,7 +8587,8 @@
           "stars": null,
           "summary": "高性能代码智能 MCP Server（3.7 万 star，MIT，活跃）：tree-sitter AST 把代码库索引成持久知识图谱，158 语言、亚毫秒查询、省 99% token、单静态二进制零依赖。\n\n**对你（代码理解 + Agent）的定位：代码知识图谱 MCP——比 GitNexus 更轻更工程化。** 接进 OpenClaw 给 AI 代码库结构认知（get_functions/find_callers），读陌生项目/agent 开发时省 token 省时间。两者选一个主力用。",
           "list_name": "PrepTools",
-          "collected": true
+          "collected": true,
+          "source": "table"
         },
         {
           "repo": "graphify-labs/graphify",
@@ -8456,7 +8600,8 @@
           "stars": null,
           "summary": "代码知识图谱 skill（10 万 star，Apache 2.0，活跃）：本地 tree-sitter AST 确定性解析，把代码库+文档/SQL/PDF 转成可查询图谱，每条边可解释、无向量库。OpenClaw 生态相关（topics 含 openclaw）。\n\n**对你（代码理解）的定位：代码知识图谱三件套之一**（与 GitNexus、codebase-memory-mcp 重叠）。独特点：确定性解析 + 边可解释 + 无向量库，token 消耗小。建议实测后三选一：留 1 个主力 + 1 个备选，避免库膨胀。",
           "list_name": "PrepTools",
-          "collected": true
+          "collected": true,
+          "source": "table"
         },
         {
           "repo": "abhigyanpatwari/gitnexus",
@@ -8468,9 +8613,11 @@
           "stars": null,
           "summary": "零服务器代码智能引擎（4.5 万 star，活跃）：纯浏览器端把代码库索引成知识图谱，内置 Graph RAG Agent 做代码探索，MCP 集成提供架构上下文。\n\n**对你（代码理解）的定位：读陌生/大型代码库的探索工具。** 学习路线要读不少开源项目（pi、langchain），用它快速建立架构认知。与 StarLink 的关系图谱同思路（代码版）；MCP 可接进 OpenClaw 让 AI 读代码时有架构上下文。",
           "list_name": "PrepTools",
-          "collected": true
+          "collected": true,
+          "source": "table"
         }
-      ]
+      ],
+      "orphan": false
     },
     {
       "project": "ai-shortfilm",
@@ -8488,7 +8635,8 @@
           "stars": null,
           "summary": "开源 agentic 视频生产系统（4.4 万 star，AGPL-3.0，活跃）：12 条生产管线、100+ 工具、700+ agent 技能文件，把 AI 编码助手变成完整视频工作室——研究→脚本→素材生成→剪辑→合成全流程。\n\n**对你：已在用的工作流引擎——AI 短剧生产线的基座。** 已基于它搭建并投入使用，不是\"未来参考\"。价值在于持续跟进其管线/技能更新，把生产经验沉淀回自己的工作流。注意 AGPL 协议：若做商业短剧产品需评估开源义务。",
           "list_name": "BizTools",
-          "collected": true
+          "collected": true,
+          "source": "table"
         },
         {
           "repo": "browser-use/video-use",
@@ -8500,7 +8648,8 @@
           "stars": null,
           "summary": "用编码 Agent（Claude Code 等）通过自然语言对话剪视频（1.8 万 star，MIT，活跃）：自动剪语气词、调色、加字幕、生成动画，底层 ffmpeg。\n\n**定位：未来 AI 短剧创作引擎，现阶段不重要。** 创作 AI 短剧/内容时，它是\"用 agent 驱动 ffmpeg 做视频处理\"的现成方案——脚本化批量剪片、字幕、转场都可走它。现在只收藏了解，不动手。",
           "list_name": "BizTools",
-          "collected": true
+          "collected": true,
+          "source": "table"
         },
         {
           "repo": "opendatalab/mineru",
@@ -8512,7 +8661,8 @@
           "stars": null,
           "summary": "复杂文档（PDF/Office）转 LLM-ready Markdown/JSON（7.6 万 star，活跃，OpenDataLab 出品）：内置 OCR、版面分析、批量处理，喂 Agent/RAG 工作流。\n\n**对你（知识库 + 信息采集）的定位：文档预处理核心。** 三用：① study-vault 知识库——PDF/文档转结构化 markdown 入库；② 信息采集管线——PDF/报告转文本喂 AI 分析；③ 学习资料——技术书转 markdown（配合 book-to-skill）。与 OfficeCLI（Office 读写）、book-to-skill（书转技能）互补。",
           "list_name": "PrepTools",
-          "collected": true
+          "collected": true,
+          "source": "table"
         },
         {
           "repo": "evil0ctal/douyin_tiktok_download_api",
@@ -8524,9 +8674,11 @@
           "stars": null,
           "summary": "短视频平台数据爬取工具（1.9 万 star，Apache 2.0，活跃）：抖音/TikTok/快手/B站无水印下载 + 数据采集，异步高性能，FastAPI 提供 RESTful API + 在线批量解析。\n\n**对你（爬虫 + 信息采集主线）的定位：短视频数据采集主力——爬虫三件套成员**（与 MediaCrawler、learn_python3_spider 配套）。抖音/B站舆情与热点数据采集的现成方案；反爬（无水印/签名算法）是逆向参考；FastAPI 架构可直接对接你的服务层。",
           "list_name": "PrepTools",
-          "collected": true
+          "collected": true,
+          "source": "table"
         }
-      ]
+      ],
+      "orphan": false
     },
     {
       "project": "indiestore",
@@ -8544,7 +8696,8 @@
           "stars": null,
           "summary": "SaaS/PaaS/IaaS 免费额度清单（13.1 万 star，活跃）：1600+ 条聚合，开发者/DevOps 省钱资源库。\n\n**定位：免费服务额度总索引——项目起步选型的省钱工具。** 独立站基建（数据库/CDN/邮件/监控/CI）找免费层、量化/信息采集找免费 API 额度都先查它。注意：免费额度常变，以官方页面为准。",
           "list_name": "PrepTools",
-          "collected": true
+          "collected": true,
+          "source": "table"
         },
         {
           "repo": "github/spec-kit",
@@ -8556,7 +8709,8 @@
           "stars": null,
           "summary": "GitHub 官方的规范驱动开发（SDD）工具包（12.5 万 star，MIT，活跃）。`specify` CLI 生成标准化流程：constitution（项目原则）→ specify（需求，只讲 what/why）→ plan（技术方案）→ tasks（任务拆解）→ taskstoissues（转 GitHub issues）→ implement（AI 执行）→ converge（对照 spec 检查）。支持 30+ AI agent（Claude Code/Codex/Cursor 等）。\n\n**对你（AI 开发流程）的价值：不是项目管理工具，是「AI 开发流程规范化」工具。** 核心思想「先写清楚要什么再让 AI 实现」与你的习惯（项目先写计划.md）同源，但把流程标准化、可执行化——解决 AI 开发没章法的问题。⚠️ **OpenClaw 不在官方支持列表**：适配方案 = spec-kit 生成 spec/plan/tasks 文档（本质 markdown），OpenClaw 读文档执行任务，即「spec-kit 管流程定义，OpenClaw 管执行」。任务跟踪/进度管理它帮不上（不是看板），靠 GitHub Issues/项目文档。",
           "list_name": "BizTools",
-          "collected": true
+          "collected": true,
+          "source": "table"
         },
         {
           "repo": "coreyhaines31/marketingskills",
@@ -8568,7 +8722,8 @@
           "stars": null,
           "summary": "AI Agent 的营销技能集合（4.3 万 star，MIT，活跃）：CRO、文案、SEO、数据分析、增长工程，markdown skill 文件形式，遵循 Agent Skills 规范。\n\n**对你（独立站）的定位：上线后的增长工具箱。** 独立站上线后最大痛点就是流量与转化——这套技能直接对口：SEO 内容、营销文案、CRO 优化、增长分析，让 agent 帮你跑。与 addyosmani/agent-skills（工程向）互补：那个管代码质量，这个管营销增长。",
           "list_name": "BizTools",
-          "collected": true
+          "collected": true,
+          "source": "table"
         },
         {
           "repo": "posthog/posthog",
@@ -8580,9 +8735,11 @@
           "stars": null,
           "summary": "开源产品分析平台（3.7 万 star，活跃）：事件分析、会话回放、功能开关、A/B 实验、错误追踪、AI 可观测性一体化，支持自托管与 MCP 接入。\n\n**对你（独立站）的定位：上线后的产品分析基建储备。** 用户行为分析（流量→转化漏斗）、A/B 实验（CRO 优化）、功能开关是独立站标配，PostHog 是开源首选——替代 Amplitude/Mixpanel 省订阅费，且自托管数据自有。现阶段未上线，收藏储备。",
           "list_name": "BizTools",
-          "collected": true
+          "collected": true,
+          "source": "table"
         }
-      ]
+      ],
+      "orphan": false
     },
     {
       "project": "ms-swift",
@@ -8600,7 +8757,8 @@
           "stars": null,
           "summary": "阿里魔搭的微调/部署一体化框架（1.5 万 star，Apache 2.0，AAAI 2025）。600+ LLM、300+ 多模态模型，支持 PEFT/全参/DPO/GRPO，训练→推理→量化一条龙，中文文档、国产模型生态（Qwen/DeepSeek/GLM）友好。\n\n**对你（微调学习路线）的定位：微调实操第一工具。** 分工明确：qlora 仓库学原理（NF4/双重量化），ms-swift 动手干——你的 RTX 3060 12GB 上微调 7B 级模型（QLoRA/LoRA）就用它，一条命令走通。是 W1 学习路径模型训练环节的执行主力。",
           "list_name": "ArchStack",
-          "collected": true
+          "collected": true,
+          "source": "table"
         },
         {
           "repo": "artidoro/qlora",
@@ -8612,7 +8770,8 @@
           "stars": null,
           "summary": "QLoRA 论文（2023）的官方实现——用 4-bit 量化（NF4）+ 低秩适配（LoRA）+ 双重量化 + 分页优化器，把微调显存需求砍到可在一张 48GB 卡上微调 65B 模型。1.1 万 star，MIT。\n\n**对你（微调学习路线）的价值：** **论文必读，代码不用跑**。NF4 量化、双重量化、分页优化器是微调领域的基础原理，面试/工程里绕不开；但原始仓库是研究原型（Jupyter），实际微调请直接用现代框架——你库里的 ms-swift、或 Unsloth/HF PEFT 都已内置 QLoRA。你的 RTX 3060 12GB 上微调 7B 级模型，走 ms-swift 即可。",
           "list_name": "ArchStack",
-          "collected": true
+          "collected": true,
+          "source": "table"
         },
         {
           "repo": "kvcache-ai/ktransformers",
@@ -8624,7 +8783,8 @@
           "stars": null,
           "summary": "清华 kvcache.ai 团队的开源异构 LLM 推理/微调框架（1.9 万 star，Apache 2.0，活跃）。核心思路：MoE 模型的专家层调度到 CPU 内存，GPU 只跑关键计算，让消费级显卡跑起远超显存的大模型。\n\n**对你（RTX 3060 12GB）的价值：这是你本地跑大模型的最优解之一**——12GB 显存 + 内存异构，可跑 70B 级 MoE 模型，配合 LLaMA-Factory/SGLang 生态。与 ollama（傻瓜部署）、ms-swift（微调）互补：想要吞吐和极限性能就上它。",
           "list_name": "ArchStack",
-          "collected": true
+          "collected": true,
+          "source": "table"
         },
         {
           "repo": "ollama/ollama",
@@ -8636,9 +8796,11 @@
           "stars": null,
           "summary": "本地运行 LLM 的傻瓜式工具（17.7 万 star，MIT，今日仍活跃）。`ollama run <model>` 一条命令拉模型跑起来，自带 CLI + REST API，支持 Qwen/DeepSeek/GLM/Kimi 等主流模型。\n\n**对你（3060 本地 AI）的定位：日常开发默认入口——\"docker for models\"。** 实验、开发、联调用它零配置起步。完整链路：**微调用 ms-swift，日常跑用 ollama，极限性能/大模型上 ktransformers**。REST API 是 FastAPI 对接本地模型的桥梁。",
           "list_name": "ArchStack",
-          "collected": true
+          "collected": true,
+          "source": "table"
         }
-      ]
+      ],
+      "orphan": false
     },
     {
       "project": "starlink-self",
@@ -8656,7 +8818,8 @@
           "stars": null,
           "summary": "个人 AI 助手本体（38.5 万 star，活跃）——**你每天都在用的主力工具**，本地跑在 WSL2（v22.22.3），经飞书连接使用，数据自有。\n\n**定位：使用中工具本体，非待研究仓库。** 日常深度使用（记忆体系、skills、多项目协作）。关注点应是版本演进与生态能力（新工具、skills 生态、渠道支持），以及自身配置/技能体系的持续维护，而不是\"了解它是什么\"。",
           "list_name": "BizTools",
-          "collected": true
+          "collected": true,
+          "source": "table"
         },
         {
           "repo": "alibaba/open-code-review",
@@ -8668,7 +8831,8 @@
           "stars": null,
           "summary": "阿里开源的 AI 代码审查 CLI（1.7 万 star，Apache 2.0，活跃）。混合架构：确定性规则管道 + LLM Agent，行级审查意见，内置微调规则集（NPE、线程安全、XSS、SQL 注入），OpenAI/Anthropic 兼容。\n\n**对你：已在用的日常工具。** 你的工作流就是「提交前跑 `ocr review`（全局 npm 包，配 DeepSeek）→ 修 high/medium → 再交付」。不用评估\"要不要用\"，而是**吃透它的审查能力边界**：内置规则集覆盖哪些坑、LLM 审查在什么场景会漏，把它的审查维度对接自己的项目踩坑记录。",
           "list_name": "BizTools",
-          "collected": true
+          "collected": true,
+          "source": "table"
         },
         {
           "repo": "fastapi/fastapi",
@@ -8680,7 +8844,8 @@
           "stars": null,
           "summary": "Python 现代 Web API 框架标杆（10.1 万 star，MIT，活跃维护）。基于 Starlette + Pydantic：类型提示自动校验、自动生成 OpenAPI 文档、原生 async，生产级可用。\n\n**对你管线的价值：所有\"数据对外服务层\"的统一底座**——爬虫采集的数据服务化、量化信号推送 API、AI 模型推理封装，都用它。与库里 langchain/dify 配合时，FastAPI 是暴露接口的标准姿势。生态成熟、坑都有答案，别犹豫直接用。",
           "list_name": "ArchStack",
-          "collected": true
+          "collected": true,
+          "source": "table"
         },
         {
           "repo": "deepseek-ai/awesome-deepseek-integration",
@@ -8692,9 +8857,11 @@
           "stars": null,
           "summary": "DeepSeek 官方生态集成清单（3.8 万 star，CC0，活跃）：把 DeepSeek API 集成进应用/Agent 框架/RAG 框架/IDE 插件等项目合集。\n\n**定位：DeepSeek 生态集成索引（参考，3 分）。** 你的 AI 项目主力就是 DeepSeek（OpenClaw/ocr review/star-vault 分析），做新项目选型时查它有没有现成集成方案，不系统研究。",
           "list_name": "PrepTools",
-          "collected": true
+          "collected": true,
+          "source": "table"
         }
-      ]
+      ],
+      "orphan": false
     },
     {
       "project": "trade-pulse",
@@ -8712,7 +8879,8 @@
           "stars": null,
           "summary": "港大 HKUDS 的 LLM 多智能体交易系统（2.9 万 star，MIT，活跃）：AI Agent + 多智能体协作做算法交易、回测，支持 MCP/API 接口，一键安装。\n\n**对你（trade-pulse 量化主线）的定位：交易回测与执行层的候选引擎。** 已规划三阶段接入：P1 适配器（加载日线信号 JSON → 触发回测）→ P2 回测验证（588000 对比自测结果）→ P3 执行层（vn.py 连接东财 + Shadow Account 模拟盘 → 真实资金）。与 shiyu-coder/Kronos、xbtlin/ai-berkshire、ZhuLinsen/daily_stock_analysis 同为量化工具链成员。",
           "list_name": "BizTools",
-          "collected": true
+          "collected": true,
+          "source": "table"
         },
         {
           "repo": "shiyu-coder/kronos",
@@ -8724,7 +8892,8 @@
           "stars": null,
           "summary": "首个开源金融 K 线基础模型（3.5 万 star，MIT，活跃，AAAI 2026）：45+ 全球交易所数据训练，专用 tokenizer + 自回归 Transformer 建模 K 线序列。\n\n**对你（trade-pulse 量化主线）：辅助方向模型，已验证推进中。** 作为与规则信号交叉验证的辅助模型——方向预测接入 daily_pipeline 当辅助信号。与 Vibe-Trading（回测/执行）、OpenBB（数据层）组成量化工具链。",
           "list_name": "BizTools",
-          "collected": true
+          "collected": true,
+          "source": "table"
         },
         {
           "repo": "openbb-finance/openbb",
@@ -8736,7 +8905,8 @@
           "stars": null,
           "summary": "开源统一金融数据平台（7.1 万 star，活跃）：一个接口聚合多源金融数据（股票/期权/加密/宏观/固收），Python SDK + REST API + MCP Server，面向分析师/量化/AI Agent。\n\n**对你（trade-pulse 量化主线）的定位：量化管线的统一数据层。** 多源聚合免去逐源对接，MCP Server 可直接接进 OpenClaw 让 AI 查金融数据。与 Vibe-Trading（回测/执行）、Kronos（分钟线方向）、ai-berkshire、daily_stock_analysis 组成量化工具链。可作为现有免费数据获取方案的升级/补充路径。",
           "list_name": "BizTools",
-          "collected": true
+          "collected": true,
+          "source": "table"
         },
         {
           "repo": "paperswithbacktest/awesome-systematic-trading",
@@ -8748,7 +8918,8 @@
           "stars": null,
           "summary": "系统化/量化交易资源精选清单（1.2 万 star，活跃）：97+ 库、40+ 策略、55+ 书、博客、课程、交易机器人，覆盖策略/回测/数据/执行各环节。\n\n**对你（trade-pulse 量化主线）的定位：量化资源总索引。** 找库、找策略、找书先查它——与量化工具链（OpenBB 数据层 / Vibe-Trading 回测执行 / Kronos 方向模型）配合补位。量化学习与选型的发现入口。",
           "list_name": "LearnHub",
-          "collected": true
+          "collected": true,
+          "source": "table"
         },
         {
           "repo": "w0odst0ck/trade-pulse",
@@ -8760,9 +8931,11 @@
           "stars": null,
           "summary": null,
           "list_name": null,
-          "collected": false
+          "collected": false,
+          "source": "table"
         }
-      ]
+      ],
+      "orphan": false
     }
   ]
 }

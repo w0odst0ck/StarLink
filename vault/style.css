@@ -366,6 +366,7 @@ a:hover { text-decoration: underline; }
 .toolbox-badge.role-候选 { background: #8b949e33; color: var(--text-muted); }
 .toolbox-badge.usage-badge { background: #1f6feb22; color: var(--accent); }
 .toolbox-badge.badge-uncollected { background: #8b949e22; color: var(--text-muted); }
+.toolbox-badge.badge-note { background: #d2992222; color: #d29922; border: 1px dashed #d2992266; }
 
 .toolbox-main { min-width: 0; }
 .toolbox-main-head {

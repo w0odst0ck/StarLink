@@ -241,6 +241,90 @@ def join_table(table: TableData, notes_index: dict[str, dict]) -> dict:
     }
 
 
+# ── 两源合一：表配置 + 笔记 toolboxes 声明（v3）────────────────
+
+
+def build_tables_data(
+    tables: list[TableData],
+    notes_index: dict[str, dict],
+) -> list[dict]:
+    """合并表配置与笔记归属声明，产出 site-data.tables 数组。
+
+    规则（锚点语义，笔记声明优先）：
+      - 表内行：join vault 元数据，source="table"（角色配置权威）
+      - 笔记声明了 toolboxes: [project] 但表内无该 repo → 自动补默认行
+        （role=候选, usage=rare, source="note"）
+      - 笔记声明了不存在的 project（无对应表文件）→ 自动建孤儿表
+        （orphan=true，前端提示补 title/purpose）
+    """
+    by_project = {t.project: t for t in tables}
+
+    # slug → [project, ...]：笔记侧归属声明
+    note_decls: dict[str, list[str]] = {}
+    for slug, note in notes_index.items():
+        tbs = [str(p).strip() for p in (note.get("toolboxes") or []) if str(p).strip()]
+        if tbs:
+            note_decls[slug] = tbs
+
+    def _decl_row(note: dict) -> dict:
+        """笔记声明 → 默认行（角色配置交给表，笔记侧只声明归属）。"""
+        return {
+            "repo": note.get("repo_full_name") or note["slug"],
+            "role": DEFAULT_ROLE,
+            "usage": DEFAULT_USAGE,
+            "note": "",
+            "slug": note["slug"],
+            "language": note.get("language"),
+            "stars": None,
+            "summary": note.get("ai_summary"),
+            "list_name": note.get("list_name"),
+            "collected": True,
+            "source": "note",
+        }
+
+    result: list[dict] = []
+    orphan_slugs: dict[str, list[str]] = {}
+
+    for t in tables:
+        rows = join_table(t, notes_index)["repos"]
+        for r in rows:
+            r["source"] = "table"
+        have = {r["slug"] for r in rows if r["slug"]}
+        for slug, projects in note_decls.items():
+            if t.project in projects and slug not in have:
+                rows.append(_decl_row(notes_index[slug]))
+        result.append(
+            {
+                "project": t.project,
+                "title": t.title,
+                "purpose": t.purpose,
+                "status": t.status,
+                "repos": rows,
+                "orphan": False,
+            }
+        )
+
+    # 孤儿 project：笔记声明了但无对应表文件 → 自动建空表
+    for slug, projects in note_decls.items():
+        for p in projects:
+            if p not in by_project:
+                orphan_slugs.setdefault(p, []).append(slug)
+    for project, slugs in sorted(orphan_slugs.items()):
+        rows = [_decl_row(notes_index[s]) for s in slugs]
+        result.append(
+            {
+                "project": project,
+                "title": project,
+                "purpose": "",
+                "status": "active",
+                "repos": rows,
+                "orphan": True,
+            }
+        )
+
+    return result
+
+
 # ── 一致性校验（B2 validate）────────────────────────────────
 
 
@@ -251,6 +335,9 @@ def validate_tables(
     """一致性检查，返回 (warnings, errors)。
 
     - warning: repo 不在本地 vault → 未收录（候选仓库，允许存在）
+    - warning: 笔记声明了 toolboxes 但表内无该行（pages 会自动补默认行）
+    - warning: 笔记声明了不存在的 project（pages 会自动建孤儿表）
+    - warning: 表内有 repo 但笔记未声明 toolboxes（建议补笔记字段）
     - error:   同一表内重复行 / 未知 role / 未知 usage
     """
     if notes_index is None:
@@ -261,12 +348,23 @@ def validate_tables(
     warnings: list[str] = []
     errors: list[str] = []
     tables = load_tables(vault_path)
+    table_projects = {t.project for t in tables}
+
+    # 笔记侧声明：slug → [project]
+    note_decls: dict[str, list[str]] = {}
+    for slug, n in notes_index.items():
+        tbs = [str(p).strip() for p in (n.get("toolboxes") or []) if str(p).strip()]
+        if tbs:
+            note_decls[slug] = tbs
 
     for t in tables:
         label = f"{t.project} ({t.path.name if t.path else t.project + '.yaml'})"
         seen: set[str] = set()
+        table_rows: set[str] = set()
         for row in t.repos:
             slug = repo_to_slug(row.repo)
+            if "/" in row.repo:
+                table_rows.add(slug)
             if "/" not in row.repo:
                 warnings.append(
                     f"[{label}] {row.repo}: 无 owner，视为未收录（候选）"
@@ -287,6 +385,34 @@ def validate_tables(
                 errors.append(
                     f"[{label}] {row.repo}: 未知 usage={row.usage!r}"
                     f"（合法值: {'/'.join(USAGES)}）"
+                )
+
+        # 双向 diff：笔记声明 ↔ 表行
+        for slug, projects in note_decls.items():
+            if t.project in projects:
+                if slug not in table_rows:
+                    note = notes_index[slug]
+                    warnings.append(
+                        f"[{label}] {note.get('repo_full_name') or slug}: "
+                        f"笔记声明了归属但表内无该行（pages 会自动补默认行：候选/rare）"
+                    )
+
+        for slug in table_rows:
+            if slug not in note_decls or t.project not in note_decls[slug]:
+                repo_name = notes_index[slug].get("repo_full_name") if slug in notes_index else slug
+                warnings.append(
+                    f"[{label}] {repo_name}: 表内已有但笔记未声明 toolboxes"
+                    f"（建议在笔记 frontmatter 补 toolboxes: [{t.project}]）"
+                )
+
+    # 孤儿 project：笔记声明了但无对应表文件
+    for slug, projects in note_decls.items():
+        for p in projects:
+            if p not in table_projects:
+                note = notes_index[slug]
+                warnings.append(
+                    f"[{note.get('repo_full_name') or slug}] 声明了未建表的 project={p!r}"
+                    f"（pages 会自动建孤儿表，建表后请补 title/purpose）"
                 )
 
     return warnings, errors

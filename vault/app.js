@@ -24,7 +24,7 @@ const app = createApp({
     const filterLang = ref('');
     // 分组偏好：默认按 list（与 vault 目录结构一致），持久化到 localStorage
     // 版本 bump 时重置旧缓存，确保新默认值生效
-    const STORAGE_VER = 'v3';
+    const STORAGE_VER = 'v4';
     if (localStorage.getItem('starlink_ver') !== STORAGE_VER) {
       localStorage.removeItem('starlink_groupBy');
       localStorage.setItem('starlink_ver', STORAGE_VER);

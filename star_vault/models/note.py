@@ -43,3 +43,6 @@ class NoteData(BaseModel):
     rating: int = Field(default=0, ge=0, le=5)
     maintenance: str = ""
     ai_tags: list[str] = Field(default_factory=list)
+
+    # 项目工具箱归属 (v3)：人工维护，声明本仓库属于哪些项目（tables/<project>.yaml 的 project 值）
+    toolboxes: list[str] = Field(default_factory=list)

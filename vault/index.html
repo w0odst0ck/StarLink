@@ -135,6 +135,11 @@
               <span v-if="selectedTable.purpose" class="toolbox-main-purpose">{{ selectedTable.purpose }}</span>
             </div>
 
+            <div v-if="selectedTable.orphan" class="toolbox-empty" style="margin-bottom:12px;background:var(--bg-card)">
+              ⚠️ 这张表是 <b>笔记声明自动生成</b>（frontmatter toolboxes 引用但 tables/*.yaml 未建表）。
+              要配置角色/备注，运行 <code style="background:var(--bg-card);padding:2px 6px;border-radius:4px">star-vault table add {{ selectedTable.project }} &lt;repo&gt;</code> 建表。
+            </div>
+
             <div v-if="selectedTable.repos.length === 0" class="toolbox-empty">
               此项目暂无仓库
             </div>
@@ -147,6 +152,7 @@
                 <div class="toolbox-card-head">
                   <span class="toolbox-card-repo">{{ r.repo }}</span>
                   <span v-if="!r.collected" class="toolbox-badge badge-uncollected">未收录</span>
+                  <span v-if="r.source === 'note'" class="toolbox-badge badge-note" title="笔记 frontmatter 声明归属，角色为默认值；可在 tables/*.yaml 配置角色">笔记声明</span>
                   <span class="toolbox-badge" :class="'role-' + r.role">{{ r.role }}</span>
                   <span class="toolbox-badge usage-badge">{{ r.usage }}</span>
                 </div>

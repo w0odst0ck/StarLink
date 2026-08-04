@@ -16,7 +16,7 @@ import re
 from datetime import datetime, timezone
 from pathlib import Path
 
-from star_vault.core.tables import join_table, load_tables
+from star_vault.core.tables import build_tables_data, load_tables
 
 logger = logging.getLogger(__name__)
 
@@ -84,7 +84,24 @@ def _parse_note_file(path: Path) -> dict | None:
         "rating": _safe_int(fm.get("rating", 0)) if fm else 0,
         "maintenance": fm.get("maintenance", "") if fm else "",
         "ai_tags": fm.get("ai_tags", []) if fm else [],
+        # 项目工具箱归属 (v3)：人工在笔记 frontmatter 维护
+        "toolboxes": _parse_str_list(fm.get("toolboxes")) if fm else [],
     }
+
+
+def _parse_str_list(value: object) -> list[str]:
+    """解析 frontmatter 字符串列表字段，兼容多种形式。"""
+    if value is None:
+        return []
+    if isinstance(value, list):
+        return [str(v).strip() for v in value if str(v).strip()]
+    if isinstance(value, str):
+        s = value.strip()
+        if s.startswith("[") and s.endswith("]"):
+            inner = s[1:-1].strip()
+            return [x.strip().strip('"\'') for x in inner.split(",") if x.strip()]
+        return [s] if s else []
+    return []
 
 
 def _safe_int(value: object, default: int = 0) -> int:
@@ -222,12 +239,12 @@ def generate_site_data(vault_path: Path) -> int:
         if n.get("language"):
             languages.add(n["language"])
 
-    # 项目工具箱：tables/*.yaml → join vault 元数据（v2）
+    # 项目工具箱：两源合一（表配置 + 笔记 toolboxes 声明）
     notes_index = {n["slug"]: n for n in notes}
-    tables_data = [join_table(t, notes_index) for t in load_tables(vault_path)]
+    tables_data = build_tables_data(load_tables(vault_path), notes_index)
 
     site_data = {
-        "version": 2,
+        "version": 3,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "stats": {
             "total": len(notes),
