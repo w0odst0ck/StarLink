@@ -38,12 +38,36 @@ BACKUP_ROOT = Path.home() / "backups"
 
 
 def _find_note(vault_path: Path, slug: str) -> Path | None:
-    """全库查找同 slug 笔记文件。"""
+    """全库查找同 slug 笔记文件。
+
+    与 vault.py 的锚点语义一致：优先 human_edited 人工版；
+    多个候选且无法判定时警告并返回 None（不静默改错文件）。
+    """
     stars_root = vault_path / "stars"
     if not stars_root.is_dir():
         return None
     hits = [p for p in stars_root.rglob("*.md") if p.stem == slug]
-    return hits[0] if hits else None
+    if not hits:
+        return None
+    if len(hits) == 1:
+        return hits[0]
+    # 多副本：优先人工版（human_edited 或 toolboxes 标记），否则歧义 → 跳过
+    protected = [p for p in hits if _is_human_protected(p.read_text(encoding="utf-8"))]
+    if len(protected) == 1:
+        return protected[0]
+    print(f"  ! {slug}: {len(hits)} 个副本且无法判定锚点，跳过（先清理重复）")
+    return None
+
+
+def _is_human_protected(content: str) -> bool:
+    """与 vault.py 一致：human_edited 或 frontmatter toolboxes 视为人工内容。"""
+    if "human_edited: true" in content:
+        return True
+    if content.startswith("---\n"):
+        end = content.find("\n---", 4)
+        if end != -1 and "toolboxes:" in content[4:end]:
+            return True
+    return False
 
 
 def _read_frontmatter(content: str) -> tuple[dict, str, str]:
